@@ -39,6 +39,8 @@
       <h1>Digit Decoder</h1>
 		<pre>
 			<?php 
+				require_once('digits-to-letters.php');
+				
 				$filename = 'message.txt';
 				$file = fopen($filename, 'r');
 				$contents = fread($file, filesize($filename));
@@ -57,10 +59,10 @@
 						<?php echo $number;?>
 					</div>
 					<div class="options">
-						abc
+						<?php echo $d2l[$number];?>
 					</div>
 					<div class="letter">
-						a
+						
 					</div>
 				</div>
 		<?php
@@ -68,32 +70,6 @@
       	?>
 	</div>
   </div>
-<!--
-	<div class="twelve columns">
-		<div class="character one column">
-			<div class="number">
-				2
-			</div>
-			<div class="options">
-				ABC
-			</div>
-			<div class="letter">
-				A
-			</div>
-		</div>
-		<div class="character one column">
-			<div class="number">
-				3
-			</div>
-			<div class="options">
-				DEF
-			</div>
-			<div class="letter">
-				D
-			</div>
-		</div>
-	</div>
--->
   
   
   
@@ -129,5 +105,9 @@
   
   <!-- Initialize JS Plugins -->
   <script src="javascripts/app.js"></script>
+
+  <!-- decoder scripts -->
+  <script src="javascripts/words.js"></script>
+  <script src="javascripts/pickletters.js"></script>
 </body>
 </html>
