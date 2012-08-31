@@ -1,0 +1,17 @@
+.character{
+	text-align:center;
+	float:left;
+	margin: 0 1em 1em 1em;
+}
+
+.number{
+	
+}
+
+.options{
+	color:#666;
+}
+
+.letter{
+	color:#2BA6CB;
+}
