@@ -1,7 +1,8 @@
 //cycles through each character and tries to make a word with it
 
-//initializes array
+//initializes variables
 var options = [];
+var guessWord;
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -12,6 +13,13 @@ var buildOptions = function(){
 	});
 };
 
+//steps through each character to check for defined word
+var buildGuessWord = function(){
+	options.each(function(){
+		//guessWord.= 
+	});
+
+};
 $(document).ready(function() {
 	buildOptions();
 });
