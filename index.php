@@ -47,7 +47,7 @@
 				fclose($file);
 				
 				//create array with numbers in the message
-				$numbers = explode(',', $contents);
+				$numbers = explode(', ', $contents);
 			?>
 		</pre>
 		<br/>
