@@ -47,7 +47,7 @@
 				fclose($file);
 				
 				//create array with numbers in the message
-				$numbers = str_getcsv($contents);
+				$numbers = explode(',', $contents);
 			?>
 		</pre>
 		<br/>
