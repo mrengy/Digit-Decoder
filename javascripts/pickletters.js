@@ -3,6 +3,7 @@
 //initializes variables
 var options = [];
 var guessWord;
+var possibilities = [];
 var maxWordLength = 10;
 var foundWordIndex = -1;
 
@@ -19,21 +20,42 @@ var buildOptions = function(){
 var checkGuessWord = function(){
 	// shows index of words array in which a guessword appears, if any. If no match, foundWordIndex = -1.
 	foundWordIndex = $.inArray(guessWord, words);
+	/*
 	if (foundWordIndex > -1){
 		break;
 		console.log(guessWord);
 		return foundWordIndex;
 	}
+	*/
 }
 
 //steps through each character to build a guess word
 var buildGuessWord = function(){
 	
 	//guessWord.= 
-	
+	//abandoning guessWord string for now in favor of possibilities array
 
 };
+
+//http://stackoverflow.com/questions/1636355/jquery-javascript-multiple-array-combinations
+var recursiveSearch = function (text, depth){
+
+ text = text || "";
+ depth = depth || 0;
+ 	for ( var i = 0; i < options[depth].length; i++ ){
+	   // is there one more layer?
+	   if ( depth +1 < options.length )
+	     // yes: iterate the layer
+	     recursiveSearch ( text + ((text=="") ? "" : " ") + options[depth][i] , depth +1 );
+	   else
+	     // no: this is the last layer. we add the result to the array
+	     possibilities.push ( text + options[depth][i] );
+	 }
+}
+
 $(document).ready(function() {
 	buildOptions();
 	//console.log(options);
+	recursiveSearch();
+	console.log(possibilities);
 });
