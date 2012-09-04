@@ -1,0 +1,27 @@
+G D J
+H D J
+I D J
+
+G E J
+G F J
+
+G E K
+G E L
+
+H E J
+H F J
+
+G D K
+G D L
+
+I D K
+I D L
+
+I E J
+I F L
+
+H E K
+H E L
+
+I E K
+I E L
