@@ -1,27 +1,27 @@
-G D J
-H D J
-I D J
+G D J	0 0 0
+H D J	1 0 0
+I D J	2 0 0
 
-G E J
-G F J
+G E J	0 1 0
+G F J	0 2 0
 
-G E K
-G E L
+G E K	0 1 1
+G E L	0 1 2
 
-H E J
-H F J
+H E J	1 1 0
+H F J	1 2 0
 
-G D K
-G D L
+G D K	0 0 1
+G D L	0 0 2
 
-I D K
-I D L
+I D K	2 0 1
+I D L	2 0 2
 
-I E J
-I F L
+I E J	2 1 0
+I F L	2 2 2
 
-H E K
-H E L
+H E K	1 1 1
+H E L	1 1 2
 
-I E K
-I E L
+I E K	2 1 1
+I E L	2 1 2
