@@ -5,6 +5,7 @@ var options = [];
 var guessWord;
 var maxWordLength = 10;
 var foundWordIndex = -1;
+var possibilities = [];
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -29,37 +30,16 @@ var checkGuessWord = function(){
 }
 
 //steps through each character to build a guess word
-var buildGuessWord = function(letter, number){
-	
-	var letter = letter || 0;
-	var number = number || 0;
-	/*
-	for (var i=0; i< maxWordLength; i++){
-		if (typeof guessWord == "undefined"){
-			guessWord = options[i][number];
-		}
-		else{
-			guessWord = (guessWord + options[i][number]);
+var buildGuessWord = function(){
+
+// for now stepping through first three digits only
+	for (var i=0; i<options[0].length; i++){
+		for (var j=0; j<options[1].length; j++){
+			for (var k=0; k<options[2].length; k++){
+				possibilities.push ([ options[0][i], options[1][j], options[2][k] ].join(''));
+			}
 		}
 	}
-}
-
-//http://stackoverflow.com/questions/1636355/jquery-javascript-multiple-array-combinations
-
- text = text || "";
- depth = depth || 0;
-*/
-	var possibilities = [];
- 
-	for ( var i = 0; i < maxWordLength; i++ ){
-	   // is there one more layer?
-	   if ( number +1 < options.length )
-	     // yes: iterate the layer
-	     buildGuessWord ( letter + ((letter=="") ? "" : " ") + options[number][i] , number +1 );
-	   else
-	     // no: this is the last layer. we add the result to the array
-	     possibilities.push ( letter + options[number][i] );
-	 }
 }
 
 $(document).ready(function() {
