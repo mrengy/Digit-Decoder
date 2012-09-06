@@ -37,6 +37,7 @@ var nextLetter = function(letter){
 //steps through each character to build a guess word
 var buildPossibilities = function(){
 
+/*
 // for now stepping through first three digits only
 	for (var i=0; i<options[0].length; i++){
 		for (var j=0; j<options[1].length; j++){
@@ -45,6 +46,15 @@ var buildPossibilities = function(){
 			}
 		}
 	}
+*/
+	var wordCharacter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+	var increment = wordCharacter[0];
+	console.log(increment);
+	
+	/*for (var [increment]=0; [increment]<options[0].length; [increment]++){
+		possibilities.push(options[increment]);
+	}*/
+
 }
 
 $(document).ready(function() {
