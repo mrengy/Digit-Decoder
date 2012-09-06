@@ -29,8 +29,13 @@ var checkGuessWord = function(){
 	*/
 }
 
+//retunrs the next letter in the alphabet
+var nextLetter = function(letter){
+	return String.fromCharCode(letter.charCodeAt(0) + 1);
+}
+
 //steps through each character to build a guess word
-var buildGuessWord = function(){
+var buildPossibilities = function(){
 
 // for now stepping through first three digits only
 	for (var i=0; i<options[0].length; i++){
@@ -44,8 +49,7 @@ var buildGuessWord = function(){
 
 $(document).ready(function() {
 	buildOptions();
-	//console.log(options);
-	buildGuessWord();
+	buildPossibilities();
 	//console.log(guessWord);
 	console.log(possibilities);
 });
