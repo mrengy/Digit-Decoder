@@ -8,6 +8,8 @@ var foundWordIndex = -1;
 var possibilities = [];
 var wordFound = false;
 var characters;
+var initialCharacters;
+var foundWordResult;
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -23,7 +25,8 @@ var checkGuessWord = function(guessWord){
 	// shows index of words array in which a guessword appears, if any. If no match, foundWordIndex = -1.
 	
 	// words array is defined in words.js
-	foundWordIndex = $.inArray(guessWord, words);
+	return $.inArray(guessWord, words);
+	
 	/*
 	if (foundWordIndex > -1){
 		break;
@@ -63,7 +66,7 @@ var buildPossibilities = function(){
 			}
 		}
 	}
-	characters = possibilities[0].length;
+	initialCharacters = possibilities[0].length;
 /*
 	var wordCharacter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
 	var increment = wordCharacter[0];
@@ -82,17 +85,23 @@ var checkAndRemove = function(){
 	characters = possibilities[0].length;
 	
 	// checks each word in possibilities array
-	for (var a=0; a<possibilities.length; a++){
-		checkGuessWord(possibilities[a]);
-		if (foundWordIndex >-1){
-			console.log(foundWordIndex);
+	for (var x=0; x<possibilities.length; x++){
+		//possibilities[x] = possibilities[x].slice(0, 5);
+		foundWordIndex = checkGuessWord(possibilities[x]);
+		
+		if (foundWordIndex > -1){
+			//console.log(foundWordIndex);
 			wordFound = true;
-			break;
+			console.log(foundWordIndex);
+			//foundWordResult = words[foundWordIndex];
+			return false;
 		}
+		
 		else {
 			//removes last character from possibility
-			possibilities[a] = possibilities[a].slice(0, (characters-1));
+			possibilities[x] = possibilities[x].slice(0, (characters-1));
 		}
+		
 	}
 }
 
@@ -101,9 +110,15 @@ $(document).ready(function() {
 	buildPossibilities();
 	//console.log(guessWord);
 	//console.log(possibilities);
-	for (var z=0; z<characters; z++){
-		console.log(possibilities[0]);
+	//console.log(possibilities.length);
+	for (var z=0; z<initialCharacters; z++){
 		checkAndRemove();
+		//console.log(possibilities[0]);
 	}
+	//console.log(possibilities[0]);
+	//console.log(possibilities[59048]);
+	//alert(checkGuessWord('help'));
+	//console.log(foundWordIndex);
+	//console.log(foundWordResult);
 	//console.log(options);
 });

@@ -1,2 +1,2 @@
 //list of words to be tried
-var words = [ 'hello', 'hell', 'i', 'sit', 'real', 'really', 'you', 'help' ];
+var words = [ 'HELLO', 'HELL', 'I', 'SIT', 'REAL', 'REALLY', 'YOU', 'HELP' ];
