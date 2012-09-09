@@ -74,12 +74,36 @@ var buildPossibilities = function(){
 */
 }
 
+var checkAndRemove = function(){
+	// variable to determine length of word checked
+	var characters = possibilities[0].length;
+	
+	// variable to determine if word is found
+	var wordFound = false;
+	
+	// checks each word in possibilities array
+	for (var a=0; a<possibilities.length; a++){
+		checkGuessWord(possibilities[a]);
+		if (foundWordIndex >-1){
+			console.log(foundWordIndex);
+			wordFound = true;
+			break;
+		}
+		else {
+			//removes last character from possibility
+			possibilities[a] = possibilities[a].slice(0, (characters-1));
+		}
+	}
+}
+
 $(document).ready(function() {
 	buildOptions();
 	buildPossibilities();
 	//console.log(guessWord);
-	console.log(possibilities);
-	checkGuessWord('help');
-	console.log(foundWordIndex);
+	//console.log(possibilities);
+	console.log(possibilities[0]);
+	checkAndRemove();
+	console.log(possibilities[0]);
+	
 	//console.log(options);
 });
