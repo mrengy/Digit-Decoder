@@ -37,24 +37,39 @@ var nextLetter = function(letter){
 //steps through each character to build a guess word
 var buildPossibilities = function(){
 
-/*
-// for now stepping through first three digits only
-	for (var i=0; i<options[0].length; i++){
-		for (var j=0; j<options[1].length; j++){
-			for (var k=0; k<options[2].length; k++){
-				possibilities.push ([ options[0][i], options[1][j], options[2][k] ].join(''));
+// for now stepping through first ten digits manually
+	for (var a=0; a<options[0].length; a++){
+		for (var b=0; b<options[1].length; b++){
+			for (var c=0; c<options[2].length; c++){
+				for (var d=0; d<options[2].length; d++){
+					for (var e=0; e<options[2].length; e++){
+						for (var f=0; f<options[2].length; f++){
+							for (var g=0; g<options[2].length; g++){
+								for (var h=0; h<options[2].length; h++){
+									for (var i=0; i<options[2].length; i++){
+										for (var j=0; j<options[2].length; j++){
+											possibilities.push ([ options[0][a], options[1][b], options[2][c], options[3][d], options[4][e], options[5][f], options[6][g], options[7][h], options[8][i], options[9][j] ].join(''));
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
-*/
+/*
 	var wordCharacter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
 	var increment = wordCharacter[0];
 	console.log(increment);
 	
-	/*for (var [increment]=0; [increment]<options[0].length; [increment]++){
-		possibilities.push(options[increment]);
-	}*/
-
+	// not working - trying to set a variable name dynamically and step through to change the name alphabetically. http://stackoverflow.com/questions/9870526/jquery-dynamically-increment-variable-name-inside-a-for-loop
+	// want to have a parameter (10 for now) for how many letters to gather all options for into possbile words
+	// for (var [increment]=0; [increment]<options[0].length; [increment]++){
+	//	possibilities.push(options[increment]);
+	// }
+*/
 }
 
 $(document).ready(function() {
@@ -62,4 +77,5 @@ $(document).ready(function() {
 	buildPossibilities();
 	//console.log(guessWord);
 	console.log(possibilities);
+	//console.log(options);
 });
