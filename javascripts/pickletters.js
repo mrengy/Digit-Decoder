@@ -6,6 +6,8 @@ var options = [];
 var maxWordLength = 10;
 var foundWordIndex = -1;
 var possibilities = [];
+var wordFound = false;
+var characters;
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -61,6 +63,7 @@ var buildPossibilities = function(){
 			}
 		}
 	}
+	characters = possibilities[0].length;
 /*
 	var wordCharacter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
 	var increment = wordCharacter[0];
@@ -76,10 +79,7 @@ var buildPossibilities = function(){
 
 var checkAndRemove = function(){
 	// variable to determine length of word checked
-	var characters = possibilities[0].length;
-	
-	// variable to determine if word is found
-	var wordFound = false;
+	characters = possibilities[0].length;
 	
 	// checks each word in possibilities array
 	for (var a=0; a<possibilities.length; a++){
@@ -101,9 +101,9 @@ $(document).ready(function() {
 	buildPossibilities();
 	//console.log(guessWord);
 	//console.log(possibilities);
-	console.log(possibilities[0]);
-	checkAndRemove();
-	console.log(possibilities[0]);
-	
+	for (var z=0; z<characters; z++){
+		console.log(possibilities[0]);
+		checkAndRemove();
+	}
 	//console.log(options);
 });
