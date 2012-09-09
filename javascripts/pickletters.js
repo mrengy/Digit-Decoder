@@ -2,7 +2,7 @@
 
 //initializes variables
 var options = [];
-var guessWord;
+//var guessWord;
 var maxWordLength = 10;
 var foundWordIndex = -1;
 var possibilities = [];
@@ -17,8 +17,10 @@ var buildOptions = function(){
 };
 
 //compares guess word to accepted word list
-var checkGuessWord = function(){
+var checkGuessWord = function(guessWord){
 	// shows index of words array in which a guessword appears, if any. If no match, foundWordIndex = -1.
+	
+	// words array is defined in words.js
 	foundWordIndex = $.inArray(guessWord, words);
 	/*
 	if (foundWordIndex > -1){
@@ -77,5 +79,7 @@ $(document).ready(function() {
 	buildPossibilities();
 	//console.log(guessWord);
 	console.log(possibilities);
+	checkGuessWord('help');
+	console.log(foundWordIndex);
 	//console.log(options);
 });
