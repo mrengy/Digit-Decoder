@@ -2,6 +2,11 @@
 	text-align:center;
 	float:left;
 	margin: 0 .5em 1em .5em;
+	height:3.5em;
+}
+
+.character div{
+	margin:0 0 .25em 0;
 }
 
 .number{

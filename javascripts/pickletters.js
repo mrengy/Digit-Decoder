@@ -85,40 +85,48 @@ var checkAndRemove = function(){
 	characters = possibilities[0].length;
 	
 	// checks each word in possibilities array
-	for (var x=0; x<possibilities.length; x++){
+	for (var a=0; a<possibilities.length; a++){
 		//possibilities[x] = possibilities[x].slice(0, 5);
-		foundWordIndex = checkGuessWord(possibilities[x]);
+		foundWordIndex = checkGuessWord(possibilities[a]);
 		
 		if (foundWordIndex > -1){
-			//console.log(foundWordIndex);
 			wordFound = true;
-			console.log(foundWordIndex);
-			//foundWordResult = words[foundWordIndex];
-			return false;
+			//console.log(foundWordIndex);
+			break;
 		}
 		
 		else {
 			//removes last character from possibility
-			possibilities[x] = possibilities[x].slice(0, (characters-1));
+			possibilities[a] = possibilities[a].slice(0, (characters-1));
 		}
 		
+	}
+}
+
+//inserts each character into posiiton
+var printWord = function(){
+	for (var a=0; a<words[foundWordIndex].length; a++){
+		$('div.character div.letter').eq(a).html(words[foundWordIndex].charAt(a));
 	}
 }
 
 $(document).ready(function() {
 	buildOptions();
 	buildPossibilities();
+	for (var a=0; a<initialCharacters; a++){
+		checkAndRemove();
+		if (wordFound == true){
+			break;
+		}
+	}
+	printWord();
 	//console.log(guessWord);
 	//console.log(possibilities);
 	//console.log(possibilities.length);
-	for (var z=0; z<initialCharacters; z++){
-		checkAndRemove();
-		//console.log(possibilities[0]);
-	}
+	//console.log(words[foundWordIndex]);
 	//console.log(possibilities[0]);
 	//console.log(possibilities[59048]);
 	//alert(checkGuessWord('help'));
-	//console.log(foundWordIndex);
 	//console.log(foundWordResult);
 	//console.log(options);
 });
