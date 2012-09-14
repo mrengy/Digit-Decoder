@@ -9,7 +9,7 @@ var possibilities = [];
 var wordFound = false;
 var characters;
 var initialCharacters;
-var foundWordResult;
+var foundWord;
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -21,19 +21,15 @@ var buildOptions = function(){
 };
 
 //compares guess word to accepted word list
-var checkGuessWord = function(guessWord){
+var checkGuessWord = function(word){
 	// shows index of words array in which a guessword appears, if any. If no match, foundWordIndex = -1.
 	
 	// words array is defined in words.js
-	return $.inArray(guessWord, words);
-	
-	/*
-	if (foundWordIndex > -1){
-		break;
-		console.log(guessWord);
-		return foundWordIndex;
+	//return $.inArray(guessWord, words);
+	if ( dict[ word ] ){
+		return foundWord;
 	}
-	*/
+	
 }
 
 //retunrs the next letter in the alphabet
@@ -105,8 +101,9 @@ var checkAndRemove = function(){
 
 //inserts each character into posiiton
 var printWord = function(){
-	for (var a=0; a<words[foundWordIndex].length; a++){
-		$('div.character div.letter').eq(a).html(words[foundWordIndex].charAt(a));
+	for (var a=0; a<foundWord.length; a++){
+		//$('div.character div.letter').eq(a).html(words[foundWordIndex].charAt(a));
+		$('div.character div.letter').eq(a).html(foundWord.charAt(a));
 	}
 }
 
@@ -127,6 +124,5 @@ $(document).ready(function() {
 	//console.log(possibilities[0]);
 	//console.log(possibilities[59048]);
 	//alert(checkGuessWord('help'));
-	//console.log(foundWordResult);
 	//console.log(options);
 });
