@@ -16,5 +16,10 @@ if ("HELLO" in dict){
 	console.log('HELLO');
 }
 */
+/*
+if (dict['HELLO'] != false){
+	console.log('HELLO');
+}
+*/
 
 //console.log(dict['HELLO']);
