@@ -108,6 +108,6 @@
 
   <!-- decoder scripts -->
   <script src="javascripts/words.js"></script>
-  <script src="javascripts/pickletters.js"></script>
+ <!-- <script src="javascripts/pickletters.js"></script> -->
 </body>
 </html>
