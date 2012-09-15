@@ -11,17 +11,6 @@ $.get("dictionary.txt", function( txt ){
 		dict[ words[i] ] = true;
 	}
 });
-/*
-if ("HELLO" in dict){
-	console.log('HELLO');
-}
-*/
-/*
-if (dict['HELLO'] != false){
-	console.log('HELLO');
-}
-*/
 
-//console.log(dict['HELLO']);
 console.log(dict.AAH);
 console.log(dict);
