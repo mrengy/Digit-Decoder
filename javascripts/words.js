@@ -23,3 +23,5 @@ if (dict['HELLO'] != false){
 */
 
 //console.log(dict['HELLO']);
+console.log(dict.AAH);
+console.log(dict);
