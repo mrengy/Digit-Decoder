@@ -4,6 +4,7 @@
 //http://ejohn.org/blog/dictionary-lookups-in-javascript/
 var dict = {};
 
+/*
 //approach using timeout as well as callback, still showing dict.AA as undefined.
 
 $.get("dictionary.txt", function(txt){
@@ -29,9 +30,9 @@ function findWord(letters){
 	}
 	console.log(dict);
 }
+*/
 
 
-/*
 //ajax call to read dictionary.txt file
 $.get("dictionary.txt", parseResults);
 
@@ -50,7 +51,7 @@ function parseResults(txt) {
        console.log('dict.AAH is true!');
     }
 }
-*/
+
 /*
 function getDictionary(){
 	return $.ajax("dictionary.txt");
