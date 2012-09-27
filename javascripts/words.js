@@ -3,7 +3,6 @@
 
 //http://ejohn.org/blog/dictionary-lookups-in-javascript/
 var dict = {};
-var words;
 
 /*
 //approach using timeout as well as callback, still showing dict.AA as undefined.
@@ -39,7 +38,7 @@ $.get("dictionary.txt", parseResults);
 
 
 function parseResults(txt) {
-    words = txt.split( "\n");
+    var words = txt.split( "\n");
 	//note that words array will still contain carriage return characters
 
     for (var i=0; i < words.length; i++){

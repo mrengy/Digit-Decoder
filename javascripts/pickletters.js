@@ -27,7 +27,7 @@ var checkGuessWord = function(word){
 	// words array is defined in words.js
 	//return $.inArray(guessWord, words);
 	
-	if ($.inArray(word, words)){
+	if ($.inArray(word, dict)){
 		foundWord = word;
 	}
 	
@@ -117,7 +117,6 @@ var printWord = function(){
 }
 
 $(document).ready(function() {
-	console.log(words);
 	buildOptions();
 	buildPossibilities();
 	for (var a=0; a<initialCharacters; a++){
