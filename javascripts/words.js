@@ -39,17 +39,16 @@ $.get("dictionary.txt", parseResults);
 
 function parseResults(txt) {
     var words = txt.split( "\n");
+	//note that words array will still contain carriage return characters
 
     for (var i=0; i < words.length; i++){
         dict[ words[i] ] = true;
     }
 
-    console.log(dict.AAH);
-    console.log(dict);
-
-    if (dict.AAH == true) {
-       console.log('dict.AAH is true!');
-    }
+	if ($.inArray('AAH', words)){
+		console.log('AAH is in the result set');
+	}
+	
 }
 
 /*
