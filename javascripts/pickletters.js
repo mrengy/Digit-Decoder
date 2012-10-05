@@ -4,7 +4,6 @@
 var options = [];
 //var guessWord;
 var maxWordLength = 10;
-var foundWordIndex;
 var possibilities = [];
 var wordFound = false;
 var characters;
@@ -27,10 +26,9 @@ var checkGuessWord = function(word){
 	// words array is defined in words.js
 	//return $.inArray(guessWord, words);
 	
-	//seem to be unable to insert value of 'word' variable to test dict.word
-	if (dict.word == true){
-		foundWord = word;
-		return foundWord;
+	//returns the word if it is in the dictionary
+	if (dict[word] == true){
+		return word;
 	}
 	else {
 		return null;
@@ -97,9 +95,9 @@ var checkAndRemove = function(){
 	// checks each word in possibilities array
 	for (var a=0; a<possibilities.length; a++){
 		//possibilities[x] = possibilities[x].slice(0, 5);
-		foundWordIndex = checkGuessWord(possibilities[a]);
+		foundWord = checkGuessWord(possibilities[a]);
 		
-		if (foundWordIndex !== null){
+		if (foundWord !== null){
 			wordFound = true;
 			//console.log(foundWordIndex);
 			break;
@@ -116,7 +114,6 @@ var checkAndRemove = function(){
 //inserts each character into posiiton
 var printWord = function(){
 	for (var a=0; a<foundWord.length; a++){
-		//$('div.character div.letter').eq(a).html(words[foundWordIndex].charAt(a));
 		$('div.character div.letter').eq(a).html(foundWord.charAt(a));
 	}
 }
@@ -131,16 +128,14 @@ $(document).ready(function() {
 			break;
 		}
 	}
-	
-	//printWord();
+	printWord();
 	
 	//console.log(guessWord);
 	//console.log(possibilities);
 	//console.log(possibilities.length);
 	//console.log(possibilities[0]);
 	//console.log(possibilities[59048]);
-	console.log(foundWord);
-	console.log(foundWordIndex);
+	//console.log(foundWord);
 	//alert(checkGuessWord('help'));
 	//console.log(options);
 	//console.log(dict);
