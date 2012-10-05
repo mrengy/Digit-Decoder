@@ -34,8 +34,16 @@ function findWord(letters){
 
 
 //ajax call to read dictionary.txt file
-$.get("dictionary.txt", parseResults);
-
+//$.get("dictionary.txt", parseResults);
+$.ajax({
+	url:'dictionary.txt',
+	type:'GET',
+	async: false,
+	success: parseResults,
+	error: function(xhr, status){
+		console.log('problem with AJAX request');
+	},
+});
 
 function parseResults(txt) {
     var words = txt.split( "\n");
@@ -44,11 +52,14 @@ function parseResults(txt) {
     for (var i=0; i < words.length; i++){
         dict[ words[i] ] = true;
     }
-/*
-	if ($.inArray('AAH', words)){
+
+	if ($.inArray('AAH', dict)){
 		console.log('AAH is in the result set');
 	}
-*/	
+	else {
+		console.log('AAH is not found');
+	}
+	
 }
 
 /*
