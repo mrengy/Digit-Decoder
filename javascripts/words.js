@@ -32,9 +32,18 @@ function findWord(letters){
 }
 */
 
+//manual build of dict object
+
+dict['HELLO'] = true;
+dict['IS'] = true;
+dict['IT'] = true;
+dict['REALLY'] = true;
+dict['YOU'] = true;
+dict['SIT'] = true;
+
 
 //ajax call to read dictionary.txt file
-//$.get("dictionary.txt", parseResults);
+/*
 $.ajax({
 	url:'dictionary.txt',
 	type:'GET',
@@ -44,23 +53,21 @@ $.ajax({
 		console.log('problem with AJAX request');
 	},
 });
-
+*/
 function parseResults(txt) {
-    var words = txt.split( "\n");
-	//note that words array will still contain carriage return characters
+    var words = txt.split( "\n").map($.trim);
+	//trimming out carriage return characters
 
     for (var i=0; i < words.length; i++){
         dict[ words[i] ] = true;
     }
-
-	if ($.inArray('AAH', dict)){
-		console.log('AAH is in the result set');
-	}
-	else {
-		console.log('AAH is not found');
-	}
+/*
+	console.log(dict.AAH);
+*/	
 	
 }
+
+//console.log(dict.AAH);
 
 /*
 function getDictionary(){

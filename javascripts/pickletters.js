@@ -4,7 +4,7 @@
 var options = [];
 //var guessWord;
 var maxWordLength = 10;
-var foundWordIndex = -1;
+var foundWordIndex;
 var possibilities = [];
 var wordFound = false;
 var characters;
@@ -27,11 +27,15 @@ var checkGuessWord = function(word){
 	// words array is defined in words.js
 	//return $.inArray(guessWord, words);
 	
-	if ($.inArray(word, dict)){
+	//seem to be unable to insert value of 'word' variable to test dict.word
+	if (dict.word == true){
 		foundWord = word;
+		return foundWord;
+	}
+	else {
+		return null;
 	}
 	
-	return foundWord;
 	
 	/*
 	if ( dict[ word ] ){
@@ -53,13 +57,13 @@ var buildPossibilities = function(){
 	for (var a=0; a<options[0].length; a++){
 		for (var b=0; b<options[1].length; b++){
 			for (var c=0; c<options[2].length; c++){
-				for (var d=0; d<options[2].length; d++){
-					for (var e=0; e<options[2].length; e++){
-						for (var f=0; f<options[2].length; f++){
-							for (var g=0; g<options[2].length; g++){
-								for (var h=0; h<options[2].length; h++){
-									for (var i=0; i<options[2].length; i++){
-										for (var j=0; j<options[2].length; j++){
+				for (var d=0; d<options[3].length; d++){
+					for (var e=0; e<options[4].length; e++){
+						for (var f=0; f<options[5].length; f++){
+							for (var g=0; g<options[6].length; g++){
+								for (var h=0; h<options[7].length; h++){
+									for (var i=0; i<options[8].length; i++){
+										for (var j=0; j<options[9].length; j++){
 											possibilities.push ([ options[0][a], options[1][b], options[2][c], options[3][d], options[4][e], options[5][f], options[6][g], options[7][h], options[8][i], options[9][j] ].join(''));
 										}
 									}
@@ -71,6 +75,7 @@ var buildPossibilities = function(){
 			}
 		}
 	}
+
 	initialCharacters = possibilities[0].length;
 /*
 	var wordCharacter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
@@ -94,7 +99,7 @@ var checkAndRemove = function(){
 		//possibilities[x] = possibilities[x].slice(0, 5);
 		foundWordIndex = checkGuessWord(possibilities[a]);
 		
-		if (foundWordIndex > -1){
+		if (foundWordIndex !== null){
 			wordFound = true;
 			//console.log(foundWordIndex);
 			break;
@@ -119,19 +124,24 @@ var printWord = function(){
 $(document).ready(function() {
 	buildOptions();
 	buildPossibilities();
+	checkAndRemove();
 	for (var a=0; a<initialCharacters; a++){
 		checkAndRemove();
 		if (wordFound == true){
 			break;
 		}
 	}
-	printWord();
+	
+	//printWord();
+	
 	//console.log(guessWord);
 	//console.log(possibilities);
 	//console.log(possibilities.length);
-	//console.log(words[foundWordIndex]);
 	//console.log(possibilities[0]);
 	//console.log(possibilities[59048]);
+	console.log(foundWord);
+	console.log(foundWordIndex);
 	//alert(checkGuessWord('help'));
 	//console.log(options);
+	//console.log(dict);
 });
