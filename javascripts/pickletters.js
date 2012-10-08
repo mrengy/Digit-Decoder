@@ -32,15 +32,7 @@ var checkGuessWord = function(word){
 	}
 	else {
 		return null;
-	}
-	
-	
-	/*
-	if ( dict[ word ] ){
-		return foundWord;
-	}
-	*/
-	
+	}	
 }
 
 //retunrs the next letter in the alphabet
@@ -50,6 +42,8 @@ var nextLetter = function(letter){
 
 //steps through each character to build a guess word
 var buildPossibilities = function(){
+
+//need to insert variable to control where to start
 
 // for now stepping through first ten digits manually
 	for (var a=0; a<options[0].length; a++){
@@ -116,12 +110,13 @@ var printWord = function(){
 	for (var a=0; a<foundWord.length; a++){
 		$('div.character div.letter').eq(a).html(foundWord.charAt(a));
 	}
+	//need to insert variable to control where to start
 }
 
 $(document).ready(function() {
 	buildOptions();
 	buildPossibilities();
-	checkAndRemove();
+	//checkAndRemove();
 	for (var a=0; a<initialCharacters; a++){
 		checkAndRemove();
 		if (wordFound == true){
@@ -133,7 +128,7 @@ $(document).ready(function() {
 	//console.log(guessWord);
 	//console.log(possibilities);
 	//console.log(possibilities.length);
-	//console.log(possibilities[0]);
+	console.log(possibilities[0]);
 	//console.log(possibilities[59048]);
 	//console.log(foundWord);
 	//alert(checkGuessWord('help'));
