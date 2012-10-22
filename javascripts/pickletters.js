@@ -21,7 +21,6 @@ var buildOptions = function(){
 
 //compares guess word to accepted word list
 var checkGuessWord = function(word){
-	// shows index of words array in which a guessword appears, if any. If no match, foundWordIndex = -1.
 	
 	// words array is defined in words.js
 	//return $.inArray(guessWord, words);
@@ -41,22 +40,20 @@ var nextLetter = function(letter){
 }
 
 //steps through each character to build a guess word
-var buildPossibilities = function(){
-
-//need to insert variable to control where to start
+var buildPossibilities = function(startIndex){
 
 // for now stepping through first ten digits manually
-	for (var a=0; a<options[0].length; a++){
-		for (var b=0; b<options[1].length; b++){
-			for (var c=0; c<options[2].length; c++){
-				for (var d=0; d<options[3].length; d++){
-					for (var e=0; e<options[4].length; e++){
-						for (var f=0; f<options[5].length; f++){
-							for (var g=0; g<options[6].length; g++){
-								for (var h=0; h<options[7].length; h++){
-									for (var i=0; i<options[8].length; i++){
-										for (var j=0; j<options[9].length; j++){
-											possibilities.push ([ options[0][a], options[1][b], options[2][c], options[3][d], options[4][e], options[5][f], options[6][g], options[7][h], options[8][i], options[9][j] ].join(''));
+	for (var a=0; a<options[startIndex].length; a++){
+		for (var b=0; b<options[startIndex+1].length; b++){
+			for (var c=0; c<options[startIndex+2].length; c++){
+				for (var d=0; d<options[startIndex+3].length; d++){
+					for (var e=0; e<options[startIndex+4].length; e++){
+						for (var f=0; f<options[startIndex+5].length; f++){
+							for (var g=0; g<options[startIndex+6].length; g++){
+								for (var h=0; h<options[startIndex+7].length; h++){
+									for (var i=0; i<options[startIndex+8].length; i++){
+										for (var j=0; j<options[startIndex+9].length; j++){
+											possibilities.push ([ options[startIndex][a], options[startIndex+1][b], options[startIndex+2][c], options[startIndex+3][d], options[startIndex+4][e], options[startIndex+5][f], options[startIndex+6][g], options[startIndex+7][h], options[startIndex+8][i], options[startIndex+9][j] ].join(''));
 										}
 									}
 								}
@@ -93,7 +90,6 @@ var checkAndRemove = function(){
 		
 		if (foundWord !== null){
 			wordFound = true;
-			//console.log(foundWordIndex);
 			break;
 		}
 		
@@ -105,17 +101,23 @@ var checkAndRemove = function(){
 	}
 }
 
-//inserts each character into posiiton
-var printWord = function(){
-	for (var a=0; a<foundWord.length; a++){
-		$('div.character div.letter').eq(a).html(foundWord.charAt(a));
+//inserts each character into posiiton, starting at startIndex
+var printWord = function(startIndex){
+	
+	//variable for character of found word to use
+	var foundWordChar = 0;
+	
+	for (var a=startIndex; a<=(startIndex + foundWord.length); a++){
+		$('div.character div.letter').eq(a).html(foundWord.charAt(foundWordChar));
+		//console.log(foundWord.charAt(foundWordChar));
+		foundWordChar++;
+		console.log(foundWordChar);
 	}
-	//need to insert variable to control where to start
 }
 
 $(document).ready(function() {
 	buildOptions();
-	buildPossibilities();
+	buildPossibilities(9);
 	//checkAndRemove();
 	for (var a=0; a<initialCharacters; a++){
 		checkAndRemove();
@@ -123,12 +125,12 @@ $(document).ready(function() {
 			break;
 		}
 	}
-	printWord();
+	printWord(9);
 	
 	//console.log(guessWord);
 	//console.log(possibilities);
 	//console.log(possibilities.length);
-	console.log(possibilities[0]);
+	//console.log(possibilities[0]);
 	//console.log(possibilities[59048]);
 	//console.log(foundWord);
 	//alert(checkGuessWord('help'));
