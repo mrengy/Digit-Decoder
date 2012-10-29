@@ -9,6 +9,7 @@ var wordFound = false;
 var characters;
 var initialCharacters;
 var foundWord;
+var firstEmptyIndex;
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -109,7 +110,7 @@ var checkAndRemove = function(){
 //inserts each character into posiiton, starting at startIndex
 var printWord = function(startIndex){
 
-//if startIndex is not defined, set it to 0	
+	//if startIndex is not defined, set it to 0	
 	if (!startIndex){
 		startIndex = 0;
 	}
@@ -123,11 +124,30 @@ var printWord = function(startIndex){
 		foundWordChar++;
 		//console.log(foundWordChar);
 	}
+	
+	//need to empty the possibilities array
+}
+
+var findStart = function(startIndex){
+	
+	//if startIndex is not defined, set it to 0	
+	if (!startIndex){
+		startIndex = 0;
+	}
+	
+	var firstEmptyElement = $('div.letter:empty:eq(0)');
+	firstEmptyIndex = firstEmptyElement.index('div.letter');
+	
+	//console.log(firstEmptyIndex);
+	
+	//need to extend to allow beginning search at a specified position
+	startIndex++;
 }
 
 $(document).ready(function() {
 	buildOptions();
 	
+	//begin repeat
 	buildPossibilities();
 	for (var a=0; a<initialCharacters; a++){
 		checkAndRemove();
@@ -136,6 +156,18 @@ $(document).ready(function() {
 		}
 	}
 	printWord();
+	findStart();
+	//end repeat
+	
+	//attempt at second iteration
+	buildPossibilities(firstEmptyIndex);
+	for (var a=0; a<initialCharacters; a++){
+		checkAndRemove();
+		if (wordFound == true){
+			break;
+		}
+	}
+	printWord(firstEmptyIndex);
 	
 	//console.log(guessWord);
 	//console.log(possibilities);
