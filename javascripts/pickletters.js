@@ -42,6 +42,11 @@ var nextLetter = function(letter){
 //steps through each character to build a guess word
 var buildPossibilities = function(startIndex){
 
+//if startIndex is not defined, set it to 0
+	if (!startIndex){
+		startIndex = 0;
+	}
+
 // for now stepping through first ten digits manually
 	for (var a=0; a<options[startIndex].length; a++){
 		for (var b=0; b<options[startIndex+1].length; b++){
@@ -103,6 +108,11 @@ var checkAndRemove = function(){
 
 //inserts each character into posiiton, starting at startIndex
 var printWord = function(startIndex){
+
+//if startIndex is not defined, set it to 0	
+	if (!startIndex){
+		startIndex = 0;
+	}
 	
 	//variable for character of found word to use
 	var foundWordChar = 0;
@@ -111,21 +121,21 @@ var printWord = function(startIndex){
 		$('div.character div.letter').eq(a).html(foundWord.charAt(foundWordChar));
 		//console.log(foundWord.charAt(foundWordChar));
 		foundWordChar++;
-		console.log(foundWordChar);
+		//console.log(foundWordChar);
 	}
 }
 
 $(document).ready(function() {
 	buildOptions();
-	buildPossibilities(9);
-	//checkAndRemove();
+	
+	buildPossibilities();
 	for (var a=0; a<initialCharacters; a++){
 		checkAndRemove();
 		if (wordFound == true){
 			break;
 		}
 	}
-	printWord(9);
+	printWord();
 	
 	//console.log(guessWord);
 	//console.log(possibilities);
