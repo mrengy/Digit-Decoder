@@ -120,9 +120,7 @@ var printWord = function(startIndex){
 	
 	for (var a=startIndex; a<=(startIndex + foundWord.length); a++){
 		$('div.character div.letter').eq(a).html(foundWord.charAt(foundWordChar));
-		//console.log(foundWord.charAt(foundWordChar));
 		foundWordChar++;
-		//console.log(foundWordChar);
 	}
 }
 
@@ -133,11 +131,20 @@ var findStart = function(startIndex){
 		startIndex = 0;
 	}
 	
-	var firstEmptyElement = $('div.letter:empty:eq(0)');
+	//decrease startIndex to use "greater than" selector
+	startIndex--;
+
+	var firstEmptyElement = $('div.letter:empty:first');
 	firstEmptyIndex = firstEmptyElement.index('div.letter');
 	
-	//need to extend to allow beginning search at a specified position
-	startIndex++;
+	/* http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
+	not working. returning -1 for firstEmptyIndex. :gt selector does not seem to work in this chain.
+	
+	var firstEmptyElement = $('div.letter:gt(' + startIndex +'):empty:first' );
+	firstEmptyIndex = firstEmptyElement.index('div.letter');
+	*/
+	
+	console.log(firstEmptyIndex);
 }
 
 $(document).ready(function() {
