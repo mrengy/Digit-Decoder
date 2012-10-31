@@ -8,7 +8,7 @@ var wordFound = false;
 var characters;
 var initialCharacters;
 var foundWord;
-var firstEmptyIndex;
+var firstEmptyIndex = 0;
 var firstEmptyIndexPrevious;
 
 //builds nested array with each option defined for each letter
@@ -146,21 +146,36 @@ $(document).ready(function() {
 	buildOptions();
 	
 	//begin repeat
-	buildPossibilities();
+	buildPossibilities(firstEmptyIndex);
 	for (var a=0; a<initialCharacters; a++){
 		checkAndRemove();
 		if (wordFound == true){
 			break;
 		}
 	}
-	printWord();
+	printWord(firstEmptyIndex);
 	findStart();
 	//end repeat
 	
-	//resetting variables
-	possibilities = [];
-	wordFound = false;
+	while (firstEmptyIndexPrevious != firstEmptyIndex){
+		firstEmptyIndexPrevious = firstEmptyIndex;
+		
+		//resetting variables
+		possibilities = [];
+		wordFound = false;
+		
+		buildPossibilities(firstEmptyIndex);
+		for (var a=0; a<initialCharacters; a++){
+			checkAndRemove();
+			if (wordFound == true){
+				break;
+			}
+		}
+		printWord(firstEmptyIndex);
+		findStart();
+	}
 	
+	/*
 	//second iteration
 		//detecting repeat of same index
 		firstEmptyIndexPrevious = firstEmptyIndex;
@@ -174,6 +189,7 @@ $(document).ready(function() {
 	}
 	printWord(firstEmptyIndex);
 	findStart();
+	*/
 	
 //debugging
 	//console.log(guessWord);
@@ -183,7 +199,7 @@ $(document).ready(function() {
 	//console.log(possibilities[59048]);
 	//console.log(foundWord);
 	//alert(checkGuessWord('help'));
-	console.log(firstEmptyIndex);
+	//console.log(firstEmptyIndex);
 	//console.log(options);
 	//console.log(dict);
 });
