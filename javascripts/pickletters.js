@@ -136,8 +136,6 @@ var findStart = function(startIndex){
 	var firstEmptyElement = $('div.letter:empty:eq(0)');
 	firstEmptyIndex = firstEmptyElement.index('div.letter');
 	
-	//console.log(firstEmptyIndex);
-	
 	//need to extend to allow beginning search at a specified position
 	startIndex++;
 }
@@ -158,6 +156,7 @@ $(document).ready(function() {
 	//end repeat
 	
 	while (firstEmptyIndexPrevious != firstEmptyIndex){
+		//sets firstEmptyIndexPrevious to the value of firstEmptyIndex the last time findStart() was run. Prevents infinite loop at the end.
 		firstEmptyIndexPrevious = firstEmptyIndex;
 		
 		//resetting variables
