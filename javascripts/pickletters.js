@@ -132,19 +132,14 @@ var findStart = function(startIndex){
 	}
 	
 	//decrease startIndex to use "greater than" selector
-	startIndex--;
-
-	var firstEmptyElement = $('div.letter:empty:first');
-	firstEmptyIndex = firstEmptyElement.index('div.letter');
+	if(startIndex > 0) {
+		startIndex--;
+	}
 	
-	/* http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
-	not working. returning -1 for firstEmptyIndex. :gt selector does not seem to work in this chain.
+	// http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
+	firstEmptyIndex = $('div.letter:gt(' + startIndex + '):empty:first').index('div.letter');
 	
-	var firstEmptyElement = $('div.letter:gt(' + startIndex +'):empty:first' );
-	firstEmptyIndex = firstEmptyElement.index('div.letter');
-	*/
-	
-	console.log(firstEmptyIndex);
+	//console.log(firstEmptyIndex);
 }
 
 $(document).ready(function() {
@@ -159,7 +154,7 @@ $(document).ready(function() {
 		}
 	}
 	printWord(firstEmptyIndex);
-	findStart();
+	findStart(firstEmptyIndex);
 	//end repeat
 	
 	while (firstEmptyIndexPrevious != firstEmptyIndex){
@@ -178,7 +173,7 @@ $(document).ready(function() {
 			}
 		}
 		printWord(firstEmptyIndex);
-		findStart();
+		findStart(firstEmptyIndex);
 	}
 	
 	/*
