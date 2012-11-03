@@ -24,7 +24,6 @@ var buildOptions = function(){
 var checkGuessWord = function(word){
 	
 	// words array is defined in words.js
-	//return $.inArray(guessWord, words);
 	
 	//returns the word if it is in the dictionary
 	if (dict[word] == true){
@@ -131,7 +130,7 @@ var findStart = function(startIndex){
 		startIndex = 0;
 	}
 	
-	//decrease startIndex to use "greater than" selector
+	//decrease startIndex to use "greater than" selector (only if it's greater than 0 to begin with. otherwise, a value of -1 causes an error)
 	if(startIndex > 0) {
 		startIndex--;
 	}
@@ -175,22 +174,6 @@ $(document).ready(function() {
 		printWord(firstEmptyIndex);
 		findStart(firstEmptyIndex);
 	}
-	
-	/*
-	//second iteration
-		//detecting repeat of same index
-		firstEmptyIndexPrevious = firstEmptyIndex;
-	
-	buildPossibilities(firstEmptyIndex);
-	for (var a=0; a<initialCharacters; a++){
-		checkAndRemove();
-		if (wordFound == true){
-			break;
-		}
-	}
-	printWord(firstEmptyIndex);
-	findStart();
-	*/
 	
 //debugging
 	//console.log(guessWord);

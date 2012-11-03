@@ -37,20 +37,17 @@
   <div class="row">
 	<div class="twelve columns">
       <h1>Digit Decoder</h1>
-		<pre>
-			<?php 
-				require_once('digits-to-letters.php');
-				
-				$filename = 'message.txt';
-				$file = fopen($filename, 'r');
-				$contents = fread($file, filesize($filename));
-				fclose($file);
-				
-				//create array with numbers in the message
-				$numbers = explode(', ', $contents);
-			?>
-		</pre>
-		<br/>
+		<?php 
+			require_once('digits-to-letters.php');
+			
+			$filename = 'message.txt';
+			$file = fopen($filename, 'r');
+			$contents = fread($file, filesize($filename));
+			fclose($file);
+			
+			//create array with numbers in the message
+			$numbers = explode(', ', $contents);
+		?>
       	<?php
       		foreach ($numbers as $number){
 		?>
