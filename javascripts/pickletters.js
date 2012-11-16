@@ -118,9 +118,9 @@ var printWord = function(startIndex){
 	var foundWordChar = 0;
 	
 	for (var a=startIndex; a<=(startIndex + foundWord.length); a++){
-		$('div.character div.letter').eq(a).html(foundWord.charAt(foundWordChar));
+		//$('div.character div.letter').eq(a).html(foundWord.charAt(foundWordChar));
 		//$('div.character div.letter').eq(a).children().val(foundWord.charAt(foundWordChar));
-		//$('div.character div.letter input').eq(a).val(foundWord.charAt(foundWordChar));
+		$('div.character div.letter input').eq(a).val(foundWord.charAt(foundWordChar));
 		foundWordChar++;
 	}
 }
