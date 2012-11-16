@@ -17,6 +17,13 @@
 	color:#666;
 }
 
-.letter{
+.letter, .letter input{
 	color:#2BA6CB;
+	text-transform:uppercase;
+}
+
+.letter input{
+	width:2em;
+	text-align:center;
+	margin:0 auto;
 }
