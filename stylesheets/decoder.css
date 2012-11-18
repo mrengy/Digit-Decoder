@@ -27,3 +27,8 @@
 	text-align:center;
 	margin:0 auto;
 }
+
+.word {
+	margin-right:2em;
+	float:left;
+}
