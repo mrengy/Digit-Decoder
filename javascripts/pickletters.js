@@ -138,9 +138,7 @@ var findStart = function(startIndex){
 	}
 	
 	// http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
-	firstEmptyIndex = $('div.letter input:gt(' + startIndex + ').filter(function(){return $(this).val() == "";}):first').index('div.letter');
-	
-	//console.log(firstEmptyIndex);
+	firstEmptyIndex = $('div.letter:gt(' + startIndex + ')').children(':input[value=""]:first').index('div.letter :input');
 }
 
 $(document).ready(function() {
