@@ -127,8 +127,8 @@ var printWord = function(startIndex){
 	var wordWrapperEnd = $('</div>');
 	
 	//insert word wrapper div to group words
-	$('div.character').eq(startIndex).insertBefore(wordWrapperStart);
-	$('div.character').eq(startIndex + foundWord.length).insertAfter(wordWrapperEnd);
+	//$('div.character').eq(startIndex).parent().prepend(wordWrapperStart);
+	//$('div.character').eq(startIndex + foundWord.length).parent().insertAfter(wordWrapperEnd);
 }
 
 var findStart = function(startIndex){
