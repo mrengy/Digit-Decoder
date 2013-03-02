@@ -125,13 +125,8 @@ var printWord = function(startIndex){
 		foundWordChar++;
 	}
 	
-	//defining word class elements
-	var wordWrapperStart = $('<div class="word">');
-	var wordWrapperEnd = $('</div>');
-	
 	//insert word wrapper div to group words
-	//$('div.character').eq(startIndex).parent().prepend(wordWrapperStart);
-	//$('div.character').eq(startIndex + decoder.foundWord.length).parent().insertAfter(wordWrapperEnd);
+	$('div.character').slice(startIndex, startIndex + decoder.foundWord.length).wrapAll('<div class="word"></div>');
 }
 
 var findStart = function(startIndex){
@@ -150,6 +145,7 @@ var findStart = function(startIndex){
 	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + ')').children(':input[value=""]:first').index('div.letter :input');
 }
 
+//initial run of functions
 $(document).ready(function() {
 	buildOptions();
 	
