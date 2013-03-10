@@ -59,7 +59,7 @@
 						<?php echo $d2l[$number];?>
 					</div>
 					<div class="letter">
-						<input type="text" maxlength="1" />
+						
 					</div>
 				</div>
 		<?php
