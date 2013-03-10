@@ -6,7 +6,8 @@
 
 	decoder.letterOptions = [];
 	decoder.possibilities = [];
-	decoder.wordOptions = [];
+	decoder.wordPossibilities = [];
+	decoder.wordOptions =[];
 	decoder.wordFound = false;
 	decoder.characters;
 	decoder.initialCharacters;
@@ -110,10 +111,31 @@ var checkAndRemove = function(){
 }
 
 var buildWordOptions = function (){
-	// checks each word in possibilities array and adds matched words to the wordOptions array
-	for (var a=0; a<decoder.possibilities.length; a++){
-		decoder.wordOptions.push(checkGuessWord(decoder.possibilities[a]));
+	//run once for each character in first possibility
+	for (var b=decoder.possibilities[0].length; b>0; b--){
+	
+		//checks each word in possibilities array and adds matched words to the wordOptions array
+		for (var a=0; a<decoder.possibilities.length; a++){
+			//interstitial step of adding to the wordPossibilities array. can remove this if below approach works
+			decoder.wordPossibilities.push(checkGuessWord(decoder.possibilities[a]));
+		
+			if (checkGuessWord(decoder.possibilities[a])){
+				//adds only valid words options to the wordOptions array
+				decoder.wordOptions.push(checkGuessWord(decoder.possibilities[a]));
+			}
+			
+			//removes last character from possibility
+			decoder.possibilities[a] = decoder.possibilities[a].slice(0, (b-1));
+		}
 	}
+	
+	/*
+	for (var b=0; b<decoder.wordPossibilities.length; b++){
+		if(decoder.wordPossibilities[b]){
+			decoder.wordOptions.push(decoder.wordPossibilities[b]);
+		}
+	}
+	*/
 }
 
 //inserts each character into posiiton, starting at startIndex
@@ -200,6 +222,7 @@ $(document).ready(function() {
 	//end first run manual selection
 	
 //debugging
+	//console.log(decoder.wordPossibilities);
 	console.log(decoder.wordOptions);
 	//console.log(decoder.possibilities);
 	//console.log(decoder.possibilities.length);
