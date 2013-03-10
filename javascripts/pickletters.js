@@ -111,31 +111,29 @@ var checkAndRemove = function(){
 }
 
 var buildWordOptions = function (){
+	//builds an array of each word option, from length 10 to 1
+	
 	//run once for each character in first possibility
 	for (var b=decoder.possibilities[0].length; b>0; b--){
 	
 		//checks each word in possibilities array and adds matched words to the wordOptions array
 		for (var a=0; a<decoder.possibilities.length; a++){
-			//interstitial step of adding to the wordPossibilities array. can remove this if below approach works
-			decoder.wordPossibilities.push(checkGuessWord(decoder.possibilities[a]));
 		
-			if (checkGuessWord(decoder.possibilities[a])){
-				//adds only valid words options to the wordOptions array
-				decoder.wordOptions.push(checkGuessWord(decoder.possibilities[a]));
+			var thisGuessWord = checkGuessWord(decoder.possibilities[a]);
+			
+			if (thisGuessWord){
+				//filters to only valid word options
+				
+				//if the item is not already in the wordOptions array, add it
+				if($.inArray(thisGuessWord, decoder.wordOptions) == -1){
+					decoder.wordOptions.push(thisGuessWord);
+				}
 			}
 			
-			//removes last character from possibility
+			//removes last character from possibility - to run loop next with one fewer character
 			decoder.possibilities[a] = decoder.possibilities[a].slice(0, (b-1));
 		}
 	}
-	
-	/*
-	for (var b=0; b<decoder.wordPossibilities.length; b++){
-		if(decoder.wordPossibilities[b]){
-			decoder.wordOptions.push(decoder.wordPossibilities[b]);
-		}
-	}
-	*/
 }
 
 //inserts each character into posiiton, starting at startIndex
@@ -214,8 +212,10 @@ $(document).ready(function() {
 */
 	buildOptions();
 	
-	//begin first run mabnual selection
+	//begin first run manual selection
 	buildPossibilities(decoder.firstEmptyIndex);
+	
+	//console.log(decoder.possibilities);
 	
 	buildWordOptions();
 	
@@ -224,7 +224,6 @@ $(document).ready(function() {
 //debugging
 	//console.log(decoder.wordPossibilities);
 	console.log(decoder.wordOptions);
-	//console.log(decoder.possibilities);
 	//console.log(decoder.possibilities.length);
 	//console.log(decoder.possibilities[0]);
 	//console.log(decoder.possibilities[59048]);
