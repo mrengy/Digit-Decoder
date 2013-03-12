@@ -58,8 +58,7 @@
 					<div class="options">
 						<?php echo $d2l[$number];?>
 					</div>
-					<div class="letter">
-					</div>
+					<div class="letter"></div>
 				</div>
 		<?php
 			}
