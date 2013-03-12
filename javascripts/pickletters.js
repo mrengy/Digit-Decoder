@@ -179,7 +179,6 @@ var findStart = function(startIndex){
 	}
 	
 	// http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
-	//NOT WORKING!!!
 	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + '):empty').first().index('div.letter');
 }
 
