@@ -28,6 +28,10 @@
 	margin:0 auto;
 }
 
+.letter select{
+	position:absolute;
+}
+
 .word {
 	margin-right:2em;
 	float:left;

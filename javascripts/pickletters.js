@@ -110,8 +110,8 @@ var checkAndRemove = function(){
 	}
 }
 
+//builds an array of each word option, from length 10 to 1
 var buildWordOptions = function (){
-	//builds an array of each word option, from length 10 to 1
 	
 	//run once for each character in first possibility
 	for (var b=decoder.possibilities[0].length; b>0; b--){
@@ -122,7 +122,7 @@ var buildWordOptions = function (){
 			var thisGuessWord = checkGuessWord(decoder.possibilities[a]);
 			
 			if (thisGuessWord){
-				//filters to only valid word options
+				//filters to only valid word options - checkGuessWord function returns null for non-word options
 				
 				//if the item is not already in the wordOptions array, add it
 				if($.inArray(thisGuessWord, decoder.wordOptions) == -1){
@@ -134,6 +134,15 @@ var buildWordOptions = function (){
 			decoder.possibilities[a] = decoder.possibilities[a].slice(0, (b-1));
 		}
 	}
+}
+
+//adds each word option as an option in a select element
+var createSelect = function(){
+	//determine position
+	
+	//insert select element with appropriate options into position inside letter div
+	
+	//need to use .live to bind word filling action to select elements
 }
 
 //inserts each character into posiiton, starting at startIndex
@@ -170,46 +179,13 @@ var findStart = function(startIndex){
 	}
 	
 	// http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
-	// needs to be adjusted if using this function - to target the correct element after manually removing input element
-	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + ')').children(':input[value=""]:first').index('div.letter :input');
+	//NOT WORKING!!!
+	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + ')'):empty.first().index('div.letter');
 }
 
 //initial run of functions
 $(document).ready(function() {
 
-/*	buildOptions();
-	
-	//begin first run
-	buildPossibilities(decoder.firstEmptyIndex);
-	for (var a=0; a<decoder.initialCharacters; a++){
-		checkAndRemove();
-		if (decoder.wordFound == true){
-			break;
-		}
-	}
-	printWord(decoder.firstEmptyIndex);
-	findStart(decoder.firstEmptyIndex);
-	//end first run
-	
-	while (decoder.firstEmptyIndexPrevious != decoder.firstEmptyIndex){
-		//sets firstEmptyIndexPrevious to the value of firstEmptyIndex the last time findStart() was run. Prevents infinite loop at the end.
-		decoder.firstEmptyIndexPrevious = decoder.firstEmptyIndex;
-		
-		//resetting variables
-		decoder.possibilities = [];
-		decoder.wordFound = false;
-		
-		buildPossibilities(decoder.firstEmptyIndex);
-		for (var a=0; a<decoder.initialCharacters; a++){
-			checkAndRemove();
-			if (decoder.wordFound == true){
-				break;
-			}
-		}
-		printWord(decoder.firstEmptyIndex);
-		findStart(decoder.firstEmptyIndex);
-	}
-*/
 	buildOptions();
 	
 	//begin first run manual selection
@@ -219,17 +195,19 @@ $(document).ready(function() {
 	
 	buildWordOptions();
 	
+	findStart(0);
+	
 	//end first run manual selection
 	
 //debugging
 	//console.log(decoder.wordPossibilities);
-	console.log(decoder.wordOptions);
+	//console.log(decoder.wordOptions);
 	//console.log(decoder.possibilities.length);
 	//console.log(decoder.possibilities[0]);
 	//console.log(decoder.possibilities[59048]);
 	//console.log(decoder.foundWord);
 	//alert(checkGuessWord('help'));
-	//console.log(decoder.firstEmptyIndex);
+	console.log(decoder.firstEmptyIndex);
 	//console.log(decoder.letterOptions);
 	//console.log(dict);
 });
