@@ -139,10 +139,12 @@ var buildWordOptions = function (){
 
 //adds each word option as an option in a select element
 var createSelect = function(startIndex){
-	//create select element from list of word options
 	
-	//insert select element with appropriate options into position inside letter div
+	//insert select element inside letter div
 	$('div.letter:eq('+startIndex+')').append('<select class="word-options"></select>');
+	
+	//add all options from decoder.wordOptions array
+	//http://stackoverflow.com/questions/170986/what-is-the-best-way-to-add-options-to-a-select-from-an-array-with-jquery
 	$.each(decoder.wordOptions, function(key, value){
 		$('select.word-options')
 			.append($('<option></option>')
