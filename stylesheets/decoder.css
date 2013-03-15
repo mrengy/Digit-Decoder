@@ -28,8 +28,9 @@
 	margin:0 auto;
 }
 
-.letter select{
+select.word-options{
 	position:absolute;
+	width:10em;
 }
 
 .word {

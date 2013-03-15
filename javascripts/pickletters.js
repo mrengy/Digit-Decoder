@@ -117,7 +117,8 @@ var buildWordOptions = function (){
 	for (var b=decoder.possibilities[0].length; b>0; b--){
 	
 		//checks each word in possibilities array and adds matched words to the wordOptions array
-		for (var a=0; a<decoder.possibilities.length; a++){
+		//http://browserdiet.com/#cache-array-lengths - length cached for performance
+		for (var a=0, len=decoder.possibilities.length; a<len; a++){
 		
 			var thisGuessWord = checkGuessWord(decoder.possibilities[a]);
 			
@@ -137,10 +138,17 @@ var buildWordOptions = function (){
 }
 
 //adds each word option as an option in a select element
-var createSelect = function(){
-	//determine position
+var createSelect = function(startIndex){
+	//create select element from list of word options
 	
 	//insert select element with appropriate options into position inside letter div
+	$('div.letter:eq('+startIndex+')').append('<select class="word-options"></select>');
+	$.each(decoder.wordOptions, function(key, value){
+		$('select.word-options')
+			.append($('<option></option>')
+			.attr('value',key)
+			.text(value));
+	});
 	
 	//need to use .live to bind word filling action to select elements
 }
@@ -180,6 +188,12 @@ var findStart = function(startIndex){
 	
 	// http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
 	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + '):empty').first().index('div.letter');
+	
+	//decrement firstEmptyIndex if it's 1 (clean this up later). should return 0. without this, it returned 1 when run from 0
+	if(decoder.firstEmptyIndex == 1){
+		decoder.firstEmptyIndex --;
+	}
+	
 }
 
 //initial run of functions
@@ -190,12 +204,11 @@ $(document).ready(function() {
 	//begin first run manual selection
 	buildPossibilities(decoder.firstEmptyIndex);
 	
-	//console.log(decoder.possibilities);
-	
 	buildWordOptions();
 	
-	findStart(2);
+	findStart();
 	
+	createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
 //debugging
