@@ -151,21 +151,19 @@ var createSelect = function(startIndex){
 			.attr('value',key)
 			.text(value));
 	});
-	
-	//need to use .live to bind word filling action to select elements
 }
 
 //inserts each character into posiiton, starting at startIndex
-var printWord = function(startIndex){
-
-	//if startIndex is not defined, set it to 0	
-	if (!startIndex){
-		startIndex = 0;
-	}
+var printWord = function(){
+	//var $target = $(event.target);
+	//console.log($target);
+	console.log('click');
+	//console.log('word selected');
 	
 	//variable for character of found word to use
 	var foundWordChar = 0;
 	
+	/*
 	for (var a=startIndex; a<=(startIndex + decoder.foundWord.length); a++){
 		// needs to be adjusted if using this function - to target the correct element after manually removing input element
 		$('div.character div.letter input').eq(a).val(decoder.foundWord.charAt(foundWordChar));
@@ -174,6 +172,7 @@ var printWord = function(startIndex){
 	
 	//insert word wrapper div to group words
 	$('div.character').slice(startIndex, startIndex + decoder.foundWord.length).wrapAll('<div class="word"></div>');
+	*/
 }
 
 var findStart = function(startIndex){
@@ -198,7 +197,7 @@ var findStart = function(startIndex){
 	
 }
 
-//initial run of functions
+////initial run of functions
 $(document).ready(function() {
 
 	buildOptions();
@@ -213,6 +212,11 @@ $(document).ready(function() {
 	createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
+	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED
+	$('select.word-options').delegate('select', 'change', printWord());
+	
+	//var $this = $(this);
+	
 //debugging
 	//console.log(decoder.wordPossibilities);
 	//console.log(decoder.wordOptions);
@@ -221,7 +225,7 @@ $(document).ready(function() {
 	//console.log(decoder.possibilities[59048]);
 	//console.log(decoder.foundWord);
 	//alert(checkGuessWord('help'));
-	console.log(decoder.firstEmptyIndex);
+	//console.log(decoder.firstEmptyIndex);
 	//console.log(decoder.letterOptions);
 	//console.log(dict);
 });
