@@ -212,7 +212,7 @@ $(document).ready(function() {
 	createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
-	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED
+	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED INTO FUNCTION
 	$('select.word-options').delegate('select', 'change', printWord());
 	
 	//var $this = $(this);
