@@ -155,18 +155,14 @@ var createSelect = function(startIndex){
 
 //inserts each character into posiiton, starting at startIndex
 var printWord = function(target){
-	//var $target = $(this.target);
-	//var $target = $(this);
-	//console.log($target);
-	
-	console.log(target);
 	
 	//need to pass target value into :eq filter
-	var selectedWord = $('select.word-options option:eq(0)').text();
+	var selectedWord = $('select.word-options option:eq(' + target + ')').text();
+	
 	console.log(selectedWord);
 	
-	//variable for character of found word to use
-	//var foundWordChar = 0;
+	//variable for character of selected word to use
+	var selectedWordChar = 0;
 	
 	/*
 	for (var a=startIndex; a<=(startIndex + decoder.foundWord.length); a++){
