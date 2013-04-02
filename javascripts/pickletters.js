@@ -143,37 +143,48 @@ var createSelect = function(startIndex){
 	//insert select element inside letter div
 	$('div.letter:eq('+startIndex+')').append('<select class="word-options"></select>');
 	
+	//first empty option
+	$('select.word-options')
+		.append($('<option></option>')
+		.attr('value','0')
+		.text('select a word'));
+	
 	//add all options from decoder.wordOptions array
 	//http://stackoverflow.com/questions/170986/what-is-the-best-way-to-add-options-to-a-select-from-an-array-with-jquery
 	$.each(decoder.wordOptions, function(key, value){
 		$('select.word-options')
 			.append($('<option></option>')
-			.attr('value',key)
+			.attr('value',value)
 			.text(value));
 	});
 }
 
+var removeDefault = function(selectedValue){
+	if (selectedValue != "0"){
+		$('select.word-options option[value=0]').remove();
+	}
+}
+
 //inserts each character into posiiton, starting at startIndex
-var printWord = function(target){
-	
-	//need to pass target value into :eq filter
-	var selectedWord = $('select.word-options option:eq(' + target + ')').text();
-	
-	console.log(selectedWord);
+var printWord = function(selectedWord, startIndex){
+	//if startIndex is not defined, set it to 0	
+	if (!startIndex){
+		startIndex = 0;
+	}
 	
 	//variable for character of selected word to use
 	var selectedWordChar = 0;
 	
-	/*
-	for (var a=startIndex; a<=(startIndex + decoder.foundWord.length); a++){
+	
+	for (var a=startIndex; a<=(startIndex + selectedWord.length); a++){
 		// needs to be adjusted if using this function - to target the correct element after manually removing input element
-		$('div.character div.letter input').eq(a).val(decoder.foundWord.charAt(foundWordChar));
-		foundWordChar++;
+		$('div.character div.letter').eq(a).html(selectedWord.charAt(selectedWordChar));
+		selectedWordChar++;
 	}
 	
 	//insert word wrapper div to group words
-	$('div.character').slice(startIndex, startIndex + decoder.foundWord.length).wrapAll('<div class="word"></div>');
-	*/
+	$('div.character').slice(startIndex, startIndex + selectedWord.length).wrapAll('<div class="word"></div>');
+	
 }
 
 var findStart = function(startIndex){
@@ -213,9 +224,13 @@ $(document).ready(function() {
 	createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
+	$('div.letter').delegate('select.word-options', 'change', function(event){
+		removeDefault(this.value);
+	});
+	
 	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED INTO FUNCTION
 	$('div.letter').delegate('select.word-options', 'change', function(event){
-		printWord(this.value);
+		printWord(this.value, 1);
 	});
 	
 	//var $this = $(this);
