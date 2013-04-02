@@ -154,14 +154,19 @@ var createSelect = function(startIndex){
 }
 
 //inserts each character into posiiton, starting at startIndex
-var printWord = function(){
-	//var $target = $(event.target);
+var printWord = function(target){
+	//var $target = $(this.target);
+	//var $target = $(this);
 	//console.log($target);
-	console.log('click');
-	//console.log('word selected');
+	
+	console.log(target);
+	
+	//need to pass target value into :eq filter
+	var selectedWord = $('select.word-options option:eq(0)').text();
+	console.log(selectedWord);
 	
 	//variable for character of found word to use
-	var foundWordChar = 0;
+	//var foundWordChar = 0;
 	
 	/*
 	for (var a=startIndex; a<=(startIndex + decoder.foundWord.length); a++){
@@ -213,8 +218,8 @@ $(document).ready(function() {
 	//end first run manual selection
 	
 	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED INTO FUNCTION
-	$('div.letter').delegate('select.word-options', 'change', function(){
-		printWord();
+	$('div.letter').delegate('select.word-options', 'change', function(event){
+		printWord(this.value);
 	});
 	
 	//var $this = $(this);
