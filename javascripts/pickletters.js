@@ -14,6 +14,9 @@
 	decoder.foundWord;
 	decoder.firstEmptyIndex = 0;
 	decoder.firstEmptyIndexPrevious;
+	decoder.selectContainerClass = 'select';
+	decoder.selectClass = 'word-options';
+	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -141,10 +144,10 @@ var buildWordOptions = function (){
 var createSelect = function(startIndex){
 	
 	//insert select element inside letter div
-	$('div.letter:eq('+startIndex+')').append('<select class="word-options"></select>');
+	$('div.letter:eq('+startIndex+')').after(decoder.selectContainerHTML);
 	
 	//first empty option
-	$('select.word-options')
+	$('select.'+decoder.selectClass)
 		.append($('<option></option>')
 		.attr('value','0')
 		.text('select a word'));
@@ -152,7 +155,7 @@ var createSelect = function(startIndex){
 	//add all options from decoder.wordOptions array
 	//http://stackoverflow.com/questions/170986/what-is-the-best-way-to-add-options-to-a-select-from-an-array-with-jquery
 	$.each(decoder.wordOptions, function(key, value){
-		$('select.word-options')
+		$('select.'+decoder.selectClass)
 			.append($('<option></option>')
 			.attr('value',value)
 			.text(value));
@@ -161,7 +164,7 @@ var createSelect = function(startIndex){
 
 var removeDefault = function(selectedValue){
 	if (selectedValue != "0"){
-		$('select.word-options option[value=0]').remove();
+		$('select.'+decoder.selectClass+'option[value=0]').remove();
 	}
 }
 
@@ -224,18 +227,19 @@ $(document).ready(function() {
 	createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
-	$('div.letter').delegate('select.word-options', 'change', function(event){
+	$('div.'+decoder.selectContainerClass).delegate('select.'+decoder.selectClass, 'change', function(event){
 		removeDefault(this.value);
 	});
 	
 	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED INTO FUNCTION
-	$('div.letter').delegate('select.word-options', 'change', function(event){
+	$('div.'+decoder.selectContainerClass).delegate('select.'+decoder.selectClass, 'change', function(event){
 		printWord(this.value, 1);
 	});
 	
 	//var $this = $(this);
 	
 //debugging
+	//console.log(decoder.selectContainerHTML);
 	//console.log(decoder.wordPossibilities);
 	//console.log(decoder.wordOptions);
 	//console.log(decoder.possibilities.length);

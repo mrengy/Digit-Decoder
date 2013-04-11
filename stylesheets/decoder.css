@@ -1,7 +1,7 @@
 .character{
 	text-align:center;
 	float:left;
-	margin: 0 1em 1em 0;
+	margin: 0 1em 2em 0;
 	height:4.5em;
 }
 
@@ -17,15 +17,10 @@
 	color:#666;
 }
 
-.letter, .letter input{
+.letter{
 	color:#2BA6CB;
 	text-transform:uppercase;
-}
-
-.letter input{
-	width:2em;
-	text-align:center;
-	margin:0 auto;
+	height:1em;
 }
 
 select.word-options{
