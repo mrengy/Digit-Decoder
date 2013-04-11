@@ -175,9 +175,14 @@ var printWord = function(selectedWord, startIndex){
 		startIndex = 0;
 	}
 	
-	//variable for character of selected word to use
+	//initial variable for character of selected word to use
 	var selectedWordChar = 0;
 	
+	//NOT WORKING remove pre-existing letters
+	$('div.character div.letter').slice(startIndex, startIndex + lastSelectedWordLength).html('');
+	
+	//remove pre-existing word wrapper
+	$('div.character').eq(startIndex).unwrap();
 	
 	for (var a=startIndex; a<=(startIndex + selectedWord.length); a++){
 		// needs to be adjusted if using this function - to target the correct element after manually removing input element
@@ -188,6 +193,8 @@ var printWord = function(selectedWord, startIndex){
 	//insert word wrapper div to group words
 	$('div.character').slice(startIndex, startIndex + selectedWord.length).wrapAll('<div class="word"></div>');
 	
+	//set vars for previously selected indices
+	var lastSelectedWordLength = selectedWord.length;
 }
 
 var findStart = function(startIndex){
