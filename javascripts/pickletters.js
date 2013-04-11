@@ -164,7 +164,7 @@ var createSelect = function(startIndex){
 
 var removeDefault = function(selectedValue){
 	if (selectedValue != "0"){
-		$('select.'+decoder.selectClass+'option[value=0]').remove();
+		$('select.'+decoder.selectClass+' option[value=0]').remove();
 	}
 }
 
@@ -179,13 +179,15 @@ var printWord = function(selectedWord, startIndex){
 	var selectedWordChar = 0;
 	
 	//NOT WORKING remove pre-existing letters
-	$('div.character div.letter').slice(startIndex, startIndex + lastSelectedWordLength).html('');
-	
+		for (var b=startIndex; b<=(startIndex + lastSelectedWordLength); b++){
+			$('div.character div.letter').eq(b).html('');
+		}
+		
 	//remove pre-existing word wrapper
 	$('div.character').eq(startIndex).unwrap();
 	
+	//insert appropriate character of selected word
 	for (var a=startIndex; a<=(startIndex + selectedWord.length); a++){
-		// needs to be adjusted if using this function - to target the correct element after manually removing input element
 		$('div.character div.letter').eq(a).html(selectedWord.charAt(selectedWordChar));
 		selectedWordChar++;
 	}
@@ -195,6 +197,7 @@ var printWord = function(selectedWord, startIndex){
 	
 	//set vars for previously selected indices
 	var lastSelectedWordLength = selectedWord.length;
+	//console.log(lastSelectedWordLength);
 }
 
 var findStart = function(startIndex){
