@@ -179,20 +179,10 @@ var printWord = function(selectedWord, startIndex){
 	//initial variable for character of selected word to use
 	var selectedWordChar = 0;
 	
-	//NOT WORKING remove pre-existing letters
-	/*
-		for (var b=startIndex; b<=(startIndex + lastSelectedWordLength); b++){
-			$('div.character div.letter').eq(b).html('');
-		}
-	*/
+	//remove pre-existing letters
 	for (var w=startIndex; w<=(startIndex + decoder.lastSelectedWordLength); w++){
 		$('div.character div.letter').eq(w).html('');
 	}
-	/*
-	$('div.character div.letter').eq(2).html('');
-	$('div.character div.letter').eq(3).html('');
-	$('div.character div.letter').eq(4).html('');
-	*/
 		
 	//remove pre-existing word wrapper
 	$('div.character').eq(startIndex).unwrap();
@@ -206,9 +196,8 @@ var printWord = function(selectedWord, startIndex){
 	//insert word wrapper div to group words
 	$('div.character').slice(startIndex, startIndex + selectedWord.length).wrapAll('<div class="word"></div>');
 	
-	//set vars for previously selected indices
+	//set var for previously selected word length - for use in next run
 	decoder.lastSelectedWordLength = selectedWord.length;
-	console.log(startIndex + decoder.lastSelectedWordLength);
 }
 
 var findStart = function(startIndex){
