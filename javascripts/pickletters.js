@@ -17,6 +17,7 @@
 	decoder.selectContainerClass = 'select';
 	decoder.selectClass = 'word-options';
 	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
+	decoder.lastSelectedWordLength = 0;
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -179,9 +180,19 @@ var printWord = function(selectedWord, startIndex){
 	var selectedWordChar = 0;
 	
 	//NOT WORKING remove pre-existing letters
+	/*
 		for (var b=startIndex; b<=(startIndex + lastSelectedWordLength); b++){
 			$('div.character div.letter').eq(b).html('');
 		}
+	*/
+	for (var w=startIndex; w<=(startIndex + decoder.lastSelectedWordLength); w++){
+		$('div.character div.letter').eq(w).html('');
+	}
+	/*
+	$('div.character div.letter').eq(2).html('');
+	$('div.character div.letter').eq(3).html('');
+	$('div.character div.letter').eq(4).html('');
+	*/
 		
 	//remove pre-existing word wrapper
 	$('div.character').eq(startIndex).unwrap();
@@ -196,8 +207,8 @@ var printWord = function(selectedWord, startIndex){
 	$('div.character').slice(startIndex, startIndex + selectedWord.length).wrapAll('<div class="word"></div>');
 	
 	//set vars for previously selected indices
-	var lastSelectedWordLength = selectedWord.length;
-	//console.log(lastSelectedWordLength);
+	decoder.lastSelectedWordLength = selectedWord.length;
+	console.log(startIndex + decoder.lastSelectedWordLength);
 }
 
 var findStart = function(startIndex){
