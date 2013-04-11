@@ -1,0 +1,34 @@
+.character{
+	text-align:center;
+	float:left;
+	margin: 0 1em 2em 0;
+	height:4.5em;
+}
+
+.character div{
+	margin:0 0 .25em 0;
+}
+
+.number{
+	
+}
+
+.options{
+	color:#666;
+}
+
+.letter{
+	color:#2BA6CB;
+	text-transform:uppercase;
+	height:1em;
+}
+
+select.word-options{
+	position:absolute;
+	width:10em;
+}
+
+.word {
+	margin-right:2em;
+	float:left;
+}
