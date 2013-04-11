@@ -233,7 +233,7 @@ $(document).ready(function() {
 	
 	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED INTO FUNCTION
 	$('div.'+decoder.selectContainerClass).delegate('select.'+decoder.selectClass, 'change', function(event){
-		printWord(this.value, 1);
+		printWord(this.value, 0);
 	});
 	
 	//var $this = $(this);
