@@ -218,6 +218,10 @@ var nextWord = function(){
 	
 	//remove buttons
 	$('button[name="next"]').remove();
+	
+	//add elements at next word
+	findStart();
+	createSelect(decoder.firstEmptyIndex);
 }
 
 var findStart = function(startIndex){
