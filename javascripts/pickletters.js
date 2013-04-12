@@ -220,8 +220,17 @@ var nextWord = function(){
 	$('button[name="next"]').remove();
 	
 	//add elements at next word
-	findStart();
-	createSelect(decoder.firstEmptyIndex);
+	
+		//empty the array
+		decoder.possibilities = [];
+	
+		findStart();
+		buildPossibilities(decoder.firstEmptyIndex);
+		buildWordOptions();
+		createSelect(decoder.firstEmptyIndex);
+		//console.log(decoder.letterOptions(6));
+		console.log(decoder.possibilities);
+		console.log(decoder.wordOptions);
 }
 
 var findStart = function(startIndex){
