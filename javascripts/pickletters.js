@@ -18,6 +18,7 @@
 	decoder.selectClass = 'word-options';
 	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
 	decoder.lastSelectedWordLength = 0;
+	decoder.nextButtonHTML = '<button type="submit" name="next">&rarr;</button>';
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -161,6 +162,12 @@ var createSelect = function(startIndex){
 			.attr('value',value)
 			.text(value));
 	});
+	
+	//add next button
+	//need conditional logic to not show it if is at the end
+	$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
+	
+	//add previous button
 }
 
 var removeDefault = function(selectedValue){
@@ -200,6 +207,19 @@ var printWord = function(selectedWord, startIndex){
 	decoder.lastSelectedWordLength = selectedWord.length;
 }
 
+//moves focus to next word
+var nextWord = function(){
+	if( $('select.'+decoder.selectClass).val() == '0' ){
+		console.log('nothing selected');
+		return false;
+	}
+	//remove select element
+	$('select.'+decoder.selectClass).remove();
+	
+	//remove buttons
+	$('button[name="next"]').remove();
+}
+
 var findStart = function(startIndex){
 	
 	//if startIndex is not defined, set it to 0	
@@ -228,23 +248,32 @@ $(document).ready(function() {
 	buildOptions();
 	
 	//begin first run manual selection
-	buildPossibilities(decoder.firstEmptyIndex);
+		buildPossibilities(decoder.firstEmptyIndex);
 	
-	buildWordOptions();
+		buildWordOptions();
 	
-	findStart();
+		findStart();
 	
-	createSelect(decoder.firstEmptyIndex);
+		createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
-	$('div.'+decoder.selectContainerClass).delegate('select.'+decoder.selectClass, 'change', function(event){
-		removeDefault(this.value);
-	});
+	//begin event delegation
+		//removing the placeholder text on the select elemeent
+		$('div.'+decoder.selectContainerClass).delegate('select.'+decoder.selectClass, 'change', function(event){
+			removeDefault(this.value);
+		});
 	
-	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED INTO FUNCTION
-	$('div.'+decoder.selectContainerClass).delegate('select.'+decoder.selectClass, 'change', function(event){
-		printWord(this.value, 0);
-	});
+		//binding print function to select elements
+		$('div.'+decoder.selectContainerClass).delegate('select.'+decoder.selectClass, 'change', function(event){
+			printWord(this.value, 0);
+		});
+		
+		//next button
+		$('div.select').delegate('button[name="next"]', 'click', function(event){
+			nextWord();
+		});
+		
+	//end event delegation
 	
 	//var $this = $(this);
 	

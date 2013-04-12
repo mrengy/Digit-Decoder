@@ -23,8 +23,11 @@
 	height:1em;
 }
 
-select.word-options{
+.select{
 	position:absolute;
+}
+
+select.word-options{
 	width:10em;
 }
 
