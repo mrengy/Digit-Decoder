@@ -38,7 +38,7 @@
 	<div class="twelve columns">
       <h1>Digit Decoder</h1>
 		<?php
-		 	
+		 	$punctuation = array('!', '?', '.');
 			require_once('digits-to-letters.php');
 			
 			$filename = 'message.txt';
@@ -49,18 +49,25 @@
 			//remove linebreak characters
 			$contents = preg_replace( array('/\r/', '/\n/'), '', $contents);
 			
+			//reformat to normalize for punctuation
+			$contents = str_replace('!', ', !,', $contents);
+			$contents = str_replace('?', ', ?,', $contents);
+			$contents = str_replace('.', ', .,', $contents);
+			
 			//create array with numbers in the message
 			$numbers = explode(', ', $contents);
 		?>
       	<?php
       		foreach ($numbers as $number){
 		?>
-				<div class="character">
+				<div class="character<?php if( in_array( $number, $punctuation ) ){echo(' punctuation'); } ?>">
 					<div class="number">
 						<?php echo $number;?>
 					</div>
 					<div class="options">
-						<?php echo $d2l[$number];?>
+						<?php if( ! in_array( $number, $punctuation ) ){ 
+							echo $d2l[$number];
+						} ?>
 					</div>
 					<div class="letter"></div>
 				</div>
