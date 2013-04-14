@@ -45,6 +45,9 @@
 			$contents = fread($file, filesize($filename));
 			fclose($file);
 			
+			//remove linebreak characters
+			$contents = preg_replace( array('/\r/', '/\n/'), '', $contents);
+			
 			//create array with numbers in the message
 			$numbers = explode(', ', $contents);
 		?>
