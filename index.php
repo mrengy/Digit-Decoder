@@ -45,8 +45,13 @@
 			$contents = fread($file, filesize($filename));
 			fclose($file);
 			
+			$punctuation = array('!', '?', '.');
+			
 			//remove linebreak characters
 			$contents = preg_replace( array('/\r/', '/\n/'), '', $contents);
+			
+			//reformat to normalize for punctuation
+			$contents = str_replace($punctuation, ', !,', $contents);
 			
 			//create array with numbers in the message
 			$numbers = explode(', ', $contents);
@@ -54,14 +59,18 @@
       	<?php
       		foreach ($numbers as $number){
 		?>
-				<div class="character">
+				<div class="character <?php if( in_array( $number, $punctuation ) ){echo('punctuation'); } ?> ">
 					<div class="number">
 						<?php echo $number;?>
 					</div>
+					<?php if( ! in_array( $number, $punctuation ) ){ ?>
 					<div class="options">
 						<?php echo $d2l[$number];?>
 					</div>
-					<div class="letter"></div>
+					<div class="letter">
+						
+					</div>
+					<?php } ?>
 				</div>
 		<?php
 			}

@@ -14,6 +14,11 @@
 	decoder.foundWord;
 	decoder.firstEmptyIndex = 0;
 	decoder.firstEmptyIndexPrevious;
+	decoder.selectContainerClass = 'select';
+	decoder.selectClass = 'word-options';
+	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
+	decoder.lastSelectedWordLength;
+	decoder.nextButtonHTML = '<button type="submit" name="next">&rarr;</button>';
 
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
@@ -50,6 +55,9 @@ var buildPossibilities = function(startIndex){
 	if (!startIndex){
 		startIndex = 0;
 	}
+	
+	//empty the array of anything left over
+	decoder.possibilities = [];
 
 	// for now stepping through first ten digits manually
 	for (var a=0; a<decoder.letterOptions[startIndex].length; a++){
@@ -113,6 +121,9 @@ var checkAndRemove = function(){
 //builds an array of each word option, from length 10 to 1
 var buildWordOptions = function (){
 	
+	//empty array of anything left over
+	decoder.wordOptions = [];
+	
 	//run once for each character in first possibility
 	for (var b=decoder.possibilities[0].length; b>0; b--){
 	
@@ -141,10 +152,10 @@ var buildWordOptions = function (){
 var createSelect = function(startIndex){
 	
 	//insert select element inside letter div
-	$('div.letter:eq('+startIndex+')').append('<select class="word-options"></select>');
+	$('div.letter:eq('+startIndex+')').after(decoder.selectContainerHTML);
 	
 	//first empty option
-	$('select.word-options')
+	$('select.'+decoder.selectClass)
 		.append($('<option></option>')
 		.attr('value','0')
 		.text('select a word'));
@@ -152,16 +163,22 @@ var createSelect = function(startIndex){
 	//add all options from decoder.wordOptions array
 	//http://stackoverflow.com/questions/170986/what-is-the-best-way-to-add-options-to-a-select-from-an-array-with-jquery
 	$.each(decoder.wordOptions, function(key, value){
-		$('select.word-options')
+		$('select.'+decoder.selectClass)
 			.append($('<option></option>')
 			.attr('value',value)
 			.text(value));
 	});
+	
+	//add next button
+	//need conditional logic to not show it if is at the end
+	$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
+	
+	//add previous button
 }
 
 var removeDefault = function(selectedValue){
 	if (selectedValue != "0"){
-		$('select.word-options option[value=0]').remove();
+		$('select.'+decoder.selectClass+' option[value=0]').remove();
 	}
 }
 
@@ -172,12 +189,23 @@ var printWord = function(selectedWord, startIndex){
 		startIndex = 0;
 	}
 	
-	//variable for character of selected word to use
+	//initial variable for character of selected word to use
 	var selectedWordChar = 0;
 	
+	//clear pre-existing word if there is one
+	if ($('div.character').eq(startIndex).parent('div.word').length != 0){
 	
+		//remove pre-existing letters
+		for (var w=startIndex; w<=(startIndex + decoder.lastSelectedWordLength); w++){
+			$('div.character div.letter').eq(w).html('');
+		}
+		
+		//remove pre-existing word wrapper
+		$('div.character').eq(startIndex).unwrap();
+	}
+	
+	//insert appropriate character of selected word
 	for (var a=startIndex; a<=(startIndex + selectedWord.length); a++){
-		// needs to be adjusted if using this function - to target the correct element after manually removing input element
 		$('div.character div.letter').eq(a).html(selectedWord.charAt(selectedWordChar));
 		selectedWordChar++;
 	}
@@ -185,6 +213,27 @@ var printWord = function(selectedWord, startIndex){
 	//insert word wrapper div to group words
 	$('div.character').slice(startIndex, startIndex + selectedWord.length).wrapAll('<div class="word"></div>');
 	
+	//set var for previously selected word length - for use in next run
+	decoder.lastSelectedWordLength = selectedWord.length;
+}
+
+//moves focus to next word
+var nextWord = function(){
+	if( $('select.'+decoder.selectClass).val() == '0' ){
+		console.log('nothing selected');
+		return false;
+	}
+	//remove select element
+	$('select.'+decoder.selectClass).remove();
+	
+	//remove buttons
+	$('button[name="next"]').remove();
+	
+	//add elements at next word	
+		findStart();
+		buildPossibilities(decoder.firstEmptyIndex);
+		buildWordOptions();
+		createSelect(decoder.firstEmptyIndex);
 }
 
 var findStart = function(startIndex){
@@ -215,27 +264,37 @@ $(document).ready(function() {
 	buildOptions();
 	
 	//begin first run manual selection
-	buildPossibilities(decoder.firstEmptyIndex);
+		buildPossibilities(decoder.firstEmptyIndex);
 	
-	buildWordOptions();
+		buildWordOptions();
 	
-	findStart();
+		findStart();
 	
-	createSelect(decoder.firstEmptyIndex);
+		createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
-	$('div.letter').delegate('select.word-options', 'change', function(event){
-		removeDefault(this.value);
-	});
+	//begin event delegation
+		//removing the placeholder text on the select elemeent
+		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
+			removeDefault(this.value);
+		});
 	
-	//binding print function to select elements NEED OTHER METHOD TO FIRE WHEN SELECTING AN ELEMENT . NEED TO PASS ELEMENT SELECTED INTO FUNCTION
-	$('div.letter').delegate('select.word-options', 'change', function(event){
-		printWord(this.value, 1);
-	});
+		//binding print function to select elements
+		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
+			printWord(this.value, decoder.firstEmptyIndex);
+		});
+		
+		//next button
+		$('div.row').on('click', 'button[name="next"]', function(event){
+			nextWord();
+		});
+		
+	//end event delegation
 	
 	//var $this = $(this);
 	
 //debugging
+	//console.log(decoder.selectContainerHTML);
 	//console.log(decoder.wordPossibilities);
 	//console.log(decoder.wordOptions);
 	//console.log(decoder.possibilities.length);
