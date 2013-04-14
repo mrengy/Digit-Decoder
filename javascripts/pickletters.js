@@ -17,7 +17,7 @@
 	decoder.selectContainerClass = 'select';
 	decoder.selectClass = 'word-options';
 	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
-	decoder.lastSelectedWordLength = 0;
+	decoder.lastSelectedWordLength;
 	decoder.nextButtonHTML = '<button type="submit" name="next">&rarr;</button>';
 
 //builds nested array with each option defined for each letter
@@ -192,13 +192,17 @@ var printWord = function(selectedWord, startIndex){
 	//initial variable for character of selected word to use
 	var selectedWordChar = 0;
 	
-	//remove pre-existing letters
-	for (var w=startIndex; w<=(startIndex + decoder.lastSelectedWordLength); w++){
-		$('div.character div.letter').eq(w).html('');
-	}
+	//clear pre-existing word if there is one
+	if ($('div.character').eq(startIndex).parent('div.word').length != 0){
+	
+		//remove pre-existing letters
+		for (var w=startIndex; w<=(startIndex + decoder.lastSelectedWordLength); w++){
+			$('div.character div.letter').eq(w).html('');
+		}
 		
-	//remove pre-existing word wrapper
-	$('div.character').eq(startIndex).unwrap();
+		//remove pre-existing word wrapper
+		$('div.character').eq(startIndex).unwrap();
+	}
 	
 	//insert appropriate character of selected word
 	for (var a=startIndex; a<=(startIndex + selectedWord.length); a++){
@@ -277,7 +281,7 @@ $(document).ready(function() {
 	
 		//binding print function to select elements
 		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
-			printWord(this.value, 0);
+			printWord(this.value, decoder.firstEmptyIndex);
 		});
 		
 		//next button
