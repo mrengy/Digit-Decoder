@@ -55,6 +55,9 @@ var buildPossibilities = function(startIndex){
 	if (!startIndex){
 		startIndex = 0;
 	}
+	
+	//empty the array of anything left over
+	decoder.possibilities = [];
 
 	// for now stepping through first ten digits manually
 	for (var a=0; a<decoder.letterOptions[startIndex].length; a++){
@@ -117,6 +120,9 @@ var checkAndRemove = function(){
 
 //builds an array of each word option, from length 10 to 1
 var buildWordOptions = function (){
+	
+	//empty array of anything left over
+	decoder.wordOptions = [];
 	
 	//run once for each character in first possibility
 	for (var b=decoder.possibilities[0].length; b>0; b--){
@@ -219,18 +225,11 @@ var nextWord = function(){
 	//remove buttons
 	$('button[name="next"]').remove();
 	
-	//add elements at next word
-	
-		//empty the array
-		decoder.possibilities = [];
-	
+	//add elements at next word	
 		findStart();
 		buildPossibilities(decoder.firstEmptyIndex);
 		buildWordOptions();
 		createSelect(decoder.firstEmptyIndex);
-		//console.log(decoder.letterOptions(6));
-		console.log(decoder.possibilities);
-		console.log(decoder.wordOptions);
 }
 
 var findStart = function(startIndex){
