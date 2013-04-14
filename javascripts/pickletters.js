@@ -271,17 +271,17 @@ $(document).ready(function() {
 	
 	//begin event delegation
 		//removing the placeholder text on the select elemeent
-		$('div.'+decoder.selectContainerClass).on('change', ' select.'+decoder.selectClass, function(event){
+		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
 			removeDefault(this.value);
 		});
 	
 		//binding print function to select elements
-		$('div.'+decoder.selectContainerClass).on('change', ' select.'+decoder.selectClass, function(event){
+		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
 			printWord(this.value, 0);
 		});
 		
 		//next button
-		$('div.select').on('click', 'button[name="next"]', function(event){
+		$('div.row').on('click', 'button[name="next"]', function(event){
 			console.log('next clicked');
 			nextWord();
 		});
