@@ -61,7 +61,7 @@
       	<?php
       		foreach ($numbers as $number){
 		?>
-				<div class="character <?php if( in_array( $number, $punctuation ) ){echo('punctuation'); } ?> ">
+				<div class="character<?php if( in_array( $number, $punctuation ) ){echo(' punctuation'); } ?>">
 					<div class="number">
 						<?php echo $number;?>
 					</div>
