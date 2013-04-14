@@ -286,7 +286,6 @@ $(document).ready(function() {
 		
 		//next button
 		$('div.row').on('click', 'button[name="next"]', function(event){
-			console.log('next clicked');
 			nextWord();
 		});
 		
