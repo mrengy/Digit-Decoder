@@ -10,7 +10,6 @@
 	decoder.wordOptions =[];
 	decoder.wordFound = false;
 	decoder.characters;
-	decoder.initialCharacters;
 	decoder.foundWord;
 	decoder.firstEmptyIndex = 0;
 	decoder.firstEmptyIndexPrevious;
@@ -25,7 +24,12 @@ var buildOptions = function(){
 	$('.options').each(function(){
 		var theseoptions = $.trim($(this).html());
 		var theseoptionsArr = theseoptions.split('');
-		decoder.letterOptions.push(theseoptionsArr);
+		
+		//only add to array if options are not empty
+		if(theseoptionsArr.length > 0){
+			decoder.letterOptions.push(theseoptionsArr);
+		}
+		
 	});
 };
 
@@ -82,7 +86,6 @@ var buildPossibilities = function(startIndex){
 		}
 	}
 
-	decoder.initialCharacters = decoder.possibilities[0].length;
 /*
 	var wordCharacter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
 	var increment = wordCharacter[0];
