@@ -256,7 +256,7 @@ var findStart = function(startIndex){
 	}
 	
 	// http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
-	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + '):empty').first().index('div.letter');
+	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + '):empty').not('div.punctuation div.letter').first().index('div.letter');
 	
 	//decrement firstEmptyIndex if it's 1 (clean this up later). should return 0. without this, it returned 1 when run from 0
 	if(decoder.firstEmptyIndex == 1){
