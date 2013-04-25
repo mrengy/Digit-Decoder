@@ -237,13 +237,13 @@ var nextWord = function(){
 	$('button[name="next"]').remove();
 	
 	//add elements at next word	
-		findStart();
+		findNextStart();
 		buildPossibilities(decoder.firstEmptyIndex);
 		buildWordOptions();
 		createSelect(decoder.firstEmptyIndex);
 }
 
-var findStart = function(startIndex){
+var findNextStart = function(startIndex){
 	
 	//if startIndex is not defined, set it to 0	
 	if (!startIndex){
@@ -256,6 +256,7 @@ var findStart = function(startIndex){
 	}
 	
 	// http://stackoverflow.com/questions/13159515/jquery-how-to-search-for-an-element-at-a-given-index-or-later
+	//excludes punctuation characters
 	decoder.firstEmptyIndex = $('div.letter:gt(' + startIndex + '):empty').not('div.punctuation div.letter').first().index('div.letter');
 	
 	//decrement firstEmptyIndex if it's 1 (clean this up later). should return 0. without this, it returned 1 when run from 0
@@ -275,7 +276,7 @@ $(document).ready(function() {
 	
 		buildWordOptions();
 	
-		findStart();
+		findNextStart();
 	
 		createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
