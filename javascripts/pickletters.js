@@ -25,9 +25,13 @@ var buildOptions = function(){
 		var theseoptions = $.trim($(this).html());
 		var theseoptionsArr = theseoptions.split('');
 		
-		//only add to array if options are not empty
+		//only add options to array if options are not empty. Options should be emptty for punctuation
 		if(theseoptionsArr.length > 0){
 			decoder.letterOptions.push(theseoptionsArr);
+		}
+		//otherwise add the punctuation to the array
+		else{
+			decoder.letterOptions.push($.trim($(this).siblings('.number').html()));
 		}
 		
 	});
