@@ -12,7 +12,7 @@
 	decoder.characters;
 	decoder.foundWord;
 	decoder.firstEmptyIndex = 0;
-	decoder.firstEmptyIndexPrevious;
+	decoder.firstEmptyIndexPrevious =0;
 	decoder.selectContainerClass = 'select';
 	decoder.selectClass = 'word-options';
 	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
@@ -264,6 +264,19 @@ var findNextStart = function(startIndex){
 		decoder.firstEmptyIndex --;
 	}
 	
+}
+
+var findPrevStart = function(startIndex){
+	
+	//if startIndex is not defined, set it to index of current cursor position
+	if (!startIndex){
+		//working in console but returning -1 inside the function
+		startIndex = $('div.select').parents('div.character').first().index('div.character');
+	}
+	
+	console.log(startIndex);
+	
+	decoder.firstEmptyIndexPrevious = $('div.word:lt(' + startIndex + ') div.character').index('div.character');
 }
 
 ////initial run of functions
