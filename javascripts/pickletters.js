@@ -242,8 +242,6 @@ var nextWord = function(){
 		buildWordOptions();
 		createSelect(decoder.firstEmptyIndex);
 		
-		//temp - find beginning of previous word
-		findPrevStart();
 }
 
 var findNextStart = function(startIndex){
@@ -273,11 +271,14 @@ var findPrevStart = function(startIndex){
 	
 	//if startIndex is not defined, set it to index of current cursor position
 	if (!startIndex){
-		//working in console but returning -1 inside the function
 		startIndex = $('div.select').parents('div.character').first().index('div.character');
 	}
 	
-	decoder.firstEmptyIndexPrevious = $('div.character:lt(' + startIndex + ')').last().siblings('div.word div.character').first().index();
+	//increment startIndex to effectively find the character less than or equal to start index
+	startIndex ++;
+	
+	decoder.firstEmptyIndexPrevious = $('div.word div.character:lt(' + startIndex + ')').last().siblings('div.word div.character').first().index('div.character');
+	
 }
 
 ////initial run of functions
