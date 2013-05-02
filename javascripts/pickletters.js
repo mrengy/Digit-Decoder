@@ -17,6 +17,7 @@
 	decoder.selectClass = 'word-options';
 	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
 	decoder.lastSelectedWordLength;
+	decoder.prevButtonHTML = '<button type="submit" name="previous">&larr;</button>';
 	decoder.nextButtonHTML = '<button type="submit" name="next">&rarr;</button>';
 
 //builds nested array with each option defined for each letter
@@ -181,6 +182,10 @@ var createSelect = function(startIndex){
 	$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
 	
 	//add previous button
+		//only if it is not at the beginning
+		if (startIndex > 0){
+			$('select.'+decoder.selectClass).before(decoder.prevButtonHTML);
+		}
 }
 
 var removeDefault = function(selectedValue){
@@ -234,6 +239,7 @@ var nextWord = function(){
 	$('select.'+decoder.selectClass).remove();
 	
 	//remove buttons
+	$('button[name="previous"]').remove();
 	$('button[name="next"]').remove();
 	
 	//add elements at next word	
