@@ -12,7 +12,8 @@
 	decoder.characters;
 	decoder.foundWord;
 	decoder.firstEmptyIndex = 0;
-	decoder.firstEmptyIndexPrevious =0;
+	decoder.firstEmptyIndexPrevious = 0;
+	decoder.currentWordIndex = 0;
 	decoder.selectContainerClass = 'select';
 	decoder.selectClass = 'word-options';
 	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
@@ -273,6 +274,46 @@ var findNextStart = function(startIndex){
 	
 }
 
+var prevWord = function(){
+	
+	//set current index
+	findCurrentWordIndex();
+	
+	//if there is a current word
+	if (decoder.currentWordIndex != -1){
+		//clear current word
+		clearCurrentWord(decoder.currentWordIndex);
+	}
+	
+	//remove select element
+	$('select.'+decoder.selectClass).remove();
+	
+	//remove buttons
+	$('button[name="previous"]').remove();
+	$('button[name="next"]').remove();
+	
+	//remove elements at current position, and place them at the previous position
+		
+}
+
+var findCurrentWordIndex = function(){
+	decoder.currentWordIndex = $('select.word-options').parents('div.word').index('div.word');
+}
+
+var clearCurrentWord = function(startIndex){
+	//if startIndex is not defined, throw an error
+	if (!startIndex){
+		console.log('index not defined for clearCurrentWord');
+	}
+	
+	//clear letters in the current word
+	$('div.word').eq(startIndex).children('div.character').children('div.letter').html('');
+	
+	//unwrap word div
+	$('div.word').eq(startIndex).children('div.character').unwrap();
+	
+}
+
 var findPrevStart = function(startIndex){
 	
 	//if startIndex is not defined, set it to index of current cursor position
@@ -318,9 +359,12 @@ $(document).ready(function() {
 			nextWord();
 		});
 		
+		//previous button
+		$('div.row').on('click', 'button[name="previous"]', function(event){
+			prevWord();
+		});
+		
 	//end event delegation
-	
-	//var $this = $(this);
 	
 //debugging
 	//console.log(decoder.selectContainerHTML);
