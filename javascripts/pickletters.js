@@ -286,15 +286,10 @@ var prevWord = function(){
 	if (decoder.currentWordIndex != -1){
 		//clear current word
 		clearCurrentWord(decoder.currentWordIndex);
-		
-		//set index of first character of previous word
-		decoder.firstLetterPreviousWord = $('div.word').eq(decoder.CurrentWordIndex - 1).index('div.word');
 	}
 	
-	else{
-		//set index of first character of previous word the hard way - by finding the last word before the select element
-		decoder.firstLetterPreviousWord = $('div.word div.character:lt(' + currentCharacterIndex + ')').last().siblings('div.word div.character').first().index('div.character');
-	}
+	//set index of first character of previous word the hard way - by finding the last word before the select element
+	decoder.firstLetterPreviousWord = $('div.word div.character:lt(' + decoder.currentCharacterIndex + ')').last().siblings('div.word div.character').first().index('div.character');
 	
 	//remove select element
 	$('select.'+decoder.selectClass).remove();
@@ -304,9 +299,9 @@ var prevWord = function(){
 	$('button[name="next"]').remove();
 	
 	//remove elements at current position, and place them at the previous position
-		buildPossibilities(decoder.firstEmptyIndexPrevious);
+		buildPossibilities(decoder.firstLetterPreviousWord);
 		buildWordOptions();
-		createSelect(decoder.firstEmptyIndexPrevious);
+		createSelect(decoder.firstLetterPreviousWord);
 }
 
 var findCurrentWordIndex = function(){
