@@ -13,7 +13,9 @@
 	decoder.foundWord;
 	decoder.firstEmptyIndex = 0;
 	decoder.firstEmptyIndexPrevious = 0;
-	decoder.currentWordIndex = 0;
+	decoder.currentWordIndex = -1;
+	decoder.currentCharacterIndex = -1;
+	decoder.firstLetterPreviousWord = -1;
 	decoder.selectContainerClass = 'select';
 	decoder.selectClass = 'word-options';
 	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
@@ -276,13 +278,22 @@ var findNextStart = function(startIndex){
 
 var prevWord = function(){
 	
-	//set current index
+	//set current indices
 	findCurrentWordIndex();
+	findCurrentCharacterIndex();
 	
 	//if there is a current word
 	if (decoder.currentWordIndex != -1){
 		//clear current word
 		clearCurrentWord(decoder.currentWordIndex);
+		
+		//set index of first character of previous word
+		decoder.firstLetterPreviousWord = $('div.word').eq(decoder.CurrentWordIndex - 1).index('div.word');
+	}
+	
+	else{
+		//set index of first character of previous word the hard way - by finding the last word before the select element
+		decoder.firstLetterPreviousWord = $('div.word div.character:lt(' + currentCharacterIndex + ')').last().siblings('div.word div.character').first().index('div.character');
 	}
 	
 	//remove select element
@@ -293,11 +304,17 @@ var prevWord = function(){
 	$('button[name="next"]').remove();
 	
 	//remove elements at current position, and place them at the previous position
-		
+		buildPossibilities(decoder.firstEmptyIndexPrevious);
+		buildWordOptions();
+		createSelect(decoder.firstEmptyIndexPrevious);
 }
 
 var findCurrentWordIndex = function(){
 	decoder.currentWordIndex = $('select.word-options').parents('div.word').index('div.word');
+}
+
+var findCurrentCharacterIndex = function(){
+	decoder.currentCharacterIndex = $('select.word-options').parents('div.character').index('div.character');
 }
 
 var clearCurrentWord = function(startIndex){
