@@ -35,3 +35,7 @@ select.word-options{
 	margin-right:2em;
 	float:left;
 }
+
+.cursor {
+	border-left:1px solid #2BA6CB;
+}

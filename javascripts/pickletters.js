@@ -23,6 +23,18 @@
 	decoder.prevButtonHTML = '<button type="submit" name="previous">&larr;</button>';
 	decoder.nextButtonHTML = '<button type="submit" name="next">&rarr;</button>';
 
+//moves the cursor
+var moveCursor = function(startIndex){
+	//if startIndex is not defined, set it to 0
+	if (!startIndex){
+		startIndex = 0;
+	}
+	
+	$('div.character').removeClass('cursor');
+	$('div.character').eq(startIndex).addClass('cursor');
+	
+}
+
 //builds nested array with each option defined for each letter
 var buildOptions = function(){
 	$('.options').each(function(){
@@ -356,6 +368,11 @@ $(document).ready(function() {
 	//end first run manual selection
 	
 	//begin event delegation
+		//moving cursor
+		$('div.character').on('click', function(event){
+			moveCursor($(this).index('div.character'));
+		});
+		
 		//removing the placeholder text on the select elemeent
 		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
 			removeDefault(this.value);
