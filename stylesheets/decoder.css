@@ -36,6 +36,30 @@ select.word-options{
 	float:left;
 }
 
+@-webkit-keyframes blink {
+	0% {border-color:#FFF;}
+	50% {border-color:#2BA6CB;}
+	100% {border-color:#FFF;}
+}
+
+@-moz-keyframes blink {
+	0% {border-color:#FFF;}
+	50% {border-color:#2BA6CB;}
+	100% {border-color:#FFF;}
+}
+
+@keyframes blink {
+	0% {border-color:#FFF;}
+	50% {border-color:#2BA6CB;}
+	100% {border-color:#FFF;}
+}
+
 .cursor {
-	border-left:1px solid #2BA6CB;
+	/*border-left:1px solid #2BA6CB;*/
+	border-width:0 0 0 1px;
+	border-style:solid;
+	border-color:#2BA6CB;
+	-webkit-animation: blink 1s infinite;
+	-moz-animation: blink 1s infinite;
+	animation: blink 1s infinite;
 }
