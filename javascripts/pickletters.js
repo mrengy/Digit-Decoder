@@ -25,9 +25,9 @@
 
 //moves the cursor
 var moveCursor = function(startIndex){
-	//if startIndex is not defined, set it to 0
+	//if startIndex is not defined, log this as an error
 	if (!startIndex){
-		startIndex = 0;
+		console.log('startIndex not defined for moveCursor function')
 	}
 	
 	$('div.character').removeClass('cursor');
