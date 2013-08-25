@@ -3,7 +3,8 @@
 //initializes variables
 	//global namespace
 	var decoder = {};
-
+	
+	decoder.cursorIndex = 0;
 	decoder.letterOptions = [];
 	decoder.possibilities = [];
 	decoder.wordPossibilities = [];
@@ -30,8 +31,10 @@ var moveCursor = function(startIndex){
 		console.log('startIndex not defined for moveCursor function')
 	}
 	
+	decoder.cursorIndex = startIndex;
+	
 	$('div.character').removeClass('cursor');
-	$('div.character').eq(startIndex).addClass('cursor');
+	$('div.character').eq(decoder.cursorIndex).addClass('cursor');
 	
 }
 
@@ -362,8 +365,12 @@ $(document).ready(function() {
 	
 		buildWordOptions();
 	
+		moveCursor(0);
+	
+		//may remove this
 		findNextStart();
 	
+		//may replace this with decoder.cursorIndex
 		createSelect(decoder.firstEmptyIndex);
 	//end first run manual selection
 	
