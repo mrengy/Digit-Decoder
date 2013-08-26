@@ -27,8 +27,9 @@
 //moves the cursor
 var moveCursor = function(startIndex){
 	//if startIndex is not defined, log this as an error
-	if (!startIndex){
-		console.log('startIndex not defined for moveCursor function')
+	if (startIndex === undefined){
+		console.log('startIndex not defined for moveCursor function');
+		return false;
 	}
 	
 	decoder.cursorIndex = startIndex;
@@ -361,17 +362,17 @@ $(document).ready(function() {
 	buildOptions();
 	
 	//begin first run manual selection
-		buildPossibilities(decoder.firstEmptyIndex);
+		moveCursor(0);
+		
+		buildPossibilities(decoder.cursorIndex);
 	
 		buildWordOptions();
 	
-		moveCursor(0);
-	
 		//may remove this
-		findNextStart();
+		//findNextStart();
 	
 		//may replace this with decoder.cursorIndex
-		createSelect(decoder.firstEmptyIndex);
+		createSelect(decoder.cursorIndex);
 	//end first run manual selection
 	
 	//begin event delegation
