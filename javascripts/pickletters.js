@@ -13,7 +13,6 @@
 	decoder.characters;
 	decoder.foundWord;
 	decoder.firstEmptyIndex = 0;
-	decoder.firstEmptyIndexPrevious = 0;
 	decoder.currentWordIndex = -1;
 	decoder.currentCharacterIndex = -1;
 	decoder.firstLetterPreviousWord = -1;
@@ -235,18 +234,19 @@ var printWord = function(selectedWord, startIndex){
 	
 	//clear pre-existing word if there is one
 	if ($('div.character').eq(startIndex).parent('div.word').length != 0){
-	
+		
 		//remove pre-existing letters
 		for (var w=startIndex; w<=(startIndex + decoder.lastSelectedWordLength); w++){
 			$('div.character div.letter').eq(w).html('');
 		}
-		
+
 		//remove pre-existing word wrapper
 		$('div.character').eq(startIndex).unwrap();
 	}
 	
 	//insert appropriate character of selected word
-	for (var a=startIndex; a<=(startIndex + selectedWord.length); a++){
+	
+	for (var a=startIndex; a<(startIndex + selectedWord.length); a++){
 		$('div.character div.letter').eq(a).html(selectedWord.charAt(selectedWordChar));
 		selectedWordChar++;
 	}
@@ -414,7 +414,6 @@ $(document).ready(function() {
 	//console.log(decoder.possibilities[59048]);
 	//console.log(decoder.foundWord);
 	//alert(checkGuessWord('help'));
-	//console.log(decoder.firstEmptyIndex);
 	//console.log(decoder.letterOptions);
 	//console.log(dict);
 });
