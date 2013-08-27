@@ -378,7 +378,7 @@ $(document).ready(function() {
 	
 		//binding print function to select elements
 		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
-			printWord(this.value, decoder.firstEmptyIndex);
+			printWord(this.value, decoder.cursorIndex);
 		});
 		
 		//next button
