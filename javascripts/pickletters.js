@@ -24,7 +24,7 @@
 	decoder.prevButtonHTML = '<button type="submit" name="previous">&larr;</button>';
 	decoder.nextButtonHTML = '<button type="submit" name="next">&rarr;</button>';
 
-//moves the cursor
+//moves the cursor and sets the decoder.cursorIndex variable
 var moveCursor = function(startIndex){
 	//if startIndex is not defined, log this as an error
 	if (startIndex === undefined){
@@ -263,9 +263,9 @@ var nextWord = function(){
 	
 	//add elements at next word	
 		findNextStart();
-		buildPossibilities(decoder.firstEmptyIndex);
+		buildPossibilities(decoder.cursorIndex);
 		buildWordOptions();
-		createSelect(decoder.firstEmptyIndex);
+		createSelect(decoder.cursorIndex);
 		
 }
 
@@ -290,6 +290,7 @@ var findNextStart = function(startIndex){
 		decoder.firstEmptyIndex --;
 	}
 	
+	moveCursor(decoder.firstEmptyIndex);
 }
 
 var prevWord = function(){
@@ -315,9 +316,10 @@ var prevWord = function(){
 	$('button[name="next"]').remove();
 	
 	//remove elements at current position, and place them at the previous position
-		buildPossibilities(decoder.firstLetterPreviousWord);
+		moveCursor(decoder.firstLetterPreviousWord);
+		buildPossibilities(decoder.cursorIndex);
 		buildWordOptions();
-		createSelect(decoder.firstLetterPreviousWord);
+		createSelect(decoder.cursorIndex);
 }
 
 var findCurrentWordIndex = function(){
@@ -367,11 +369,7 @@ $(document).ready(function() {
 		buildPossibilities(decoder.cursorIndex);
 	
 		buildWordOptions();
-	
-		//may remove this
-		//findNextStart();
-	
-		//may replace this with decoder.cursorIndex
+		
 		createSelect(decoder.cursorIndex);
 	//end first run manual selection
 	
