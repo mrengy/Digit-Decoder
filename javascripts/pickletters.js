@@ -371,7 +371,11 @@ $(document).ready(function() {
 	//begin event delegation
 		//moving cursor and creating select element
 		$('div.character').on('click', function(event){
+			removeControls();
 			moveCursor($(this).index('div.character'));
+			buildPossibilities(decoder.cursorIndex);
+			buildWordOptions();
+			createControls(decoder.cursorIndex);
 		});
 		
 		//removing the placeholder text on the select elemeent
