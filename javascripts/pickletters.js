@@ -305,9 +305,6 @@ var prevWord = function(){
 		clearCurrentWord(decoder.currentWordIndex);
 	}
 	
-	//set index of first character of previous word the hard way - by finding the last word before the select element
-	decoder.firstLetterPreviousWord = $('div.word div.character:lt(' + decoder.currentCharacterIndex + ')').last().siblings('div.word div.character').first().index('div.character');
-	
 	//remove select element
 	$('select.'+decoder.selectClass).remove();
 	
@@ -316,7 +313,7 @@ var prevWord = function(){
 	$('button[name="next"]').remove();
 	
 	//remove elements at current position, and place them at the previous position
-		moveCursor(decoder.firstLetterPreviousWord);
+		findPrevStart();
 		buildPossibilities(decoder.cursorIndex);
 		buildWordOptions();
 		createSelect(decoder.cursorIndex);
@@ -346,15 +343,12 @@ var clearCurrentWord = function(startIndex){
 
 var findPrevStart = function(startIndex){
 	
-	//if startIndex is not defined, set it to index of current cursor position
-	if (!startIndex){
-		startIndex = $('div.select').parents('div.character').first().index('div.character');
-	}
 	
-	//increment startIndex to effectively find the character less than or equal to start index
-	startIndex ++;
 	
-	decoder.firstEmptyIndexPrevious = $('div.word div.character:lt(' + startIndex + ')').last().siblings('div.word div.character').first().index('div.character');
+	//set index of first character of previous word the hard way - by finding the last word before the select element
+	decoder.firstLetterPreviousWord = $('div.word div.character:lt(' + decoder.currentCharacterIndex + ')').last().siblings('div.word div.character').first().index('div.character');
+	
+	moveCursor(decoder.firstLetterPreviousWord);
 	
 }
 
