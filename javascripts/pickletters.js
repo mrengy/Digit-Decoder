@@ -343,8 +343,6 @@ var clearCurrentWord = function(startIndex){
 
 var findPrevStart = function(startIndex){
 	
-	
-	
 	//set index of first character of previous word the hard way - by finding the last word before the select element
 	decoder.firstLetterPreviousWord = $('div.word div.character:lt(' + decoder.currentCharacterIndex + ')').last().siblings('div.word div.character').first().index('div.character');
 	
