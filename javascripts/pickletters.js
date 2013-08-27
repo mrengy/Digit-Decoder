@@ -265,12 +265,8 @@ var nextWord = function(){
 		console.log('nothing selected');
 		return false;
 	}
-	//remove select element
-	$('select.'+decoder.selectClass).remove();
 	
-	//remove buttons
-	$('button[name="previous"]').remove();
-	$('button[name="next"]').remove();
+	removeControls();
 	
 	//add elements at next word	
 		findNextStart();
@@ -317,12 +313,7 @@ var prevWord = function(){
 	}
 	*/
 	
-	//remove select element
-	$('select.'+decoder.selectClass).remove();
-	
-	//remove buttons
-	$('button[name="previous"]').remove();
-	$('button[name="next"]').remove();
+	removeControls();
 	
 	//remove elements at current position, and place them at the previous position
 		findPrevStart();
