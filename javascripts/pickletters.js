@@ -371,11 +371,16 @@ $(document).ready(function() {
 	//begin event delegation
 		//moving cursor and creating select element
 		$('div.character').on('click', function(event){
-			removeControls();
-			moveCursor($(this).index('div.character'));
-			buildPossibilities(decoder.cursorIndex);
-			buildWordOptions();
-			createControls(decoder.cursorIndex);
+			//only continue if the target clicked is not a button - prevents duplication of events bound to button elements
+			if(!$(event.target).is('button')){
+				removeControls();
+				moveCursor($(this).index('div.character'));
+				buildPossibilities(decoder.cursorIndex);
+				buildWordOptions();
+				createControls(decoder.cursorIndex);
+			}
+			//doesn't do the above if the target was a button - since other event handlers do that business
+			console.log('click event stopped');
 		});
 		
 		//removing the placeholder text on the select elemeent
