@@ -176,7 +176,7 @@ var buildWordOptions = function (){
 }
 
 //adds each word option as an option in a select element
-var createSelect = function(startIndex){
+var createControls = function(startIndex){
 	
 	//insert select element inside letter div
 	$('div.letter:eq('+startIndex+')').after(decoder.selectContainerHTML);
@@ -207,10 +207,20 @@ var createSelect = function(startIndex){
 		}
 }
 
+//removes placeholder text from select element
 var removeDefault = function(selectedValue){
 	if (selectedValue != "0"){
 		$('select.'+decoder.selectClass+' option[value=0]').remove();
 	}
+}
+
+var removeControls = function(){
+	//remove select element
+	$('select.'+decoder.selectClass).remove();
+	
+	//remove buttons
+	$('button[name="previous"]').remove();
+	$('button[name="next"]').remove();
 }
 
 //inserts each character into posiiton, starting at startIndex
@@ -250,6 +260,7 @@ var printWord = function(selectedWord, startIndex){
 
 //moves focus to next word
 var nextWord = function(){
+	//stop if nothing is selected in the select element
 	if( $('select.'+decoder.selectClass).val() == '0' ){
 		console.log('nothing selected');
 		return false;
@@ -265,7 +276,7 @@ var nextWord = function(){
 		findNextStart();
 		buildPossibilities(decoder.cursorIndex);
 		buildWordOptions();
-		createSelect(decoder.cursorIndex);
+		createControls(decoder.cursorIndex);
 		
 }
 
@@ -299,11 +310,12 @@ var prevWord = function(){
 	findCurrentWordIndex();
 	findCurrentCharacterIndex();
 	
-	//if there is a current word
+	//if there is a current word, clear it
+	/*
 	if (decoder.currentWordIndex != -1){
-		//clear current word
 		clearCurrentWord(decoder.currentWordIndex);
 	}
+	*/
 	
 	//remove select element
 	$('select.'+decoder.selectClass).remove();
@@ -316,7 +328,7 @@ var prevWord = function(){
 		findPrevStart();
 		buildPossibilities(decoder.cursorIndex);
 		buildWordOptions();
-		createSelect(decoder.cursorIndex);
+		createControls(decoder.cursorIndex);
 }
 
 var findCurrentWordIndex = function(){
@@ -362,11 +374,11 @@ $(document).ready(function() {
 	
 		buildWordOptions();
 		
-		createSelect(decoder.cursorIndex);
+		createControls(decoder.cursorIndex);
 	//end first run manual selection
 	
 	//begin event delegation
-		//moving cursor
+		//moving cursor and creating select element
 		$('div.character').on('click', function(event){
 			moveCursor($(this).index('div.character'));
 		});
