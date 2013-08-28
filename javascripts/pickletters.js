@@ -195,6 +195,9 @@ var createControls = function(startIndex){
 			.text(value));
 	});
 	
+	//focus on select element
+	$('select.'+decoder.selectClass).focus();
+	
 	//add next button
 	//need conditional logic to not show it if is at the end
 	$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
@@ -256,6 +259,9 @@ var printWord = function(selectedWord, startIndex){
 	
 	//set var for previously selected word length - for use in next run
 	decoder.lastSelectedWordLength = selectedWord.length;
+	
+	//focus on next button
+	$('button[name="next"]').focus();
 }
 
 //moves focus to next word
