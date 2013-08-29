@@ -204,9 +204,11 @@ var createControls = function(startIndex){
 	
 	//add previous button
 		//only if it is not at the beginning
+		/*
 		if (startIndex > 0){
 			$('select.'+decoder.selectClass).before(decoder.prevButtonHTML);
 		}
+		*/
 }
 
 //removes placeholder text from select element
@@ -376,9 +378,10 @@ $(document).ready(function() {
 	
 	//begin event delegation
 		//moving cursor and creating select element
+		
 		$('div.character').on('click', function(event){
 			//only continue if the target clicked is not a button - prevents duplication of events bound to button elements
-			if(!$(event.target).is('button')){
+			if(!$(event.target).is('button, select')){
 				removeControls();
 				moveCursor($(this).index('div.character'));
 				buildPossibilities(decoder.cursorIndex);
@@ -386,7 +389,7 @@ $(document).ready(function() {
 				createControls(decoder.cursorIndex);
 			}
 			//doesn't do the above if the target was a button - since other event handlers do that business
-			console.log('click event stopped');
+			//console.log('click event stopped');
 		});
 		
 		//removing the placeholder text on the select elemeent
