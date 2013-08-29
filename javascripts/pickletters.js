@@ -275,7 +275,7 @@ var nextWord = function(){
 	removeControls();
 	
 	//add elements at next word	
-		findNextStart();
+		findNextStart(decoder.cursorIndex);
 		buildPossibilities(decoder.cursorIndex);
 		buildWordOptions();
 		createControls(decoder.cursorIndex);
