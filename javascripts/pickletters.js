@@ -381,7 +381,7 @@ $(document).ready(function() {
 		
 		$('div.character').on('click', function(event){
 			//only continue if the target clicked is not a button - prevents duplication of events bound to button elements
-			if(!$(event.target).is('button, select')){
+			if(!$(event.target).is('select, button')){
 				removeControls();
 				moveCursor($(this).index('div.character'));
 				buildPossibilities(decoder.cursorIndex);
