@@ -34,9 +34,15 @@
 </head>
 <body>
 
+  <div class="row" id="title-row">
+	<div class="twelve columns">
+      <h1 id="title">Digit Decoder</h1>
+	  <button name="save" type="submit" id="save">Save</button>
+	  </div>
+	</div>
+  </div>
   <div class="row">
 	<div class="twelve columns">
-      <h1>Digit Decoder</h1>
 		<?php
 		 	$punctuation = array('!', '?', '.');
 			require_once('digits-to-letters.php');
