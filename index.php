@@ -38,10 +38,9 @@
 	<div class="twelve columns">
       <h1 id="title">Digit Decoder</h1>
 	  <button name="save" type="submit" id="save">Save</button>
-	  </div>
 	</div>
   </div>
-  <div class="row">
+  <div class="row" id="message">
 	<div class="twelve columns">
 		<?php
 		 	$punctuation = array('!', '?', '.');

@@ -361,6 +361,15 @@ var findPrevStart = function(startIndex){
 	
 }
 
+var saveContents = function(){
+	console.log('saved');
+	var html = $('div#message').clone();
+	var htmlString = html.html();
+	var datauri = window.btoa(unescape(encodeURIComponent(htmlString)));
+	//window.location.hash = datauri;
+	console.log(datauri);
+}
+
 ////initial run of functions
 $(document).ready(function() {
 
@@ -393,23 +402,29 @@ $(document).ready(function() {
 		});
 		
 		//removing the placeholder text on the select elemeent
-		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
+		$('div#message').on('change', 'select.'+decoder.selectClass, function(event){
 			removeDefault(this.value);
 		});
 	
 		//binding print function to select elements
-		$('div.row').on('change', 'select.'+decoder.selectClass, function(event){
+		$('div#message').on('change', 'select.'+decoder.selectClass, function(event){
 			printWord(this.value, decoder.cursorIndex);
 		});
 		
 		//next button
-		$('div.row').on('click', 'button[name="next"]', function(event){
+		$('div#message').on('click', 'button[name="next"]', function(event){
 			nextWord();
 		});
 		
 		//previous button
-		$('div.row').on('click', 'button[name="previous"]', function(event){
+		$('div#message').on('click', 'button[name="previous"]', function(event){
 			prevWord();
+		});
+		
+		//save button
+		$('div#title-row').on('click', 'button[name="save"]', function(event){
+			event.preventDefault();
+			saveContents();
 		});
 		
 	//end event delegation
