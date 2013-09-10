@@ -11,7 +11,7 @@ $id = $_POST['ID'];
 $username = $_POST['username'];
 $message = $_POST['message'];
 
-$query = mysql_query("INSERT INTO users(ID,username,message) VALUES('$id','$username','$message')");
+$query = mysql_query("INSERT INTO users(username,message) VALUES('$username','$message')");
 if($query){
 	echo("data for $username inserted successfully");
 }
