@@ -367,7 +367,12 @@ var saveContents = function(){
 	var htmlString = html.html();
 	var datauri = window.btoa(unescape(encodeURIComponent(htmlString)));
 	//window.location.hash = datauri;
-	console.log(datauri);
+	//console.log(datauri);
+	$.post('insert.php', {ID: 1, username: 'mrengy', message: datauri},
+		function(data){
+			console.log(data);
+		}
+	);
 }
 
 ////initial run of functions
