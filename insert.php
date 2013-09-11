@@ -1,6 +1,6 @@
 <?php
 //pull data from ajax call
-$id = $_POST['ID'];
+$id = $_POST['ID']; //may remove this
 $username = $_POST['username'];
 $message = $_POST['message'];
 
@@ -12,7 +12,7 @@ if(mysqli_connect_errno()){
 	exit;
 }
 
-$query = "INSERT INTO users (ID, username, message) VALUES($id, '$username','$message')
+$query = "INSERT INTO users (username, message) VALUES('$username','$message')
 			ON DUPLICATE KEY UPDATE username = values(username), message = values(message)";
 $result = $db->query($query);
 
