@@ -13,7 +13,7 @@ if(mysqli_connect_errno()){
 }
 
 $query = "INSERT INTO users (username, message) VALUES('$username','$message')
-			ON DUPLICATE KEY UPDATE username = values(username), message = values(message)";
+			ON DUPLICATE KEY UPDATE message = values(message)";
 $result = $db->query($query);
 
 if ($result){
