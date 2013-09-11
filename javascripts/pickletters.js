@@ -362,13 +362,10 @@ var findPrevStart = function(startIndex){
 }
 
 var saveContents = function(){
-	console.log('saved');
 	var html = $('div#message').clone();
 	var htmlString = html.html();
 	var datauri = window.btoa(unescape(encodeURIComponent(htmlString)));
-	//window.location.hash = datauri;
-	//console.log(datauri);
-	$.post('insert.php', {ID: 1, username: 'mrengy', message: datauri},
+	$.post('insert.php', {username: 'mrengy', message: datauri},
 		function(data){
 			console.log(data);
 		}

@@ -1,6 +1,6 @@
 <?php
 //pull data from ajax call
-$id = $_POST['ID']; //may remove this
+//$id = $_POST['ID'];
 $username = $_POST['username'];
 $message = $_POST['message'];
 
