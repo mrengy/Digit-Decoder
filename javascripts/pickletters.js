@@ -379,14 +379,16 @@ $(document).ready(function() {
 
 	buildOptions();
 	
-	//begin first run manual selection
-		moveCursor(0);
+	//begin first run manual selection only if there is not already a cursor position set
+		if ($('div.cursor').length === 0){
+			moveCursor(0);
 		
-		buildPossibilities(decoder.cursorIndex);
+			buildPossibilities(decoder.cursorIndex);
 	
-		buildWordOptions();
+			buildWordOptions();
 		
-		createControls(decoder.cursorIndex);
+			createControls(decoder.cursorIndex);
+		}
 	//end first run manual selection
 	
 	//begin event delegation
