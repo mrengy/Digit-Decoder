@@ -31,8 +31,10 @@ var moveCursor = function(startIndex){
 		return false;
 	}
 	
+	//set the javascript variable for the cursor position
 	decoder.cursorIndex = startIndex;
 	
+	//indicate the cursor position in the UI
 	$('div.character').removeClass('cursor');
 	$('div.character').eq(decoder.cursorIndex).addClass('cursor');
 	
