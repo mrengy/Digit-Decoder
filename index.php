@@ -28,10 +28,8 @@
 						<?php echo $number;?>
 					</div>
 					<div class="options">
-						<?php if( ! in_array( $number, $punctuation ) ){ 
-							if(isset($d2l[$number])){
+						<?php if( ! in_array( $number, $punctuation ) && isset($d2l[$number]) ){ 
 								echo $d2l[$number];
-							}
 						} ?>
 					</div>
 					<div class="letter"></div>
