@@ -1,9 +1,14 @@
-button[name="save"]{
-	/*float:right;*/
-	position:absolute;
+#title{
+	display:inline-block;
+}
+
+button.global{
+	float:right;
+	margin:3.5em .5em 0 0;
+	/*position:absolute;
 	right:0;
 	top:3em;
-	
+	*/
 }
 
 .character{

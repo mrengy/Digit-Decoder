@@ -388,6 +388,9 @@ $(document).ready(function() {
 			buildWordOptions();
 		
 			createControls(decoder.cursorIndex);
+		} else {
+			//if there is a cursor position, set the javascript variable startIndex appropriately
+			moveCursor($('div.cursor').index('div.character'));
 		}
 	//end first run manual selection
 	

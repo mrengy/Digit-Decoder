@@ -37,7 +37,10 @@
   <div class="row" id="title-row">
 	<div class="twelve columns">
       <h1 id="title">Digit Decoder</h1>
-	  <button name="save" type="submit" id="save">Save</button>
+	  <button name="save" type="submit" class="global" id="save">Save</button>
+	  <a href="update.php">
+		<button name="load" type="submit" class="global" id="load">Load</button>
+	  </a>
 	</div>
   </div>
   <div class="row" id="message">
