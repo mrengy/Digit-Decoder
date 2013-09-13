@@ -29,7 +29,9 @@
 					</div>
 					<div class="options">
 						<?php if( ! in_array( $number, $punctuation ) ){ 
-							echo $d2l[$number];
+							if(isset($d2l[$number])){
+								echo $d2l[$number];
+							}
 						} ?>
 					</div>
 					<div class="letter"></div>
