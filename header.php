@@ -37,6 +37,9 @@
   <div class="row" id="title-row">
 	<div class="twelve columns">
       <h1 id="title">Digit Decoder</h1>
+	  <a href="#" class="button" data-reveal-id="myModal2">
+		Log in
+	  </a>
 	  <button name="save" type="submit" class="global" id="save">Save</button>
 	  <a href="update.php">
 		<button name="load" type="submit" class="global" id="load">Load</button>
