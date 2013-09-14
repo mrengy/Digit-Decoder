@@ -431,7 +431,7 @@ $(document).ready(function() {
 		});
 		
 		//save button
-		$('div#title-row').on('click', 'button[name="save"]', function(event){
+		$('#global-controls').on('click', 'a#save', function(event){
 			event.preventDefault();
 			saveContents();
 		});

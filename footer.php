@@ -1,10 +1,7 @@
   </div> <!-- closing #message -->
-  	<a href="#" class="button" data-reveal-id="exampleModal">
-		Log in
-	 </a>
 	
-  <div id="exampleModal" class="reveal-modal">
-    <h2>This is a modal.</h2>
+  <div id="loginModal" class="reveal-modal large">
+    <h2>Choose a login method</h2>
     <p>
       Reveal makes these very easy to summon and dismiss. The close button is simple an anchor with a unicode 
       character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will 
