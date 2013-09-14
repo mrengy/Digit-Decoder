@@ -1,10 +1,17 @@
   </div> <!-- closing #message -->
-  <div id="myModal" class="reveal-modal">
-  	<h2>Awesome. I have it.</h2>
-	 <p class="lead">Your couch.  It is mine.</p>
-	 <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
-	 <a class="close-reveal-modal">&#215;</a>
-  </div>  
+  	<a href="#" class="button" data-reveal-id="exampleModal">
+		Log in
+	 </a>
+	
+  <div id="exampleModal" class="reveal-modal">
+    <h2>This is a modal.</h2>
+    <p>
+      Reveal makes these very easy to summon and dismiss. The close button is simple an anchor with a unicode 
+      character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will 
+      also dismiss it.
+    </p>
+    <a class="close-reveal-modal">×</a>
+  </div>
   <!-- Included JS Files (Uncompressed) -->
   
   <!--
