@@ -1,13 +1,6 @@
 <?php
 	include('header.php');
-
-//configure and connect to the database
-@ $db = new mysqli('localhost','digit_decoder','schell', 'digit_decoder');
-
-if(mysqli_connect_errno()){
-	echo('Error: Could not connect to database.');
-	exit;
-}
+	include('db-connect.php');
 
 $query = "SELECT message FROM `users` WHERE ((`users`.`username` = 'mrengy'))";
 $result = $db->query($query);
