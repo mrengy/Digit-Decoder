@@ -1,6 +1,6 @@
 <?php
 # Logging in with Google accounts requires setting special identity, so this example shows how to do it.
-require 'openid.php';
+require_once 'openid.php';
 try {
     # Change 'localhost' to your domain name.
     $openid = new LightOpenID('localhost:8888');

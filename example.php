@@ -1,5 +1,5 @@
 <?php
-require 'openid.php';
+require_once 'openid.php';
 try {
     # Change 'localhost' to your domain name.
     $openid = new LightOpenID('localhost:8888');

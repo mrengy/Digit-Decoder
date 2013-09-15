@@ -1,3 +1,4 @@
+<?php include ('example-google.php'); ?>
 <!DOCTYPE html>
 
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -39,6 +40,9 @@
       <h1 id="title">Digit Decoder</h1>
 	</div>
 	<div id="global-controls" class="three columns">
+	  	<form action="?login" method="post">
+		    <button>Login with Google</button>
+		</form>
 	  <a href="#" data-reveal-id="loginModal">Log in</a>
 	  <a href="update.php" id="load" class="button">Load</a>
 	  <a id="save" class="button">Save</a>

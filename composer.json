@@ -1,5 +1,5 @@
 {
-    "name": "lightopenid/lightopenid",
+    "name": "lightopenid",
     "type": "library",
     "keywords": ["openid"],
     "homepage": "https://gitorious.org/lightopenid/lightopenid",

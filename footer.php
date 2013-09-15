@@ -3,9 +3,12 @@
   <div id="loginModal" class="reveal-modal large">
     <h2>Choose a login method</h2>
     <p>
-      Reveal makes these very easy to summon and dismiss. The close button is simple an anchor with a unicode 
-      character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will 
-      also dismiss it.
+		<form action="?login" method="post">
+		    <button>Login with Google</button>
+		</form>
+    </p>
+	<p>
+      <?php include ('example.php'); ?>
     </p>
     <a class="close-reveal-modal">×</a>
   </div>
