@@ -1,4 +1,8 @@
-<?php include ('example-google.php'); ?>
+<?php // include ('example-google.php'); ?>
+<?php
+session_start();
+$_SESSION['email'] = 'minitab2002@yahoo.com';
+?>
 <!DOCTYPE html>
 
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->

@@ -12,7 +12,7 @@ $message = $_POST['message'];
 include('db-connect.php');
 
 $query = "INSERT INTO users (username, message) VALUES('$username','$message')
-			ON DUPLICATE KEY UPDATE message = values(message)";
+			ON DUPLICATE KEY UPDATE message = VALUES(message)";
 $result = $db->query($query);
 
 if ($result){

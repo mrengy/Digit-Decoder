@@ -32,12 +32,6 @@ try {
 		
 		//store username variable across pages
 		$_SESSION['email'] = $email;
-		/*
-		echo '<br/>';
-		echo '<pre>';
-		print_r($openid_google);
-		echo '</pre>';
-		*/
     }
 } catch(ErrorException $e) {
     echo $e->getMessage();
