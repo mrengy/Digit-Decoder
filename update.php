@@ -1,8 +1,10 @@
 <?php
 	include('header.php');
 	include('db-connect.php');
+	
+	$username = $_SESSION['email'];
 
-$query = "SELECT message FROM `users` WHERE ((`users`.`username` = 'minitab2002@yahoo.com'))";
+$query = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
 $result = $db->query($query);
 
 //print out the result
