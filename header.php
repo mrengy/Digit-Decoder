@@ -1,7 +1,7 @@
 <?php // include ('example-google.php'); ?>
 <?php
 session_start();
-$_SESSION['email'] = 'minitab2002@yahoo.com';
+$_SESSION['email'] = 'minitab@yahoo.com';
 ?>
 <!DOCTYPE html>
 

@@ -2,7 +2,7 @@
 	include('header.php');
 	include('db-connect.php');
 
-$query = "SELECT message FROM `users` WHERE ((`users`.`username` = 'mrengy'))";
+$query = "SELECT message FROM `users` WHERE ((`users`.`username` = 'minitab2002@yahoo.com'))";
 $result = $db->query($query);
 
 //print out the result

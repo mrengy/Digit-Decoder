@@ -9,6 +9,8 @@ $username = $_SESSION['email'];
 //pull data from ajax call
 $message = $_POST['message'];
 
+$message_test = 'tomato';
+
 include('db-connect.php');
 
 $query = "INSERT INTO users (username, message) VALUES('$username','$message')
@@ -16,7 +18,7 @@ $query = "INSERT INTO users (username, message) VALUES('$username','$message')
 $result = $db->query($query);
 
 if ($result){
-	echo $db->affected_rows." message inserted into database.";
+	echo $db->affected_rows." messages inserted into database.";
 }
 else{
 	echo "Error writing to database.";
