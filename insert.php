@@ -1,6 +1,12 @@
 <?php
+
+//$username = $_POST['username'];
+
+//start the session and get the session variable
+session_start();
+$username = $_SESSION['email'];
+
 //pull data from ajax call
-$username = $_POST['username'];
 $message = $_POST['message'];
 
 include('db-connect.php');
