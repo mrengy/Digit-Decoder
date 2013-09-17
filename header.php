@@ -48,6 +48,10 @@ $_SESSION['email'] = 'minitab@yahoo.com';
 	  <?php
 	  	if (isset($_SESSION['email'])){
 	  ?>
+		  <div id="logged-in-as">
+			<?php echo($_SESSION['email']); ?> 
+			<a href="#">Log out</a>
+		  </div>
 		  <a href="update.php" id="load" class="button">Load</a>
 		  <a id="save" class="button">Save</a>
 	  <?php
