@@ -9,8 +9,6 @@ $username = $_SESSION['email'];
 //pull data from ajax call
 $message = $_POST['message'];
 
-$message_test = 'tomato';
-
 include('db-connect.php');
 
 $query = "INSERT INTO users (username, message) VALUES('$username','$message')

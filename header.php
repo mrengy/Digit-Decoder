@@ -44,12 +44,22 @@ $_SESSION['email'] = 'minitab@yahoo.com';
       <h1 id="title">Digit Decoder</h1>
 	</div>
 	<div id="global-controls" class="three columns">
+	  <!--<a href="#" data-reveal-id="loginModal">Log in</a>-->
+	  <?php
+	  	if (isset($_SESSION['email'])){
+	  ?>
+		  <a href="update.php" id="load" class="button">Load</a>
+		  <a id="save" class="button">Save</a>
+	  <?php
+  		} else{
+	  ?>
 	  	<form action="?login" method="post">
 		    <button>Login with Google</button>
 		</form>
-	  <!--<a href="#" data-reveal-id="loginModal">Log in</a>-->
-	  <a href="update.php" id="load" class="button">Load</a>
-	  <a id="save" class="button">Save</a>
+		
+	  <?php
+  		}
+	  ?>
 	</div>
   </div>
   <div class="row" id="message">
