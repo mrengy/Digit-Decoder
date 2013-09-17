@@ -43,7 +43,7 @@
 	  	<form action="?login" method="post">
 		    <button>Login with Google</button>
 		</form>
-	  <a href="#" data-reveal-id="loginModal">Log in</a>
+	  <!--<a href="#" data-reveal-id="loginModal">Log in</a>-->
 	  <a href="update.php" id="load" class="button">Load</a>
 	  <a id="save" class="button">Save</a>
 	</div>

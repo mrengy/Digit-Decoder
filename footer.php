@@ -1,5 +1,5 @@
   </div> <!-- closing #message -->
-	
+<!--	
   <div id="loginModal" class="reveal-modal large">
     <h2>Choose a login method</h2>
     <p>
@@ -12,6 +12,7 @@
     </p>
     <a class="close-reveal-modal">×</a>
   </div>
+-->
   <!-- Included JS Files (Uncompressed) -->
   
   <!--
