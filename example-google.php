@@ -24,11 +24,13 @@ try {
     } elseif($openid_google->mode == 'cancel') {
         echo 'User has canceled authentication!';
     } else {
-		echo 'User ' . ($openid_google->validate() ? $openid_google->identity . ' has ' : 'has not ') . 'logged in.';
+		//echo 'User ' . ($openid_google->validate() ? $openid_google->identity . ' has ' : 'has not ') . 'logged in.';
 		$userinfo = $openid_google->getAttributes();
 		$email = $userinfo['contact/email'];
+		/*
 		echo '<br/>';
 		echo $email;
+		*/
 		
 		//store username variable across pages
 		$_SESSION['email'] = $email;

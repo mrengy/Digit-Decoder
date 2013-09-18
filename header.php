@@ -5,6 +5,13 @@
 session_start();
 $_SESSION['email'] = 'minitab@yahoo.com';
 */
+
+//handling logout
+if(isset($_GET['logout'])){
+	unset($_SESSION['email']);
+	session_destroy();
+}
+
 ?>
 <!DOCTYPE html>
 
@@ -52,8 +59,10 @@ $_SESSION['email'] = 'minitab@yahoo.com';
 	  	if (isset($_SESSION['email'])){
 	  ?>
 		  <div id="logged-in-as">
-			<?php echo($_SESSION['email']); ?> 
-			<a href="#">Log out</a>
+			<?php echo($_SESSION['email']); ?>
+			<form action="?logout" method="post"> 
+				<button id="logout">Log out</button>
+			</form>
 		  </div>
 		  <a href="update.php" id="load" class="button">Load</a>
 		  <a id="save" class="button">Save</a>
