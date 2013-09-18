@@ -436,6 +436,17 @@ $(document).ready(function() {
 			saveContents();
 		});
 		
+		//logout button
+		$('#global-controls').on('click', 'a#logout', function(event){
+			event.preventDefault();
+			$.post('logout.php',
+				function(){
+					//reload header.php via AJAX
+					$('#global-controls').load('header.php #global-controls-contents');
+				}
+			);
+		})
+		
 	//end event delegation
 	
 //debugging

@@ -54,28 +54,31 @@ if(isset($_GET['logout'])){
       <h1 id="title">Digit Decoder</h1>
 	</div>
 	<div id="global-controls" class="three columns">
-	  <!--<a href="#" data-reveal-id="loginModal">Log in</a>-->
-	  <?php
-	  	if (isset($_SESSION['email'])){
-	  ?>
-		  <div id="logged-in-as">
-			<?php echo($_SESSION['email']); ?>
-			<form action="?logout" method="post"> 
-				<button id="logout">Log out</button>
+		<span id="global-controls-contents">
+	 	 <!--<a href="#" data-reveal-id="loginModal">Log in</a>-->
+		  <?php
+		  	if (isset($_SESSION['email'])){
+		  ?>
+			  <div id="logged-in-as">
+				<?php echo($_SESSION['email']); ?>
+				<form action="?logout" method="post"> 
+					<!--<button id="logout" name="logout">Log out</button>-->
+					<a id="logout" href="#">Log out</a>
+				</form>
+			  </div>
+			  <a href="update.php" id="load" class="button">Load</a>
+			  <a id="save" class="button">Save</a>
+		  <?php
+	  		} else{
+		  ?>
+		  	<form action="?login" method="post">
+			    <button>Login with Google</button>
 			</form>
-		  </div>
-		  <a href="update.php" id="load" class="button">Load</a>
-		  <a id="save" class="button">Save</a>
-	  <?php
-  		} else{
-	  ?>
-	  	<form action="?login" method="post">
-		    <button>Login with Google</button>
-		</form>
 		
-	  <?php
-  		}
-	  ?>
+		  <?php
+	  		}
+		  ?>
+		</span>
 	</div>
   </div>
   <div class="row" id="message">
