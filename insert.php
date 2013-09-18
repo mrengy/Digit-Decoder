@@ -1,7 +1,5 @@
 <?php
 
-//$username = $_POST['username'];
-
 //start the session and get the session variable
 session_start();
 $username = $_SESSION['email'];

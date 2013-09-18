@@ -1,7 +1,10 @@
-<?php // include ('example-google.php'); ?>
+<?php include ('example-google.php'); ?>
 <?php
+/*
+// hardcoded version for offline debugging
 session_start();
 $_SESSION['email'] = 'minitab@yahoo.com';
+*/
 ?>
 <!DOCTYPE html>
 
