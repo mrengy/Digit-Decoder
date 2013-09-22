@@ -1,6 +1,14 @@
 #global-controls{
 	text-align:right;
-	padding:1.5em 0 1em 0;
+	padding:1em 0 1em 0;
+}
+
+#logged-in-as {
+	margin-bottom: 1em;
+}
+
+#logged-in-as form{
+	display:inline;
 }
 
 .character{
