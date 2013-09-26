@@ -15,6 +15,13 @@ if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
   	include('db-connect-sandbox.php');	
 }
 
+//prepared statement
+$stmt = $db->prepare("INSERT INTO users (username, message) VALUES(?,?)
+			ON DUPLICATE KEY UPDATE message = VALUES(message)");
+$stmt->bind_param('ss',$username, $message);
+$stmt->execute();
+$stmt->close();
+/*
 $query = "INSERT INTO users (username, message) VALUES('$username','$message')
 			ON DUPLICATE KEY UPDATE message = VALUES(message)";
 $result = $db->query($query);
@@ -25,6 +32,7 @@ if ($result){
 else{
 	echo "Error writing to database.";
 }
+*/
 
 $db->close();
 

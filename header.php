@@ -67,7 +67,29 @@ if(isset($_GET['logout'])){
 					<a id="logout" href="#">Log out</a>
 				</form>
 			  </div>
-			  <a href="update.php" id="load" class="button">Load</a>
+			  <?php
+			    //query to determine if the stored message is empty
+			
+			    if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
+				  	//local version
+					include('db-connect.php');
+				} else{
+				  	//remote version
+				  	include('db-connect-sandbox.php');	
+				}
+				
+				$username = $_SESSION['email'];
+
+				$query = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
+				$result = $db->query($query);
+				$row = $result->fetch_assoc();
+				if (strlen($row['message']) > 1){
+				//only show the load button if the stored message is not empty
+			  ?>
+				<a href="update.php" id="load" class="button">Load</a>
+			  <?php  
+			 	} 
+			  ?>
 			  <a id="save" class="button">Save</a>
 		  <?php
 	  		} else{
