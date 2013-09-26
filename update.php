@@ -1,12 +1,12 @@
 <?php
 include('header.php');
 
-//include db-connect (local) if on localhost
 if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
-  include('db-connect.php');
+  	//local version
+	include('db-connect.php');
 } else{
-  //otherwise include db-connect-sandbox.php for remote server
-  include('db-connect-sandbox.php');	
+  	//remote version
+  	include('db-connect-sandbox.php');	
 }
 
 $username = $_SESSION['email'];

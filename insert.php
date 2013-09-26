@@ -7,12 +7,12 @@ $username = $_SESSION['email'];
 //pull data from ajax call
 $message = $_POST['message'];
 
-//include db-connect (local) if on localhost
 if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
-  include('db-connect.php');
+  	//local version
+	include('db-connect.php');
 } else{
-  //otherwise include db-connect-sandbox.php for remote server
-  include('db-connect-sandbox.php');	
+  	//remote version
+  	include('db-connect-sandbox.php');	
 }
 
 $query = "INSERT INTO users (username, message) VALUES('$username','$message')

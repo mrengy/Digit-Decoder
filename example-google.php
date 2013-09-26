@@ -7,7 +7,13 @@ session_start();
 
 try {
     # Change 'localhost' to your domain name.
-    $openid_google = new LightOpenID('localhost:8888');
+	if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
+	  	//local version
+		$openid_google = new LightOpenID('localhost:8888');
+	} else{
+	  	//remote version
+	  	$openid_google = new LightOpenID('mike-eng.com');	
+	}
     if(!$openid_google->mode) {
         if(isset($_GET['login'])) {
             $openid_google->identity = 'https://www.google.com/accounts/o8/id';
