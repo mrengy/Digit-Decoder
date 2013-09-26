@@ -369,7 +369,7 @@ var saveContents = function(){
 	var datauri = window.btoa(unescape(encodeURIComponent(htmlString)));
 	$.post('insert.php', {username: 'mrengy', message: datauri},
 		function(data){
-			console.log(data);
+			$.notific8('Message saved.', {life: 4000, verticalEdge:'left', theme:'smoke'});
 		}
 	);
 }
@@ -441,6 +441,8 @@ $(document).ready(function() {
 			event.preventDefault();
 			$.post('logout.php',
 				function(){
+					$.notific8('Logged out.', {life: 4000, verticalEdge:'left', theme:'smoke'});
+					
 					//reload header.php via AJAX
 					$('#global-controls').load('header.php #global-controls-contents');
 				}
