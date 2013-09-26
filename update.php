@@ -1,8 +1,15 @@
 <?php
-	include('header.php');
-	include('db-connect.php');
-	
-	$username = $_SESSION['email'];
+include('header.php');
+
+//include db-connect (local) if on localhost
+if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
+  include('db-connect.php');
+} else{
+  //otherwise include db-connect-sandbox.php for remote server
+  include('db-connect-sandbox.php');	
+}
+
+$username = $_SESSION['email'];
 
 $query = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
 $result = $db->query($query);
@@ -18,5 +25,5 @@ else{
 
 $db->close();
 
-	include('footer.php');
+include('footer.php');
 ?>
