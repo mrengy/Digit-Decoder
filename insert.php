@@ -9,10 +9,10 @@ $message = $_POST['message'];
 
 if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
   	//local version
-	include('db-connect.php');
+	include_once('db-connect.php');
 } else{
   	//remote version
-  	include('db-connect-sandbox.php');	
+  	include_once('db-connect-sandbox.php');	
 }
 
 //prepared statement
