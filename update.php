@@ -18,11 +18,9 @@ $result = $db->query($query);
 if ($result){
 	$row = $result->fetch_assoc();
 	echo base64_decode($row['message']);
-}
-else{
+} else{
 	echo "Error reading from database.";
 }
-
 $db->close();
 
 include('footer.php');

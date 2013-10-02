@@ -10,9 +10,11 @@ try {
 	if (strpos($_SERVER['HTTP_HOST'],'localhost') !== false){
 	  	//local version
 		$openid_google = new LightOpenID('localhost:8888');
+		$openid_google->returnUrl = 'http://localhost:8888/Digit-Decoder/';
 	} else{
 	  	//remote version
-	  	$openid_google = new LightOpenID('mike-eng.com');	
+	  	$openid_google = new LightOpenID('mike-eng.com');
+		$openid_google->returnUrl = 'http://mike-eng.com/sandbox/digit-decoder/';
 	}
     if(!$openid_google->mode) {
         if(isset($_GET['login'])) {
