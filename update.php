@@ -17,7 +17,11 @@ $result = $db->query($query);
 //print out the result
 if ($result){
 	$row = $result->fetch_assoc();
-	echo base64_decode($row['message']);
+	if(strlen($row['message']) > 1){
+		echo base64_decode($row['message']);
+	} else{
+		include ('initial-message.php');
+	}
 } else{
 	echo "Error reading from database.";
 }
