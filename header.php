@@ -63,7 +63,7 @@ if(isset($_GET['logout'])){
 			  <div id="logged-in-as">
 				<?php echo($_SESSION['email']); ?>
 				<form action="index.php?logout" method="post"> 
-					<button id="logout" name="logout">Log out</button>
+					<button id="logout" class="link-style" name="logout">Log out</button>
 				</form>
 			  </div>
 			  <a id="save" class="button">Save</a>
@@ -72,7 +72,7 @@ if(isset($_GET['logout'])){
 			//if session variable email is not set
 	     ?>
 		  	<form action="?login" method="post">
-			    <button>Login with Google</button>
+			    <button class="button">Login with Google</button>
 			</form>
 		<?php		
 	  		}

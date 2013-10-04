@@ -11,6 +11,22 @@
 	display:inline;
 }
 
+button.link-style{
+	background:none!important;
+	border:none; 
+    padding:0!important;
+
+    /*optional*/
+	font-size:1em;
+	font-family:"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif; /*input has OS specific font-family*/
+    color:#2BA6CB;
+    cursor:pointer;
+}
+
+button.link-style:hover{
+	text-decoration:underline;
+}
+
 .character{
 	text-align:center;
 	float:left;
