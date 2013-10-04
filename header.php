@@ -64,7 +64,6 @@ if(isset($_GET['logout'])){
 				<?php echo($_SESSION['email']); ?>
 				<form action="index.php?logout" method="post"> 
 					<button id="logout" name="logout">Log out</button>
-					<!--<a id="logout" href="#">Log out</a>-->
 				</form>
 			  </div>
 			  <a id="save" class="button">Save</a>
