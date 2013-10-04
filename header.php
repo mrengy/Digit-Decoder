@@ -62,9 +62,9 @@ if(isset($_GET['logout'])){
 		  ?>
 			  <div id="logged-in-as">
 				<?php echo($_SESSION['email']); ?>
-				<form action="?logout" method="post"> 
-					<!--<button id="logout" name="logout">Log out</button>-->
-					<a id="logout" href="#">Log out</a>
+				<form action="index.php?logout" method="post"> 
+					<button id="logout" name="logout">Log out</button>
+					<!--<a id="logout" href="#">Log out</a>-->
 				</form>
 			  </div>
 			  <a id="save" class="button">Save</a>

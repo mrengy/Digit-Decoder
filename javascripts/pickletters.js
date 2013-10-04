@@ -437,7 +437,7 @@ $(document).ready(function() {
 		});
 		
 		//logout button
-		$('#global-controls').on('click', 'a#logout', function(event){
+		/*$('#global-controls').on('click', 'a#logout', function(event){
 			event.preventDefault();
 			$.post('logout.php',
 				function(){
@@ -448,7 +448,7 @@ $(document).ready(function() {
 				}
 			);
 		})
-		
+		*/
 	//end event delegation
 	
 //debugging
