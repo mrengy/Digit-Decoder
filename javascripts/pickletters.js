@@ -401,7 +401,18 @@ $(document).ready(function() {
 		//moving cursor and creating select element
 		
 		$('div.character').on('click', function(event){
-			//only continue if the target clicked is not a button - prevents duplication of events bound to button elements
+			
+			//only continue if the target clicked is not a child of the cursorIndex - prevents duplication of events bound to button elements underneath the character div
+			if($(event.target).parents('div.character').index('div.character') != decoder.cursorIndex){
+				removeControls();
+				moveCursor($(this).index('div.character'));
+				buildPossibilities(decoder.cursorIndex);
+				buildWordOptions();
+				createControls(decoder.cursorIndex);
+			}
+			
+			/*
+			//this attempt to prevent event bubbling was only working in webkit browsers, not Firefox
 			if(!$(event.target).is('select, button')){
 				removeControls();
 				moveCursor($(this).index('div.character'));
@@ -409,6 +420,7 @@ $(document).ready(function() {
 				buildWordOptions();
 				createControls(decoder.cursorIndex);
 			}
+			*/
 			//doesn't do the above if the target was a button - since other event handlers do that business
 			//console.log('click event stopped');
 		});
