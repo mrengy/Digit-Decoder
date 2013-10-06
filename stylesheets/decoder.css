@@ -1,6 +1,9 @@
 #global-controls{
 	text-align:right;
 	padding:1em 0 1em 0;
+	position:fixed;
+	z-index:9;
+	right:1em;
 }
 
 #logged-in-as {
