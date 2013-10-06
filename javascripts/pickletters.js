@@ -325,7 +325,7 @@ var prevWord = function(){
 	//if there is a current word, clear it
 	/*
 	if (decoder.currentWordIndex != -1){
-		clearCurrentWord(decoder.currentWordIndex);
+		removeWord(decoder.currentWordIndex);
 	}
 	*/
 	
@@ -344,20 +344,6 @@ var findCurrentWordIndex = function(){
 
 var findCurrentCharacterIndex = function(){
 	decoder.currentCharacterIndex = $('select.word-options').parents('div.character').index('div.character');
-}
-
-var clearCurrentWord = function(startIndex){
-	//if startIndex is not defined, throw an error
-	if (!startIndex){
-		console.log('index not defined for clearCurrentWord');
-	}
-	
-	//clear letters in the current word
-	$('div.word').eq(startIndex).children('div.character').children('div.letter').html('');
-	
-	//unwrap word div
-	$('div.word').eq(startIndex).children('div.character').unwrap();
-	
 }
 
 var removeWord = function(startIndex){
@@ -447,7 +433,6 @@ $(document).ready(function() {
 		//remove button
 		$('div#message').on('click', 'button[name="remove"]', function(event){
 			removeWord(decoder.cursorIndex);
-			//clearCurrentWord(decoder.cursorIndex);
 		})
 		
 		//save button
