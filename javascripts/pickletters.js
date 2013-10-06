@@ -456,6 +456,17 @@ $(document).ready(function() {
 			saveContents();
 		});
 		
+		//login button
+		$('#global-controls').on('click', 'button[name="login"]', function(event){
+			//stop the login for a minute
+			event.preventDefault();
+			
+			//save row and store the row id
+			
+			//perform the login
+			window.location = $(this).parents('form').attr('action');
+		});
+		
 	//end event delegation
 	
 //debugging

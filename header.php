@@ -72,7 +72,7 @@ if(isset($_GET['logout'])){
 			//if session variable email is not set
 	     ?>
 		  	<form action="?login" method="post">
-			    <button class="button">Login with Google</button>
+			    <button class="button" name="login">Login with Google</button>
 			</form>
 		<?php		
 	  		}
