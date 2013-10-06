@@ -360,6 +360,14 @@ var clearCurrentWord = function(startIndex){
 	
 }
 
+var removeWord = function(startIndex){
+	//remove pre-existing letters
+	$('div.character').eq(startIndex).parents('div.word').children('div.character').children('div.letter').html('');
+	
+	//remove pre-existing word wrapper
+	$('div.character').eq(startIndex).unwrap();
+}
+
 var findPrevStart = function(startIndex){
 	
 	//set index of first character of previous word the hard way - by finding the last word before the select element
@@ -435,6 +443,12 @@ $(document).ready(function() {
 		$('div#message').on('click', 'button[name="previous"]', function(event){
 			prevWord();
 		});
+		
+		//remove button
+		$('div#message').on('click', 'button[name="remove"]', function(event){
+			removeWord(decoder.cursorIndex);
+			//clearCurrentWord(decoder.cursorIndex);
+		})
 		
 		//save button
 		$('#global-controls').on('click', 'a#save', function(event){
