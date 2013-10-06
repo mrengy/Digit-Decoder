@@ -177,7 +177,7 @@ var buildWordOptions = function (){
 	}
 }
 
-//adds each word option as an option in a select element
+//adds each word option as an option in a select element and adds button controls
 var createControls = function(startIndex){
 	
 	//insert select element inside letter div
@@ -267,6 +267,11 @@ var printWord = function(selectedWord, startIndex){
 	//insert word wrapper div to group words
 	$('div.character').slice(startIndex, startIndex + selectedWord.length).wrapAll('<div class="word"></div>');
 	
+	//insert remove button if it's not already there
+	if ($('button[name="remove"]').length == 0){
+		$('select.'+decoder.selectClass).before(decoder.removeButtonHTML);
+	}
+	
 	//set var for previously selected word length - for use in next run
 	decoder.lastSelectedWordLength = selectedWord.length;
 	
@@ -352,6 +357,9 @@ var removeWord = function(startIndex){
 	
 	//remove pre-existing word wrapper
 	$('div.character').eq(startIndex).unwrap();
+	
+	//get rid of the remove button
+	$('button[name="remove"]').remove();
 }
 
 var findPrevStart = function(startIndex){
