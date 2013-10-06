@@ -245,11 +245,11 @@ var printWord = function(selectedWord, startIndex){
 	//initial variable for character of selected word to use
 	var selectedWordChar = 0;
 	
-	//clear pre-existing word if the start index is inside a word
-	if ($('div.character').eq(startIndex).parent('div.word').length != 0){
-		removeWord(startIndex);
-	} else if ($('div.character').eq(startIndex + selectedWord.length).parent('div.word').length != 0){
-		removeWord(startIndex + selectedWord.length);
+	//clear pre-existing word if the selected word overlaps an existing word
+	for (var b=startIndex; b<(startIndex + selectedWord.length); b++){
+		if ($('div.character').eq(b).parent('div.word').length != 0){
+			removeWord(b);
+		}
 	}
 	
 	//insert appropriate character of selected word
