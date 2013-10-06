@@ -63,6 +63,10 @@ select.word-options{
 	width:10em;
 }
 
+button[name="remove"]{
+	color:#911;
+}
+
 .word {
 	margin-right:2em;
 	float:left;

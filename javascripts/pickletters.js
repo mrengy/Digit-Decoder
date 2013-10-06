@@ -18,10 +18,11 @@
 	decoder.firstLetterPreviousWord = -1;
 	decoder.selectContainerClass = 'select';
 	decoder.selectClass = 'word-options';
-	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'"/></div>';
+	decoder.selectContainerHTML = '<div class="'+decoder.selectContainerClass+'"><select class="'+decoder.selectClass+'" alt="select a word" title="select a word"/></div>';
 	decoder.lastSelectedWordLength;
 	decoder.prevButtonHTML = '<button type="submit" name="previous">&larr;</button>';
-	decoder.nextButtonHTML = '<button type="submit" name="next">&rarr;</button>';
+	decoder.nextButtonHTML = '<button type="submit" name="next" alt="move to next word" title="move to next word">&rarr;</button>';
+	decoder.removeButtonHTML = '<button type="submit" name="remove" alt="remove word" title="remove word">x</button>';
 
 //moves the cursor and sets the decoder.cursorIndex variable
 var moveCursor = function(startIndex){
@@ -204,6 +205,10 @@ var createControls = function(startIndex){
 	//need conditional logic to not show it if is at the end
 	$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
 	
+	//add remove button only if it is within a word
+	if( $('div.letter:eq('+startIndex+')').parents('div.word').length > 0){
+		$('select.'+decoder.selectClass).before(decoder.removeButtonHTML);
+	}
 	//add previous button
 		//only if it is not at the beginning
 		/*
@@ -227,6 +232,7 @@ var removeControls = function(){
 	//remove buttons
 	$('button[name="previous"]').remove();
 	$('button[name="next"]').remove();
+	$('button[name="remove"]').remove();
 }
 
 //inserts each character into posiiton, starting at startIndex
