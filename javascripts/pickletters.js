@@ -247,14 +247,7 @@ var printWord = function(selectedWord, startIndex){
 	
 	//clear pre-existing word if there is one
 	if ($('div.character').eq(startIndex).parent('div.word').length != 0){
-		
-		//remove pre-existing letters
-		for (var w=startIndex; w<=(startIndex + decoder.lastSelectedWordLength); w++){
-			$('div.character div.letter').eq(w).html('');
-		}
-
-		//remove pre-existing word wrapper
-		$('div.character').eq(startIndex).unwrap();
+		removeWord(startIndex);
 	}
 	
 	//insert appropriate character of selected word
@@ -352,7 +345,7 @@ var findCurrentCharacterIndex = function(){
 }
 
 var removeWord = function(startIndex){
-	//remove pre-existing letters
+	//remove pre-existing letters in the current word
 	$('div.character').eq(startIndex).parents('div.word').children('div.character').children('div.letter').html('');
 	
 	//remove pre-existing word wrapper
