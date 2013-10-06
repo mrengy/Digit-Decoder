@@ -377,6 +377,17 @@ var saveContents = function(){
 	);
 }
 
+var lazyLogin = function(){
+	var html = $('div#message').clone();
+	var htmlString = html.html();
+	var datauri = window.btoa(unescape(encodeURIComponent(htmlString)));
+	$.post('lazy-login.php', {message: datauri},
+		function(data){
+			console.log('lazy login saved');
+		}
+	);
+}
+
 ////initial run of functions
 $(document).ready(function() {
 
@@ -462,9 +473,10 @@ $(document).ready(function() {
 			event.preventDefault();
 			
 			//save row and store the row id
+			lazyLogin();
 			
 			//perform the login
-			window.location = $(this).parents('form').attr('action');
+			//window.location = $(this).parents('form').attr('action');
 		});
 		
 	//end event delegation
