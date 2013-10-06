@@ -1,9 +1,10 @@
 <?php include ('example-google.php'); ?>
 <?php
+
 /*
 // hardcoded version for offline debugging
 session_start();
-$_SESSION['email'] = 'minitab@yahoo.com';
+$_SESSION['email'] = 'mrengy@gmail.com';
 */
 
 //handling logout

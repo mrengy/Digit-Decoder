@@ -370,7 +370,7 @@ var saveContents = function(){
 	var html = $('div#message').clone();
 	var htmlString = html.html();
 	var datauri = window.btoa(unescape(encodeURIComponent(htmlString)));
-	$.post('insert.php', {username: 'mrengy', message: datauri},
+	$.post('insert.php', {message: datauri},
 		function(data){
 			$.notific8('Message saved.', {life: 4000, verticalEdge:'left', theme:'smoke'});
 		}
