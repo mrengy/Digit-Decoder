@@ -1,15 +1,17 @@
 <?php include ('example-google.php'); ?>
 <?php
 
-/*
+
 // hardcoded version for offline debugging
 session_start();
-$_SESSION['email'] = 'nobody';
-*/
+$_SESSION['email'] = 'nobody4';
+
 
 //handling logout
 if(isset($_GET['logout'])){
 	unset($_SESSION['email']);
+	unset($_SESSION['insert-id']);
+	echo "session var insert-id unset";
 	session_destroy();
 }
 

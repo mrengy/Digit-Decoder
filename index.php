@@ -15,6 +15,9 @@ if (isset($_SESSION['email'])){
 
 	$queryEmail = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
 	$resultEmail = $db->query($queryEmail);
+	
+	
+	$lazyLoginId = $_SESSION['insert-id'];
 
 	//print out the result
 	if ($resultEmail){
@@ -22,10 +25,9 @@ if (isset($_SESSION['email'])){
 		if(strlen($rowEmail['message']) > 0){
 			//only display the stored message from the email address if there is one
 			echo base64_decode($rowEmail['message']);
-		} else {
+		} else if(isset($_SESSION['insert-id'])){
 			//otherwise query for the message as it was stored from the lazy login
 			//include ('initial-message.php');
-			$lazyLoginId = $_SESSION['insert-id'];
 			
 			$queryLazyLogin = "SELECT message FROM `users` WHERE ((`users`.`ID` = '$lazyLoginId'))";
 			$resultLazyLogin = $db->query($queryLazyLogin);
@@ -38,34 +40,29 @@ if (isset($_SESSION['email'])){
 				//display the message from the lazy login
 				echo base64_decode($rowLazyLogin['message']);
 				
-				//delete the row just loaded since user will save it under the email address now that user is authenticated
-				/*
-				//prepared statement
-				$stmtLazyLogin = $db->prepare("DELETE FROM users (ID) VALUES(?)");
-				$stmtLazyLogin->bind_param('s',$lazyLoginId);
-				$stmtLazyLogin->execute();
-				$stmtLazyLogin->close();
-				*/
-				
-				//$queryDeleteLazyLogin = "DELETE FROM 'users' WHERE ('users'.'ID' = '$lazyLoginId')";
-				
-				$queryDeleteLazyLogin = "DELETE FROM `digit_decoder`.`users` WHERE `users`.`ID` = $lazyLoginId";
-				$resultDeleteLazyLogin = $db->query($queryDeleteLazyLogin);
-				
-				if($resultDeleteLazyLogin){	
-					//unset lazy login id session variable
-					unset($_SESSION['insert-id']);
-				} else {
-					echo "Lazy login delete query: error.";
-				}
-				
 			} else {
 				echo "Lazy login query: Error reading from database.";
 			}
+		} else{
+			echo "session insert-id variable is not set.";
 		}
 	} else{
 		echo "Email query: Error reading from database.";
 	}
+	
+	//always delete the row just loaded using lazy login since user will save it under the email address now that user is authenticated
+	$queryDeleteLazyLogin = "DELETE FROM `digit_decoder`.`users` WHERE `users`.`ID` = $lazyLoginId";
+	$resultDeleteLazyLogin = $db->query($queryDeleteLazyLogin);
+	
+	if($resultDeleteLazyLogin){	
+		//unset lazy login id session variable
+		echo "successfully deleted lazy login row";
+		unset($_SESSION['insert-id']);
+		echo "session var insert-id unset";
+	} else {
+		echo "Lazy login delete query: error.";
+	}
+	
 	$db->close();
 } else{
 	//if the user is not logged in, display the initial message
