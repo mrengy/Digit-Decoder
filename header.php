@@ -1,11 +1,11 @@
 <?php include ('example-google.php'); ?>
 <?php
 
-
+/*
 // hardcoded version for offline debugging
 session_start();
 $_SESSION['email'] = 'nobody';
-
+*/
 
 //handling logout
 if(isset($_GET['logout'])){
