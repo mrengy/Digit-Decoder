@@ -47,7 +47,9 @@ if (isset($_SESSION['email'])){
 				$stmtLazyLogin->close();
 				*/
 				
-				$queryDeleteLazyLogin = "DELETE FROM 'users' WHERE ('users'.'ID' = '$lazyLoginId')";
+				//$queryDeleteLazyLogin = "DELETE FROM 'users' WHERE ('users'.'ID' = '$lazyLoginId')";
+				
+				$queryDeleteLazyLogin = "DELETE FROM `digit_decoder`.`users` WHERE `users`.`ID` = 4";
 				$resultDeleteLazyLogin = $db->query($queryDeleteLazyLogin);
 				
 				if($resultDeleteLazyLogin){	
