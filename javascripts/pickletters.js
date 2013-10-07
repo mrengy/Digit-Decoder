@@ -386,9 +386,6 @@ var lazyLogin = function(){
 		data: {message: datauri},
 		type: 'POST',
 		async: false,
-		success: function(data){
-			console.log('lazy login saved');
-		},
 		error: function(xhr, status){
 			console.log('problem storing lazy login');
 		}

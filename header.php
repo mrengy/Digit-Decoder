@@ -1,11 +1,11 @@
 <?php include ('example-google.php'); ?>
 <?php
 
-/*
+
 // hardcoded version for offline debugging
 session_start();
-$_SESSION['email'] = 'mrengy@gmail.com';
-*/
+$_SESSION['email'] = 'nobody';
+
 
 //handling logout
 if(isset($_GET['logout'])){
@@ -51,7 +51,6 @@ if(isset($_GET['logout'])){
 </head>
 <body>
 
-<?php echo($_SESSION['insert-id']); ?>
   <div class="row" id="title-row">
 	<div class="nine columns">
       <h1 id="title">Digit Decoder</h1>

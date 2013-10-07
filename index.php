@@ -13,21 +13,32 @@ if (isset($_SESSION['email'])){
 
 	$username = $_SESSION['email'];
 
-	$query = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
-	$result = $db->query($query);
+	$queryEmail = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
+	$resultEmail = $db->query($queryEmail);
 
 	//print out the result
-	if ($result){
-		$row = $result->fetch_assoc();
-		if(strlen($row['message']) > 0){
-			//only display the stored message if there is one
-			echo base64_decode($row['message']);
+	if ($resultEmail){
+		$rowEmail = $resultEmail->fetch_assoc();
+		if(strlen($rowEmail['message']) > 0){
+			//only display the stored message from the email address if there is one
+			echo base64_decode($rowEmail['message']);
 		} else {
-			//otherwise display the initial message
-			include ('initial-message.php');
+			//otherwise display the message as it was stored from the lazy login
+			//include ('initial-message.php');
+			$lazyLoginId = $_SESSION['insert-id'];
+			
+			$queryLazyLogin = "SELECT message FROM `users` WHERE ((`users`.`ID` = '$lazyLoginId'))";
+			$resultLazyLogin = $db->query($queryLazyLogin);
+			
+			if($resultLazyLogin){
+				$rowLazyLogin = $resultLazyLogin->fetch_assoc();
+				echo base64_decode($rowLazyLogin['message']);
+			} else {
+				echo "Lazy login query: Error reading from database.";
+			}
 		}
 	} else{
-		echo "Error reading from database.";
+		echo "Email query: Error reading from database.";
 	}
 	$db->close();
 } else{
