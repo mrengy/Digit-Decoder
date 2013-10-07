@@ -33,6 +33,8 @@ if (isset($_SESSION['email'])){
 			if($resultLazyLogin){
 				$rowLazyLogin = $resultLazyLogin->fetch_assoc();
 				
+				echo("lazy login id is " . $lazyLoginId);
+				
 				//display the message from the lazy login
 				echo base64_decode($rowLazyLogin['message']);
 				
@@ -45,9 +47,7 @@ if (isset($_SESSION['email'])){
 				$stmtLazyLogin->close();
 				*/
 				
-				echo($lazyLoginID);
-				
-				$queryDeleteLazyLogin = "DELETE FROM 'users' WHERE ID = $lazyLoginId";
+				$queryDeleteLazyLogin = "DELETE FROM 'users' WHERE ('users'.'ID' = '$lazyLoginId')";
 				$resultDeleteLazyLogin = $db->query($queryDeleteLazyLogin);
 				
 				if($resultDeleteLazyLogin){	
