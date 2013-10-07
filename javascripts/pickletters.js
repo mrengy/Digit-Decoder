@@ -381,11 +381,18 @@ var lazyLogin = function(){
 	var html = $('div#message').clone();
 	var htmlString = html.html();
 	var datauri = window.btoa(unescape(encodeURIComponent(htmlString)));
-	$.post('lazy-login.php', {message: datauri},
-		function(data){
+	$.ajax({
+		url : 'lazy-login.php',
+		data: {message: datauri},
+		type: 'POST',
+		async: false,
+		success: function(data){
 			console.log('lazy login saved');
+		},
+		error: function(xhr, status){
+			console.log('problem storing lazy login');
 		}
-	);
+	});
 }
 
 ////initial run of functions
@@ -476,7 +483,7 @@ $(document).ready(function() {
 			lazyLogin();
 			
 			//perform the login
-			//window.location = $(this).parents('form').attr('action');
+			window.location = $(this).parents('form').attr('action');
 		});
 		
 	//end event delegation

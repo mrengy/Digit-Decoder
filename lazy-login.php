@@ -20,12 +20,8 @@ $stmt->bind_param('s', $message);
 $stmt->execute();
 $stmt->close();
 
+//store last inserted id in session variable
 $_SESSION['insert-id'] = $db->insert_id;
 
-//print_r($db->insert_id);
-
 $db->close();
-
-echo($_SESSION['insert-id']);
-
 ?>

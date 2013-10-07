@@ -51,6 +51,7 @@ if(isset($_GET['logout'])){
 </head>
 <body>
 
+<?php echo($_SESSION['insert-id']); ?>
   <div class="row" id="title-row">
 	<div class="nine columns">
       <h1 id="title">Digit Decoder</h1>
