@@ -23,7 +23,7 @@ if (isset($_SESSION['email'])){
 			//only display the stored message from the email address if there is one
 			echo base64_decode($rowEmail['message']);
 		} else {
-			//otherwise display the message as it was stored from the lazy login
+			//otherwise query for the message as it was stored from the lazy login
 			//include ('initial-message.php');
 			$lazyLoginId = $_SESSION['insert-id'];
 			
@@ -32,7 +32,31 @@ if (isset($_SESSION['email'])){
 			
 			if($resultLazyLogin){
 				$rowLazyLogin = $resultLazyLogin->fetch_assoc();
+				
+				//display the message from the lazy login
 				echo base64_decode($rowLazyLogin['message']);
+				
+				//delete the row just loaded since user will save it under the email address now that user is authenticated
+				/*
+				//prepared statement
+				$stmtLazyLogin = $db->prepare("DELETE FROM users (ID) VALUES(?)");
+				$stmtLazyLogin->bind_param('s',$lazyLoginId);
+				$stmtLazyLogin->execute();
+				$stmtLazyLogin->close();
+				*/
+				
+				echo($lazyLoginID);
+				
+				$queryDeleteLazyLogin = "DELETE FROM 'users' WHERE ID = $lazyLoginId";
+				$resultDeleteLazyLogin = $db->query($queryDeleteLazyLogin);
+				
+				if($resultDeleteLazyLogin){	
+					//unset lazy login id session variable
+					unset($_SESSION['insert-id']);
+				} else {
+					echo "Lazy login delete query: error.";
+				}
+				
 			} else {
 				echo "Lazy login query: Error reading from database.";
 			}
