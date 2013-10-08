@@ -1,17 +1,17 @@
 <?php include ('example-google.php'); ?>
 <?php
 
-
+/*
 // hardcoded version for offline debugging
 session_start();
-$_SESSION['email'] = 'nobody4';
-
+$_SESSION['email'] = 'nobody3';
+*/
 
 //handling logout
 if(isset($_GET['logout'])){
 	unset($_SESSION['email']);
 	unset($_SESSION['insert-id']);
-	echo "session var insert-id unset";
+	//echo "session var insert-id unset";
 	session_destroy();
 }
 
@@ -56,6 +56,7 @@ if(isset($_GET['logout'])){
   <div class="row" id="title-row">
 	<div class="nine columns">
       <h1 id="title">Digit Decoder</h1>
+	  <a href="https://github.com/mrengy/digit-decoder#digit-decoder" id="what-is-this">What is this?</a>
 	</div>
 	<div id="global-controls" class="three columns">
 		<span id="global-controls-contents">

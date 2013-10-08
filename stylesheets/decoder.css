@@ -6,6 +6,14 @@
 	right:1em;
 }
 
+h1#title{
+	display:inline-block;
+}
+
+#what-is-this{
+	margin-left:2em;
+}
+
 #logged-in-as {
 	margin-bottom: 1em;
 }
