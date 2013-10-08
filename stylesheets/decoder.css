@@ -8,10 +8,12 @@
 
 h1#title{
 	display:inline-block;
+	margin-right:1em;
+	margin-bottom:1em;
 }
 
 #what-is-this{
-	margin-left:2em;
+	/*margin-bottom:1em;*/
 }
 
 #logged-in-as {
