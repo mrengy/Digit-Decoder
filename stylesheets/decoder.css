@@ -9,7 +9,6 @@
 h1#title{
 	display:inline-block;
 	margin-right:1em;
-	margin-bottom:1em;
 }
 
 #what-is-this{
@@ -34,6 +33,10 @@ button.link-style{
 	font-family:"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif; /*input has OS specific font-family*/
     color:#2BA6CB;
     cursor:pointer;
+}
+
+#message{
+	margin-top:1em;
 }
 
 button.link-style:hover{
