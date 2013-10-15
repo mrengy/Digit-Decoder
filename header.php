@@ -4,7 +4,7 @@
 /*
 // hardcoded version for offline debugging
 session_start();
-$_SESSION['email'] = 'nobody4';
+$_SESSION['email'] = 'nobody3';
 */
 
 //handling logout
