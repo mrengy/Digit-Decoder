@@ -51,20 +51,22 @@ if (isset($_SESSION['email'])){
 		echo "Email query: Error reading from database.";
 	}
 	
-	//always delete the row just loaded using lazy login since user will save it under the email address now that user is authenticated
-	$queryDeleteLazyLogin = "DELETE FROM `digit_decoder`.`users` WHERE `users`.`ID` = $lazyLoginId";
-	$resultDeleteLazyLogin = $db->query($queryDeleteLazyLogin);
+	if ($lazyLoginId){
+		//delete the row just loaded using lazy login (if it exists) since user will save it under the email address now that user is authenticated
+		$queryDeleteLazyLogin = "DELETE FROM `digit_decoder`.`users` WHERE `users`.`ID` = $lazyLoginId";
+		$resultDeleteLazyLogin = $db->query($queryDeleteLazyLogin);
 	
-	if($resultDeleteLazyLogin){	
-		//unset lazy login id session variable
-		echo "successfully deleted lazy login row";
-		unset($_SESSION['insert-id']);
-		echo "session var insert-id unset";
-	} else {
-		echo "Lazy login delete query: error.";
+		if($resultDeleteLazyLogin){	
+			//unset lazy login id session variable
+			echo "successfully deleted lazy login row";
+			unset($_SESSION['insert-id']);
+			echo "session var insert-id unset";
+		} else {
+			echo "Lazy login delete query: error.";
+		}
+	
+		$db->close();
 	}
-	
-	$db->close();
 } else{
 	//if the user is not logged in, display the initial message
 	include ('initial-message.php');
