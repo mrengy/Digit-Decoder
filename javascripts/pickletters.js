@@ -388,6 +388,9 @@ var lazyLogin = function(){
 		async: false,
 		error: function(xhr, status){
 			console.log('problem storing lazy login');
+		},
+		success: function(text){
+			console.log('lazy login message stored');
 		}
 	});
 }
@@ -473,14 +476,20 @@ $(document).ready(function() {
 		
 		//login button
 		$('#global-controls').on('click', 'button[name="login"]', function(event){
-			//stop the login for a minute
-			event.preventDefault();
 			
-			//save row and store the row id
-			lazyLogin();
+			//only intercept the login to store the on-screen message if there is a word on screen
+			if ($('div.word').length > 0){
+				
+				//stop the login for a minute
+				event.preventDefault();
 			
-			//perform the login
-			window.location = $(this).parents('form').attr('action');
+				//save the message currently on screen and store the row id
+				lazyLogin();
+			
+				//perform the login
+				window.location = $(this).parents('form').attr('action');
+			
+			}
 		});
 		
 	//end event delegation
