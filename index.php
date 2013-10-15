@@ -44,7 +44,8 @@ if (isset($_SESSION['email'])){
 				echo "Lazy login query: Error reading from database.";
 			}
 		} else{
-			echo "session insert-id variable is not set.";
+			//if the lazy login script has not run, show the initial message
+			include ('initial-message.php');
 		}
 	} else{
 		echo "Email query: Error reading from database.";
