@@ -16,9 +16,10 @@ if (isset($_SESSION['email'])){
 	$queryEmail = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
 	$resultEmail = $db->query($queryEmail);
 	
+	if (isset($_SESSION['insert-id'])){
+		$lazyLoginId = $_SESSION['insert-id'];
+	}
 	
-	$lazyLoginId = $_SESSION['insert-id'];
-
 	//print out the result
 	if ($resultEmail){
 		$rowEmail = $resultEmail->fetch_assoc();
