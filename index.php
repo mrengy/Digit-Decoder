@@ -16,6 +16,7 @@ if (isset($_SESSION['email'])){
 	$queryEmail = "SELECT message FROM `users` WHERE ((`users`.`username` = '$username'))";
 	$resultEmail = $db->query($queryEmail);
 	
+	//only set $lazyLoginId variable if Session insert-id is set
 	if (isset($_SESSION['insert-id'])){
 		$lazyLoginId = $_SESSION['insert-id'];
 	}
