@@ -7,6 +7,6 @@ I am building this application as a tool to use to decode it. Also, I thought it
 
 [More on my blog](http://mike-eng.com/digit-decoder/).
 
-[Working Prototype](ttp://mike-eng.com/sandbox/digit-decoder/)
+Working Prototype
 -------------
-[http://mike-eng.com/sandbox/digit-decoder/](http://mike-eng.com/sandbox/digit-decoder/)
+Try out the working prototype at [http://mike-eng.com/sandbox/digit-decoder/](http://mike-eng.com/sandbox/digit-decoder/)
