@@ -48,6 +48,12 @@
   <script src="javascripts/app.js"></script>
 
   <!-- decoder scripts -->
+  <script type="text/javascript">
+	 Modernizr.load({
+	        test: window.btoa && window.atob,
+	        nope: 'javascripts/base64.min.js'
+	    });
+  </script>
   <script src="javascripts/words.js"></script>
   <script src="javascripts/pickletters.js"></script>
 </body>
