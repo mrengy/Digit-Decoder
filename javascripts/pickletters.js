@@ -23,6 +23,7 @@
 	decoder.prevButtonHTML = '<button type="submit" name="previous">&larr;</button>';
 	decoder.nextButtonHTML = '<button type="submit" name="next" alt="move to next word" title="move to next word">&rarr;</button>';
 	decoder.removeButtonHTML = '<button type="submit" name="remove" alt="remove word" title="remove word">x</button>';
+	decoder.emptyMessageHTML = '<div id="no-words">No words found. Click somewhere else to move the cursor.</div>'
 
 //moves the cursor and sets the decoder.cursorIndex variable
 var moveCursor = function(startIndex){
@@ -215,6 +216,12 @@ var createControls = function(startIndex){
 			$('select.'+decoder.selectClass).before(decoder.prevButtonHTML);
 		}
 		*/
+		
+	//add empty message if there are no word options
+	if( $('select.'+decoder.selectClass+' option').length == 1 ){
+		$('select.'+decoder.selectClass).remove();
+		$('div.select').append(decoder.emptyMessageHTML);
+	}
 }
 
 var createNext = function(){
@@ -232,13 +239,8 @@ var removeDefault = function(selectedValue){
 }
 
 var removeControls = function(){
-	//remove select element
-	$('select.'+decoder.selectClass).remove();
-	
-	//remove buttons
-	$('button[name="previous"]').remove();
-	$('button[name="next"]').remove();
-	$('button[name="remove"]').remove();
+	//remove select element and all controls
+	$('div.select').remove();
 }
 
 //inserts each character into posiiton, starting at startIndex
@@ -259,7 +261,6 @@ var printWord = function(selectedWord, startIndex){
 	}
 	
 	//insert appropriate character of selected word
-	
 	for (var a=startIndex; a<(startIndex + selectedWord.length); a++){
 		$('div.character div.letter').eq(a).html(selectedWord.charAt(selectedWordChar));
 		selectedWordChar++;

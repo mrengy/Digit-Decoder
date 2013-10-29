@@ -78,10 +78,15 @@ button.link-style:hover{
 
 .select{
 	position:absolute;
+	text-align:left;
 }
 
 select.word-options{
 	width:10em;
+}
+
+#no-words{
+	position:relative;
 }
 
 button[name="remove"]{
