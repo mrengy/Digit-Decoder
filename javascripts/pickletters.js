@@ -202,8 +202,7 @@ var createControls = function(startIndex){
 	$('select.'+decoder.selectClass).focus();
 	
 	//add next button
-	//need conditional logic to not show it if is at the end
-	$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
+	//$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
 	
 	//add remove button only if it is within a word
 	if( $('div.letter:eq('+startIndex+')').parents('div.word').length > 0){
@@ -216,6 +215,13 @@ var createControls = function(startIndex){
 			$('select.'+decoder.selectClass).before(decoder.prevButtonHTML);
 		}
 		*/
+}
+
+var createNext = function(){
+	//create next button
+	//if( $('select.'+decoder.selectClass+' option').length > 0 ){
+		$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
+	//}
 }
 
 //removes placeholder text from select element
@@ -269,6 +275,9 @@ var printWord = function(selectedWord, startIndex){
 	
 	//set var for previously selected word length - for use in next run
 	decoder.lastSelectedWordLength = selectedWord.length;
+	
+	//create the next button
+	createNext();
 	
 	//focus on next button
 	$('button[name="next"]').focus();
@@ -416,8 +425,8 @@ $(document).ready(function() {
 	//end first run manual selection
 	
 	//begin event delegation
-		//moving cursor and creating select element
 		
+		//moving cursor and creating controls
 		$('div.character').on('click', function(event){
 			
 			//only continue if the target clicked is not a child of the cursorIndex - prevents duplication of events bound to button elements underneath the character div
@@ -446,10 +455,6 @@ $(document).ready(function() {
 		//removing the placeholder text on the select elemeent
 		$('div#message').on('change', 'select.'+decoder.selectClass, function(event){
 			removeDefault(this.value);
-		});
-	
-		//binding print function to select elements
-		$('div#message').on('change', 'select.'+decoder.selectClass, function(event){
 			printWord(this.value, decoder.cursorIndex);
 		});
 		
