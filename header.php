@@ -54,11 +54,11 @@ if(isset($_GET['logout'])){
 <body>
 
   <div class="row" id="title-row">
-	<div class="nine columns">
+	<div class="eight columns">
       <h1 id="title">Digit Decoder</h1>
 	  <a href="https://github.com/mrengy/digit-decoder#digit-decoder" id="what-is-this">What is this?</a>
 	</div>
-	<div id="global-controls" class="three columns">
+	<div id="global-controls" class="four columns">
 		<span id="global-controls-contents">
 	 	 <!--<a href="#" data-reveal-id="loginModal">Log in</a>-->
 		  <?php
@@ -76,7 +76,7 @@ if(isset($_GET['logout'])){
 			//if session variable email is not set
 	     ?>
 		  	<form action="?login" method="post">
-			    <button class="button" name="login">Login with Google</button>
+			    <button class="button" name="login">Login with Google to save</button>
 			</form>
 		<?php		
 	  		}
