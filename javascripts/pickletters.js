@@ -503,6 +503,13 @@ $(document).ready(function() {
 			}
 		});
 		
+		//security modal
+		$('#global-controls-contents').on('click', '#buttonSecurity', function(event){
+			
+			event.preventDefault();
+			$('#modalSecurity').reveal();
+		});
+		
 	//end event delegation
 	
 //debugging

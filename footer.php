@@ -1,4 +1,10 @@
   </div> <!-- closing #message -->
+  <div id="modalSecurity" class="reveal-modal [expand, xlarge, large, medium, small]">
+	  <h2>Awesome. I have it.</h2>
+	  <p class="lead">Your couch.  It is mine.</p>
+	  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+	  <a class="close-reveal-modal">&#215;</a>
+  </div>
 <!--	
   <div id="loginModal" class="reveal-modal large">
     <h2>Choose a login method</h2>

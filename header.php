@@ -78,6 +78,7 @@ if(isset($_GET['logout'])){
 		  	<form action="?login" method="post">
 			    <button class="button" name="login">Login with Google to save</button>
 			</form>
+			<a href="#" class="vspace" id="buttonSecurity">Is this secure?</a>
 		<?php		
 	  		}
 	  	?>
