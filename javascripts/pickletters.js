@@ -437,6 +437,7 @@ $(document).ready(function() {
 				buildPossibilities(decoder.cursorIndex);
 				buildWordOptions();
 				createControls(decoder.cursorIndex);
+				_trackEvent('Controls', 'move cursor - manual');
 			}
 			
 			/*
@@ -463,6 +464,7 @@ $(document).ready(function() {
 		//next button
 		$('div#message').on('click', 'button[name="next"]', function(event){
 			nextWord();
+			_trackEvent('Controls', 'move cursor - next button');
 		});
 		
 		//previous button
