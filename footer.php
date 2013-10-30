@@ -1,8 +1,7 @@
   </div> <!-- closing #message -->
   <div id="modalSecurity" class="reveal-modal [expand, xlarge, large, medium, small]">
-	  <h2>Awesome. I have it.</h2>
-	  <p class="lead">Your couch.  It is mine.</p>
-	  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+	  <h2>About logging in with Google</h2>
+	  <p>This approach (<a href="http://lifehacker.com/5918086/understanding-oauth-what-happens-when-you-log-into-a-site-with-google-twitter-or-facebook" title ="Understanding OAuth - Lifehacker article">called OAuth</a>) is one of the most secure ways to log in to a site. <strong>This site will not store your password.</strong> You log in to Google and then grant this site access to use your email address to identify you on this site. When you enter your password on the Google login form, it is only sent to Google.</p>
 	  <a class="close-reveal-modal">&#215;</a>
   </div>
 <!--	
