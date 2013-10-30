@@ -457,6 +457,7 @@ $(document).ready(function() {
 		$('div#message').on('change', 'select.'+decoder.selectClass, function(event){
 			removeDefault(this.value);
 			printWord(this.value, decoder.cursorIndex);
+			_trackEvent('Controls', 'change word');
 		});
 		
 		//next button
@@ -472,6 +473,7 @@ $(document).ready(function() {
 		//remove button
 		$('div#message').on('click', 'button[name="remove"]', function(event){
 			removeWord(decoder.cursorIndex);
+			_trackEvent('Controls', 'remove word');
 		})
 		
 		//save button
@@ -482,6 +484,7 @@ $(document).ready(function() {
 		
 		//login button
 		$('#global-controls').on('click', 'button[name="login"]', function(event){
+			_trackEvent('Global', 'login');
 			
 			//only intercept the login to store the on-screen message if there is a word on screen
 			if ($('div.word').length > 0){
