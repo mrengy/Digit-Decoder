@@ -437,7 +437,7 @@ $(document).ready(function() {
 				buildPossibilities(decoder.cursorIndex);
 				buildWordOptions();
 				createControls(decoder.cursorIndex);
-				_trackEvent('Controls', 'move cursor - manual');
+				ga('send', 'event', 'Controls', 'move cursor - manual');
 			}
 			
 			/*
@@ -458,13 +458,13 @@ $(document).ready(function() {
 		$('div#message').on('change', 'select.'+decoder.selectClass, function(event){
 			removeDefault(this.value);
 			printWord(this.value, decoder.cursorIndex);
-			_trackEvent('Controls', 'change word');
+			ga('send', 'event', 'Controls', 'change word');
 		});
 		
 		//next button
 		$('div#message').on('click', 'button[name="next"]', function(event){
 			nextWord();
-			_trackEvent('Controls', 'move cursor - next button');
+			ga('send', 'event','Controls', 'move cursor - next button');
 		});
 		
 		//previous button
@@ -475,7 +475,7 @@ $(document).ready(function() {
 		//remove button
 		$('div#message').on('click', 'button[name="remove"]', function(event){
 			removeWord(decoder.cursorIndex);
-			_trackEvent('Controls', 'remove word');
+			ga('send', 'event','Controls', 'remove word');
 		})
 		
 		//save button
@@ -486,7 +486,7 @@ $(document).ready(function() {
 		
 		//login button
 		$('#global-controls').on('click', 'button[name="login"]', function(event){
-			_trackEvent('Global', 'login');
+			ga('send', 'event', 'Global', 'login');
 			
 			//only intercept the login to store the on-screen message if there is a word on screen
 			if ($('div.word').length > 0){
