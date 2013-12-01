@@ -1,10 +1,4 @@
   </div> <!-- closing #message -->
-  <div id="modalSecurity" class="reveal-modal large">
-	  <h2>About logging in with Google</h2>
-	  <p>This approach (<a href="http://lifehacker.com/5918086/understanding-oauth-what-happens-when-you-log-into-a-site-with-google-twitter-or-facebook" title ="Understanding OAuth - Lifehacker article">called OAuth</a>) is one of the most secure ways to log in to a site. <strong>This site will not store your password.</strong> When you click the "Log in with Google" button, you log in to Google and then grant this site access to use your email address to identify you on this site.</p>
-	  <p><strong>I don't share your email address with anyone or use it for anything</strong> other than finding your saved message on this site if you choose to save it.</p>
-	  <a class="close-reveal-modal">&#215;</a>
-  </div>
 <!--	
   <div id="loginModal" class="reveal-modal large">
     <h2>Choose a login method</h2>
