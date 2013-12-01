@@ -9,6 +9,11 @@ $_SESSION['email'] = 'nobody3';
 
 //handling logout
 if(isset($_GET['logout'])){
+	//log out of gmail
+	echo('<script type="text/javascript" 
+	    src="https://mail.google.com/mail/u/0/?logout&hl=en"> </script>');
+	
+	//log out of this app
 	unset($_SESSION['email']);
 	unset($_SESSION['insert-id']);
 	//echo "session var insert-id unset";
