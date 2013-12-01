@@ -1,6 +1,5 @@
 <?php include ('example-google.php'); ?>
 <?php
-
 /*
 // hardcoded version for offline debugging
 session_start();
