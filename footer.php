@@ -42,7 +42,6 @@
   -->
   
   <!-- Included JS Files (Compressed) -->
-  <script src="javascripts/jquery.js"></script>
   <script src="javascripts/foundation.min.js"></script>
   <script src="javascripts/jquery.notific8.min.js"></script>
   <!-- Initialize JS Plugins -->

@@ -100,7 +100,7 @@
   $.foundation.customForms.appendCustomMarkup = function ( options ) {
 
     var defaults = {
-      disable_class: "no-custom"
+      disable_class: "js-disable-custom"
     };
 
     options = $.extend( defaults, options );
@@ -165,7 +165,7 @@
       //
       // Should we not create a custom list?
       //
-      if ( $this.hasClass( options.disable_class ) ) return;
+      if ( $this.hasClass( 'no-custom' ) ) return;
 
       //
       // Did we not create a custom select element yet?
@@ -186,7 +186,7 @@
         //
         // Build our custom list.
         //
-        $customSelect = $('<div class="' + ['custom', 'dropdown', customSelectSize ].join( ' ' ) + '"><a href="#" class="selector"></a><ul /></div>');
+        $customSelect = $('<div class="' + ['custom', 'dropdown', customSelectSize ].join( ' ' ) + '"><a href="#" class="selector"></a><ul /></div>"');
         //
         // Grab the selector element
         //
@@ -268,11 +268,11 @@
       //
       // Update the custom <ul> list width property.
       //
-      $customList.css( 'width', 'auto' );
+      $customList.css( 'width', 'inherit' );
       //
       // Set the custom select width property.
       //
-      $customSelect.css( 'width', 'auto' );
+      $customSelect.css( 'width', 'inherit' );
 
       //
       // If we're not specifying a predetermined form size.
@@ -369,22 +369,19 @@
     if (false === $input.is(':disabled')) {
         input.checked = ((input.checked) ? false : true);
         $element.toggleClass('checked');
-
-        $input.trigger('change');
     }
   };
 
   var toggleRadio = function($element) {
     var $input = $element.prev(),
-        $form = $input.closest('form.custom'),
         input = $input[0];
 
     if (false === $input.is(':disabled')) {
-      $form.find('input:radio[name="' + $input.attr('name') + '"]').next().not($element).removeClass('checked');
-      if ( !$element.hasClass('checked') ) {
-        $element.toggleClass('checked');
-      }
-      input.checked = $element.hasClass('checked');
+      $('input:radio[name="' + $input.attr('name') + '"]').each(function () {
+        $(this).next().removeClass('checked');
+      });
+      input.checked = ((input.checked) ? false : true);
+      $element.toggleClass('checked');
 
       $input.trigger('change');
     }
@@ -409,33 +406,17 @@
   });
 
   $(document).on('click', 'form.custom label', function (event) {
-    var $associatedElement = $('#' + $(this).attr('for') + '[data-customforms!=disabled]'),
+    var $associatedElement = $('#' + $(this).attr('for')),
         $customCheckbox,
         $customRadio;
     if ($associatedElement.length !== 0) {
       if ($associatedElement.attr('type') === 'checkbox') {
         event.preventDefault();
         $customCheckbox = $(this).find('span.custom.checkbox');
-        //the checkbox might be outside after the label
-        if ($customCheckbox.length == 0) {
-            $customCheckbox = $(this).next('span.custom.checkbox');
-        }
-        //the checkbox might be outside before the label
-        if ($customCheckbox.length == 0) {
-            $customCheckbox = $(this).prev('span.custom.checkbox');
-        }
         toggleCheckbox($customCheckbox);
       } else if ($associatedElement.attr('type') === 'radio') {
         event.preventDefault();
         $customRadio = $(this).find('span.custom.radio');
-        //the radio might be outside after the label
-        if ($customRadio.length == 0) {
-            $customRadio = $(this).next('span.custom.radio');
-        }
-        //the radio might be outside before the label
-        if ($customRadio.length == 0) {
-            $customRadio = $(this).prev('span.custom.radio');
-        }
         toggleRadio($customRadio);
       }
     }
