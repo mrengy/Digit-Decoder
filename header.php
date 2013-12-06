@@ -44,6 +44,7 @@ if(isset($_GET['logout'])){
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="stylesheets/foundation.min.css">
   <link rel="stylesheet" href="stylesheets/jquery.notific8.min.css">
+  <link rel="stylesheet" href="stylesheets/reveal.css">
 
   <!-- my CSS for the digit decoder -->
   <link rel="stylesheet" href="stylesheets/decoder.css">

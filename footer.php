@@ -47,6 +47,9 @@
   <!-- Initialize JS Plugins -->
   <script src="javascripts/app.js"></script>
 
+  <!-- reveal standalone plugin -->
+  <script src="javascripts/jquery.reveal.js" type="text/javascript"></script>
+
   <!-- decoder scripts -->
   <script type="text/javascript">
 	 Modernizr.load({
