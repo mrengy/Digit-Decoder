@@ -28,6 +28,11 @@ h1#title{
 	display:inline;
 }
 
+a.vspace {
+	display:block;
+	margin-top:.5em;
+}
+
 button.link-style{
 	background:none!important;
 	border:none; 
