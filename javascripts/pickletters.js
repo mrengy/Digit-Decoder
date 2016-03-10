@@ -226,9 +226,12 @@ var createControls = function(startIndex){
 
 var createNext = function(){
 	//create next button
-	//if( $('select.'+decoder.selectClass+' option').length > 0 ){
-		$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
-	//}
+	if ($(decoder.nextButtonHTML).length){
+		//remove any other next buttons if they exist
+		//$(decoder.nextButtonHTML).remove();
+		$('button[name=next]').remove();
+	}
+	$('select.'+decoder.selectClass).after(decoder.nextButtonHTML);
 }
 
 //removes placeholder text from select element
